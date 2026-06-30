@@ -11,11 +11,11 @@
 | Beta | 可用但仍在磨 | 已有實測或局部案例，但邊界條件、地區語境或資料類型仍需要更多回歸 |
 | Draft | 草稿 | 只有設計或少量試跑，尚未形成可依賴的實測證據鏈 |
 
-目前 12 個 Boya skills 列為 **Stable**，`venue-fit`、`framework-build`、`lit-discovery` 列為 **Beta**：不是因為「不會錯」，而是因為 Stable skill 至少經過一輪真實材料實測，並把失敗模式寫回規則；Beta 三者已有實測案例，但仍需要更多學科、語種或資料類型案例才能升 Stable。未來新增 skill 一律先從 Draft 或 Beta 開始，不可未測即標 Stable。
+目前 15 個 Boya skills 均列為 **Stable**：每個 skill 至少有一輪真實材料實測、暴露的坑已寫回 `SKILL.md` 或 `evals/`，且有 example／evidence ledger 可回看。知識表中的單筆事實仍可保留 `❓`／`待補`；這代表該事實尚未核完，不影響 skill 工作流本身的 Stable 狀態。未來新增 skill 一律先從 Draft 或 Beta 開始，不可未測即標 Stable。
 
-- **venue-fit**（0.3.0 新增）：目前 **Beta**——已用作者碩論對標《公共行政學報》真實投稿規範，見 `examples/2026-06-18-venuefit-thesis-jpa.md`。升 Stable 條件：再補至少 1 個不同語種或不同學科投稿案例，並確認「不猜作者須知」「學位論文轉期刊先判文稿類型」規則可重複成立。
-- **framework-build**（0.X.0 新增，2026-06-22 升 0.1.0 Beta）：目前 **Beta**——已有 3 份真實定錨案例：JASM 國際關係／經濟安全（`examples/2026-06-21-framework-jasm.md`）、作者碩論文組實證／混合方法（`examples/2026-06-22-framework-thesis.md`，固化偽並列主框架／隱性遷移代價／混合方法漏質性抓手三坑）、**人文思辨型 LLM silicon sampling 知識論**（`examples/2026-06-22-framework-humanist.md`，固化思辨版框架沙拉／人文型操作化＝分析維度／跨域遷移代價／跨哲學子域預警四坑）。三例覆蓋「概念框架」與「理論視角」兩個分流，eval MUST #1「分學科分流」已驗。升 Stable 條件：再補至少 1 個政策分析型「分析框架」案例，確認三分流全覆蓋且主要 MUST/MUST NOT 可重複。
-- **lit-discovery**（0.5.0 新增，2026-06-30 升 0.6.0 Beta、同日打磨升 0.6.1）：目前 **Beta**——已有 3 份真實案例：①探勘核心（`examples/2026-06-21-litdiscovery-genai-public-sector.md`，公部門×生成式 AI，實打 OpenAlex／Crossref）；②**新增第 3.5 步 venue 證據**（`examples/2026-06-30-litdiscovery-venue-evidence.md`，借鑒 paper-quality-filter，固化「來源表缺 SSCI」「無刊名先解 DOI」「預印本不給級」並補入 SSCI）；③**venue 命中路徑壓測**（`examples/2026-06-30-litdiscovery-venue-tssci-match.md`，實抓國科會官方 TSSCI／THCI 名單，命中《公共行政學報》等台灣期刊、走通命中＋版次標註，固化「官方頁也可能非最新版／精確比對不自動更正／CSSCI 非公開可抓／無 API 須標未新撈」四坑）。升 Stable 條件：①再補 1 個不同學科或以中文文獻為主的**探勘**案例；②**API 恢復後**補 1 個「中文題探勘→撈真實文章→venue 比對」**全鏈**案例（案例③因本輪 discovery API 不可用，只壓測了 venue 比對層、未含新撈文章），並補抓 TSSCI 2025（適用2026）與 CSSCI 官方名單。
+- **venue-fit**（0.3.0 新增）：目前 **Stable**——先用作者碩論對標《公共行政學報》真實投稿規範（`examples/2026-06-18-venuefit-thesis-jpa.md`），再補英文教育科技／高教評量案例（`examples/2026-06-30-venuefit-jalt-genai-assessment.md`）。第二例核到 JALT submissions page 的 Word、APA 7、匿名稿與生成式 AI dedicated declaration 要求，同時固化「已發表文章頁不等於作者須知」「查不到字數仍待補」。
+- **framework-build**（0.X.0 新增，2026-06-22 升 0.1.0 Beta，2026-06-30 升 Stable）：目前 **Stable**——已有 JASM 國際關係／經濟安全、作者碩論文組實證／混合方法、人文思辨型 LLM silicon sampling 知識論、以及台灣碳費政策分析型四例。三分流「概念框架／理論視角／分析框架」均已實跑，政策分析型案例見 `examples/2026-06-30-framework-carbon-fee-policy.md`。
+- **lit-discovery**（0.5.0 新增，2026-06-30 升 0.6.0 Beta、同日打磨升 0.6.1、2026-06-30 升 Stable）：目前 **Stable**——已有探勘核心、venue 證據、TSSCI 命中路徑壓測，並補完整中文題全鏈案例 `examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md`。該例用中文精準題名反查 OpenAlex/Crossref 命中真實 DOI，做英文對照、相關性分層與 venue 待查標記；同日補 TSSCI 2025（適用2026）與 CSSCI 2025-2026 公開來源層級。
 
 ## Evidence Ledger 最小格式
 
@@ -98,6 +98,35 @@ Boya 維持人文社科研究者可讀、可手動介入的技能庫，不把每
 | outline-builder | 0.0.4 | 2026-06-27 | silicon sampling 知識論（接力 framework-build 定錨框架），人文思辨型正向搭骨架＋topic-sentence 前置首跑 | 讓步句冒充主題句（思辨型）、段落主題句覆讀章論點 | examples/2026-06-27-outlinebuilder-silicon-sampling.md |
 | lit-discovery | 0.6.0 Beta | 2026-06-30 | 沿用公部門×生成式 AI 候選，加跑新增 venue 證據步驟（借鑒 paper-quality-filter），Crossref 解 DOI 補刊名 | 來源表缺 SSCI／英文社科候選落空、無刊名須先解 DOI、預印本不給級 | examples/2026-06-30-litdiscovery-venue-evidence.md |
 | lit-discovery | 0.6.1 Beta | 2026-06-30 | 台灣期刊命中壓測，實抓國科會官方 TSSCI／THCI 名單對比《公共行政學報》等 | 官方頁也可能非最新版（抓到名單適用2024）、近似刊名查無不自動更正、CSSCI 非公開可抓、無 discovery API 須誠實標未新撈 | examples/2026-06-30-litdiscovery-venue-tssci-match.md |
+| lit-discovery | 1.0.0 Stable | 2026-06-30 | 中文題「生成式 AI 與台灣學習評量／高等教育治理」，OpenAlex／Crossref 精準題名反查＋英文對照 | 中文寬查無命中不等於無文獻；書目已核不等於 venue 已核；TSSCI/CSSCI 來源層級需明寫 | examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md |
+| framework-build | 1.0.0 Stable | 2026-06-30 | 台灣碳費政策，環境部／氣候變遷署公開材料 | 政策分析型＝分析框架；多準則不可假量化；政策事實與方法文獻分開 | examples/2026-06-30-framework-carbon-fee-policy.md |
+| venue-fit | 1.0.0 Stable | 2026-06-30 | Ogunleye et al. 2024 × Journal of Applied Learning & Teaching submissions page | 已發表文章頁不等於作者須知；英文刊格式/AI 要求須回頁面；查不到字數仍待補 | examples/2026-06-30-venuefit-jalt-genai-assessment.md |
+
+## Evidence Ledger 紀錄（2026-06-30 1.0.0 全套 Stable）
+
+### 2026-06-30 · lit-discovery · 中文題全鏈探勘補齊
+
+- claim：`lit-discovery` 可跑通中文題「檢索策略→真實 API 命中→候選分層→venue 比對」全鏈；中文寬查無命中不等於文獻不存在。
+- source：examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md；OpenAlex `W4406228191`；Crossref DOI `10.53106/168063602025020370002`；ERICDATA 條目；JALT DOI `10.37074/jalt.2024.7.1.28`。
+- check：以中文精準題名反查 OpenAlex/Crossref，命中〈生成式AI時代的學習評量〉；用英文題名查 Crossref 得 JALT 對照候選；寬查 `生成式AI 高等教育` count=0 時標查無於該 API、不推論文獻不存在；venue 未逐刊命中者保持 `❓待查`。
+- result：通過。補齊升 Stable 缺口；同時更新 TSSCI 2025／CSSCI 2025-2026 來源層級，避免把書目真實誤寫成 venue 已核。
+- next：已寫回 eval；承重前仍須把候選交 `citation-verify` 與 `lit-matrix`。
+
+### 2026-06-30 · framework-build · 政策分析型分流跑通
+
+- claim：`framework-build` 第三分流「政策分析型＝分析框架」可跑通；政策分析題不應被硬畫成概念變項模型。
+- source：examples/2026-06-30-framework-carbon-fee-policy.md；環境部氣候變遷署碳費專區；環境部新聞稿〈環境部公告「碳費徵收費率」〉。
+- check：從公開政策材料抽取政策問題與制度事實，候選框架分為政策工具、公平轉型、行政可行性、多準則政策評估；推薦多準則定性分析，但標明方法文獻待補且不做權重分數。
+- result：通過。三分流「概念框架／理論視角／分析框架」均有真實案例；政策事實來源與理論／方法來源分欄，未用官方政策頁冒充方法文獻。
+- next：已寫回 eval；實作正文前需補政策工具／MCA 方法文獻。
+
+### 2026-06-30 · venue-fit · 英文教育科技投稿對標跑通
+
+- claim：`venue-fit` 可處理不同語種／不同學科公開材料，且能區分已發表文章頁與作者須知。
+- source：examples/2026-06-30-venuefit-jalt-genai-assessment.md；JALT article page；JALT submissions page `https://jalt.open-publishing.org/index.php/jalt/about/submissions`。
+- check：核對 JALT submissions page，確認 Word 投稿、APA 7、article classifications、匿名稿、生成式 AI 超過校對用途須 dedicated declaration section；未在 HTML 穩定取得的字數／摘要／關鍵詞保持待補。
+- result：通過。第二語種／學科案例成立，且不把文章頁反推成作者須知；AI 揭露可回到真實來源。
+- next：已寫回 eval；投稿前需下載或開啟 JALT guideline PDF 補細節。
 
 ## Evidence Ledger 紀錄（2026-06-30 lit-discovery venue 命中路徑壓測，對真實 TSSCI 官方名單）
 
@@ -107,7 +136,7 @@ Boya 維持人文社科研究者可讀、可手動介入的技能庫，不把每
 - source：examples/2026-06-30-litdiscovery-venue-tssci-match.md（實抓 hss.ntu.edu.tw TSSCI／THCI 名單；《公共行政學報》命中政治學門 TSSCI 第一級）。
 - check：對官方名單精確比對——公共行政學報→第一級、行政暨政策學報→第二級、資訊管理學報→第二級，皆核出學門與級別；頁面標「名單適用2024、更新2024-05-28」，而 2025 名單（適用2026）另已存在。
 - result：通過。命中路徑首次走通；命中一律標 `TSSCI 名單適用2024`，並提示可能有更新版，未寫「現行」。
-- next：已寫回 SKILL 已知陷阱 7、knowledge/venues.md 抓名單注意①、eval；升 Stable 待補 TSSCI 2025／CSSCI 名單與全鏈中文案例。
+- next：已寫回 SKILL 已知陷阱 7、knowledge/venues.md 抓名單注意①、eval；v1.0.0 已補 TSSCI 2025／CSSCI 來源層級與全鏈中文案例。
 
 ### 2026-06-30 · lit-discovery · 精確比對查無不自動更正／無 API 須標未新撈
 
@@ -135,7 +164,7 @@ Boya 維持人文社科研究者可讀、可手動介入的技能庫，不把每
 - source：同 example（候選只記標題＋DOI；SSRN／TechRxiv 兩筆為預印本；中文學位論文非期刊）。
 - check：以 Crossref 公開 API 實解 4 個 DOI，1 筆得真刊名、1 筆未解出→❓；2 筆預印本按鐵律不給級；學位論文標不適用。全程無一筆被硬給等級。
 - result：通過。5 筆中 0 筆被編造分級；三句免責（強≠切題／查無≠論文差／你定）有講。
-- next：已寫回 SKILL 第 3.5 步（先解 DOI／預印本不給級）；升 Stable 仍待中文／台灣期刊為主候選壓測命中路徑。
+- next：已寫回 SKILL 第 3.5 步（先解 DOI／預印本不給級）；中文／台灣期刊命中路徑與全鏈案例已於 v1.0.0 補齊。
 
 
 

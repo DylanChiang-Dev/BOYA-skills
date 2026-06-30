@@ -60,7 +60,7 @@
 | 刊名 | 語種・學科 | 字數／結構規範 | 引用格式 | AI 揭露政策 | 作者須知 URL | 查證日期 | 狀態 |
 |---|---|---|---|---|---|---|---|
 | American Political Science Review (APSR) | 英文・政治學 | 論文 <11,000 詞（含表/圖/註，排除參考與補充）；研究註記 <7,000；摘要 ≤150；匿名 | 待補 | 待補 | https://www.cambridge.org/core/journals/american-political-science-review/information/author-instructions/preparing-your-materials | 2026-06-23 | ❓ |
-| American Journal of Political Science (AJPS) | 英文・政治學 | 論文 10,000 詞、研究註記 4,000（含正文/註/夾註/印刷附錄/表圖標題與註，排除題名/摘要/參考/SI）；摘要 ≤150 | 待補 | 待補 | https://ajps.org/guidelines-for-manuscripts/ | 2026-06-23 | ❓ |
+| American Journal of Political Science (AJPS) | 英文・政治學 | 論文 10,000 詞、研究註記 4,000；摘要 ≤150；雙盲審查 | 引用格式待補 | 作者須揭露 manuscript preparation 或研究過程使用的 AI 工具；需說明 AI 用途、工具名稱/提供者/版本與人工監督；避免用 AI 起草 manuscript 或 substantial elements | https://ajps.org/guidelines-for-manuscripts/；AI policy: https://ajps.org/ajps-ai-policy/ | 2026-06-30 | ✅（官方 guidelines 與 AI policy 可讀；引用格式仍待補） |
 | International Organization (IO) | 英文・國際關係 | 研究論文 ≤14,000 詞、研究註記 ≤8,000；投稿須附 ORCID | 待補 | 待補 | https://www.cambridge.org/core/journals/international-organization/information/author-instructions/preparing-your-materials | 2026-06-23 | ❓ |
 
 ## 階段一・SSCI｜群 3：社會學
@@ -124,7 +124,7 @@
 | Law & Society Review (LSR) | 英文・法律與社會 | 7,000–12,500 詞（排除參考/附錄/圖/表）；摘要 ≤200；12pt TNR 雙倍行距 | Chicago 第 17 版・author-date | 待補 | https://www.cambridge.org/core/journals/law-and-society-review/information/author-instructions/preparing-your-materials | 2026-06-23 | ❓ |
 | Regulation & Governance | 英文・規管治理 | 摘要 ≤150 詞（不含縮寫/參考）；提供 Free Format 投稿 | 待補 | 待補 | https://onlinelibrary.wiley.com/page/journal/17485991/homepage/forauthors.html | 2026-06-23 | ❓ |
 
-> **完整度披露（階段一 SSCI 共 28 本）**：✅ 親抓官網確認 **2** 本（JPART、GIQ）；❓ 搜尋自官網、待親開核對 **24** 本；待補（出版商 403/未取得）**2** 本（Governance、PMR）。所有事實均附來源 URL＋查證日期，無一從記憶填；字數/格式/AI 標「待補」者為頁面未明列或搜尋未涵蓋。把 ❓ 升 ✅ 需逐本親開官網渲染核對（建議用瀏覽器分批）。
+> **完整度披露（階段一 SSCI 共 28 本）**：✅ 親抓官網確認 **3** 本（JPART、GIQ、AJPS）；❓ 搜尋自官網、待親開核對 **23** 本；待補（出版商 403/未取得）**2** 本（Governance、PMR）。所有事實均附來源 URL＋查證日期，無一從記憶填；字數/格式/AI 標「待補」者為頁面未明列或搜尋未涵蓋。把 ❓ 升 ✅ 需逐本親開官網渲染核對（建議用瀏覽器分批）。2026-06-30 補核時，AJPS 官方頁可公開取得而升 ✅；OUP Journal of Communication 頁回 Cloudflare challenge，SAGE/Wiley/T&F 仍不繞過。
 
 ---
 
@@ -140,7 +140,7 @@
 | CSSCI（南大核心） | 大陸中文人文社科期刊 | 南京大學中國社會科學研究評價中心 | 每 2 年 | 2025–2026 版 | cssrac.nju.edu.cn |
 | 北大核心《中文核心期刊要目總覽》 | 大陸中文學術期刊（含人文社科） | 北京大學圖書館 | 每 3 年 | 2023 版（第 10 版） | hxqk.lib.pku.edu.cn |
 | AMI 核心 | 大陸人文社科期刊／集刊 | 中國社會科學院中國社會科學評價研究院 | 每 4 年 | 2022 版 | 社科院評價研究院官方報告 |
-| TSSCI／THCI | 台灣人文及社會科學期刊 | 國科會人文社會科學研究中心 | 每 3 年評比 | 2025 年名單（適用 2026） | hss.ntu.edu.tw／tci.ncl.edu.tw |
+| TSSCI／THCI | 台灣人文及社會科學期刊 | 國科會人文社會科學研究中心 | 每 3 年評比 | 2025 年名單（適用 2026） | 國科會人社中心公開入口 `https://www.hss.ntu.edu.tw/zh-tw/thcitssci/50`；公開 PDF 入口查證日 2026-06-30 |
 | SSCI | 國際社會科學期刊 | Clarivate（Web of Science） | 滾動收錄 | 滾動更新 | Web of Science Master Journal List |
 | A&HCI | 國際藝術與人文期刊 | Clarivate（Web of Science） | 滾動收錄 | 滾動更新 | Web of Science Master Journal List |
 
@@ -148,8 +148,9 @@
 
 > 用法：撈到候選後，若要標出處強弱，到對應官方入口查該刊在不在、屬第幾級，把「名單＋版次年份」一起寫進依據欄；查不到就標 `❓待查`，不得猜。
 >
-> **抓名單的三條實測注意（2026-06-30）**：
-> 1. **記抓取版次與日期**——官方頁也可能掛舊版（實測抓到 TSSCI「名單適用2024」，但 2025 名單適用2026 已公布）。命中標成 `TSSCI 名單適用2024（抓於 2026-06-30）`，提示可能有更新版，別寫「現行」。
+> **抓名單的四條實測注意（2026-06-30）**：
+> 1. **記抓取版次與日期**——官方頁也可能掛舊版（實測曾抓到 TSSCI「名單適用2024」，同日另核到 2025 名單適用2026 入口）。命中標成 `TSSCI 名單適用2025／適用2026（抓於 2026-06-30）`，別只寫「現行」。
 > 2. **精確比對、查無不更正**——近似刊名（公共行政學報／學刊、行政暨政策學報）必須一字不差比對；查無就 `❓待查`，不得自動改成相近真刊。
-> 3. **索引＋級別＋學門一起記**——TSSCI／THCI 同頁混列、且有期刊雙掛兩索引（如思與言 THCI＋TSSCI）；CSSCI 官方目錄需登入、非免費 API，無名單即 `❓待查`。
+> 3. **索引＋級別＋學門一起記**——TSSCI／THCI 同頁混列、且有期刊雙掛兩索引（如思與言 THCI＋TSSCI）。
+> 4. **CSSCI 2025-2026 要分來源層級**——南大官方入口可公開訪問（`https://cssrac.nju.edu.cn/`，2026-06-30 查），但本輪未由官方入口直接取得完整可下載名單；公開全文線索使用高校轉載頁／PDF（如佛山大學科研處頁 `https://ky.nfu.edu.cn/info/1431/11271.htm`，2026-06-30 查）。因此可寫「南大官方入口＋高校轉載全文」，不得寫成「南大官方全文已核」。
 > 提醒：**入選好名單只代表「建議先讀」，不代表切題，也不代表論文一定好；查不到出處也不代表論文差。** 最終取捨是你的研究判斷。

@@ -4,6 +4,8 @@
 
 見 [examples/2026-06-21-litdiscovery-genai-public-sector.md](../examples/2026-06-21-litdiscovery-genai-public-sector.md)：研究問題「公部門／立法幕僚人員使用生成式 AI 的行為與影響」，用 OpenAlex／Crossref 匿名端點實跑撈候選。
 
+補充基準：[examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md](../examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md)：中文題「生成式 AI 與台灣學習評量／高等教育治理」，用中文精準題名反查 OpenAlex/Crossref 命中真實 DOI，再做英文對照、相關性分層與 venue 待查標記。
+
 ## ✅ 必須做到（MUST）
 
 - 先把研究問題拆成檢索面向（核心概念／同義詞與變體／納入與排除準則）才開查，並標出「檢索範圍與最終收捨是你的決定」這個 gate。
@@ -31,6 +33,8 @@
 - 不得引用未標版次年份的分級（名單兩三年一改，無年份＝拿舊當新）。
 - 不得把 venue 排序做成一鍵自動跑完、無人複核的腳本流程（須保留人類在環）。
 - 中文冷門題不得硬湊英文結果冒充覆蓋；查無即標 ❓。
+- 中文寬查無命中時，不得判「沒有文獻」；應改用人工找到的精準中文題名反查 DOI／OpenAlex／Crossref，仍查無才標 ❓待人工。
+- 不得把 DOI 真實、Crossref 命中或 ERICDATA 條目存在，直接推成 TSSCI/CSSCI/SSCI 已核；書目真偽與 venue 分級是兩條線。
 
 ## 已暴露的坑（防重犯）
 
@@ -39,3 +43,5 @@
 - **同一論文多 DOI 副本**：預印本與正式版、techrxiv `.v1`/base、SSRN 會出現重複（去重看標題，標「可能重複／預印本」，書目交 citation-verify）。
 - **OpenAlex 中文覆蓋稀疏且噪音高**：實測「立法委員助理」count=2，其中一筆是離題日文——中文題一律 ❓待人工＋華藝／國圖／CNKI。
 - **Crossref 會回非論文記錄**：實測夾帶 EU grant（`10.3030/...`）與無標題條目——命中≠期刊論文，類型要標。
+- **中文精準題名反查常比寬查有效**（2026-06-30）：`生成式AI 高等教育` 寬查 OpenAlex count=0，但精準題名〈生成式AI時代的學習評量〉命中 DOI。紀律＝查無不等於不存在；先換檢索粒度。
+- **書目已核不等於 venue 已核**（2026-06-30）：中文候選有 DOI／OpenAlex／Crossref／公開條目，仍不得推定 TSSCI/CSSCI；venue 分級需另回官方／公開名單逐刊比對。

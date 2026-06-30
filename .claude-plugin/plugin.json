@@ -1,7 +1,7 @@
 {
   "name": "boya",
-  "version": "0.6.1",
-  "description": "文組生的 AI 研究工作流：15 個從讀文獻到寫論文的 skill（14 入書＋1 暫緩）。",
+  "version": "1.0.0",
+  "description": "文組生的 AI 研究工作流：15 個從讀文獻到寫論文的 Stable skill。",
   "author": "Dylan Chiang 蔣濤",
   "homepage": "https://github.com/DylanChiang-Dev/boya",
   "skills": "./skills"

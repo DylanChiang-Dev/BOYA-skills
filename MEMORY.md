@@ -2,6 +2,15 @@
 
 ## CHANGELOG
 
+### v1.0.0（2026-06-30）全套 skill Stable
+
+- 三個剩餘 Beta skill 補齊升 Stable 證據鏈，倉庫進入 **1.0.0 全套穩定版**：15 個 skill 均有真實材料案例、對應 eval／evidence ledger，且暴露的坑已寫回規則。知識表中的單筆事實仍可保留 `❓/待補`；這代表該事實尚未核完，不影響 skill 工作流穩定狀態。
+- `lit-discovery` 補中文題全鏈案例 `examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md`：以「生成式 AI 與台灣學習評量／高等教育治理」為題，中文精準題名反查 OpenAlex/Crossref 命中真實 DOI，另以英文題名取得 JALT 對照候選；固化「中文寬查無命中不等於無文獻」「書目已核不等於 venue 已核」。
+- `framework-build` 補政策分析型案例 `examples/2026-06-30-framework-carbon-fee-policy.md`：使用環境部／氣候變遷署公開碳費材料，跑通政策問題、分析維度、評估準則、理論／政策代價與 GATE；三分流「概念框架／理論視角／分析框架」至此全覆蓋。
+- `venue-fit` 補英文教育科技案例 `examples/2026-06-30-venuefit-jalt-genai-assessment.md`：核 JALT submissions page 的 Word、APA 7、匿名稿與生成式 AI dedicated declaration 要求，坐實「已發表文章頁不等於作者須知」「查不到字數仍待補」。
+- `knowledge/venues.md` 補 TSSCI 2025（適用 2026）公開入口與 CSSCI 2025-2026 來源層級：CSSCI 明確區分南大官方入口與高校轉載全文，不寫成南大官方全文已核；SSCI 群 2-10 補核 AJPS 官方 guidelines／AI policy 並升 ✅，OUP Cloudflare、Wiley/T&F/SAGE 403／動態頁仍不繞過，Governance、PMR、PAR 等待補項保留。
+- 配套：`VERIFICATION.md` 狀態表改 15 Stable 並補三條 Evidence Ledger；`evals/lit-discovery.md`、`evals/framework-build.md`、`evals/venue-fit.md` 補新基準與防重犯斷言；`README.md` 補案例 016-018；plugin metadata 版本升 1.0.0。
+
 ### v0.6.1（2026-06-30）lit-discovery venue 命中路徑壓測（對真實 TSSCI 官方名單）
 
 - `lit-discovery` 0.6.0→**0.6.1 打磨輪**：補先前 venue 步驟「英文候選幾乎全 ❓、未壓到命中路徑」的缺口。實抓國科會人社中心官方 TSSCI／THCI 名單（`hss.ntu.edu.tw/zh-tw/thcitssci/50`，名單適用2024），對前案真實刊《公共行政學報》等台灣期刊**走通命中路徑**（核出學門＋級別＋版次）。

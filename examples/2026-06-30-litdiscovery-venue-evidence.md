@@ -35,7 +35,7 @@
 1. **來源表缺 SSCI＝英文社科候選一律落空**。本案候選是英文公共行政／資訊科學論文，對應的國際索引是 **SSCI（社會科學）**，不是只收藝術人文的 A&HCI。原表只放了 A&HCI，導致第 1 筆這種正牌 SSCI 期刊被迫標 ❓待查，看起來像「查無」其實是「我們沒把這張表納進來」。**修正：`knowledge/venues.md` 補一列 SSCI（Clarivate Web of Science，社會科學引文索引），與 A&HCI 並列為國際線。** 仍只當「收錄與否」用，不引入 IF 分區（守住不採理工分區的邊界）。
 2. **venue 步驟的第一道關是「有沒有 venue 欄位」**。案例 013 只記標題＋DOI，得先 Crossref 解 `container-title` 才能查——坐實 SKILL 鐵律 6 與 paper-quality-filter 同源教訓：「只有標題不能判出處」。寫進工作流：給 venue 提示前先確認有刊名，沒有就先解 DOI，解不出標 ❓。
 3. **預印本不給級是對的、且要主動講**。SSRN／TechRxiv 兩筆按鐵律不給 venue 級，避免把「掛在預印本平台」誤讀成有正式出處。
-4. **這批英文候選讓 venue 步驟幾乎全 ❓**，反證 venue 證據對**中文／台灣期刊候選**才最有用（CSSCI／TSSCI／北大／AMI 命中率才高）。**升 Stable 前仍須補一個以中文／台灣期刊為主的候選跑**，真正壓測命中與版次年份標註。
+4. **這批英文候選讓 venue 步驟幾乎全 ❓**，反證 venue 證據對**中文／台灣期刊候選**才最有用（CSSCI／TSSCI／北大／AMI 命中率才高）。本案當時留下「升 Stable 前仍須補一個以中文／台灣期刊為主的候選跑」；後續已於 v1.0.0 補 `examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md` 與 TSSCI/CSSCI 來源層級。
 
 ## 方法與聲明
 
