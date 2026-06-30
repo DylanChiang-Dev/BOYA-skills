@@ -2,11 +2,17 @@ Languages: [繁體中文](README.md) | [简体中文](README.zh-CN.md) | [Englis
 
 <div align="center">
 
-# Boya · AI Research Skills for Liberal Arts Researchers
+# Boya 博雅
 
-### The Liberal-Arts AI Research Workflow
+### An AI Paper Workflow for Liberal-Arts & Social-Science Researchers
 
-**A Claude Code / Codex skill collection for humanities and social-science researchers who do not write code: from topic refinement and source checking to literature review, research design, drafting, self-review, and defense preparation.**
+**You don't need to write code. With Claude Code / Codex you can push a paper from "vague idea" to "ready to submit," step by step.**
+
+<strong>AI does the grunt work; you make the calls.</strong><br/>
+Boya helps you refine your topic, check citations, read literature, design methods, build outlines, revise drafts, self-review, and prepare for defense or submission —<br/>
+but it will not fabricate references, ghostwrite conclusions, or help you hide AI use.
+
+*A Claude Code / Codex workflow for liberal-arts and social-science researchers — from vague idea to submission-ready paper, no coding required.*
 
 <br/>
 
@@ -14,93 +20,98 @@ Languages: [繁體中文](README.md) | [简体中文](README.zh-CN.md) | [Englis
 [![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/boya?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/boya/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4caf50?style=for-the-badge)](LICENSE)
 [![Skills](https://img.shields.io/badge/skills-15-7e57c2?style=for-the-badge)](#the-15-skills)
-[![version](https://img.shields.io/badge/version-0.5.0-7e57c2?style=for-the-badge)](MEMORY.md)
+[![version](https://img.shields.io/badge/version-1.0.0-7e57c2?style=for-the-badge)](MEMORY.md)
 [![English](https://img.shields.io/badge/English-Ready-e4002b?style=for-the-badge)](#)
 
 </div>
 
 ---
 
-> This repository is a set of AI research skills for humanities and social-science researchers. It turns a full research workflow into reusable agent skills: refining a topic, checking citations, reading literature, designing methods, building an outline, drafting, reviewing, formatting, writing abstracts, preparing for defense, and disclosing AI use. The skills can be used in Claude Code, Codex, and other environments that support agent skills.
+If you are writing a thesis or paper, Boya is not trying to turn you into an engineer. It takes the steps that supervisors, methods courses, and pre-submission checklists "never explain all at once" and turns them into agent-guided processes you can walk through.
 
-The core idea: **make tacit supervisor-like judgment more explicit.** These skills break research guidance into rules, checks, questions, and handoff points that an AI agent can run with you. They reduce information gaps, but they do not replace your research judgment.
+You can start here:
 
-## Who This Is For
+- **Topic too broad:** Narrow a vague idea into a researchable question.
+- **Sources a mess:** Verify citation authenticity, build a literature matrix, and map review threads.
+- **Draft due soon:** Run a self-review, format citations, write an AI-use disclosure, then prepare for defense or submission.
 
-- Humanities and social-science students, researchers, instructors, and independent scholars.
-- Master's and doctoral students writing coursework papers, thesis proposals, dissertations, journal manuscripts, or conference papers.
-- Researchers who want AI help without turning their work into ghostwritten text.
-- People who need a concrete workflow rather than another generic prompt collection.
+The primary README is in Traditional Chinese: [README.md](README.md). 简体中文版见 [README.zh-CN.md](README.zh-CN.md)。日本語は [README.ja.md](README.ja.md)。
 
-## Core Beliefs
+For the full usage guide see [GUIDE.md](GUIDE.md): where to start after installation, which skill to use at each research stage, and how templates / knowledge / evals fit together.
+
+One sentence to explain what this repo does: **It takes the kind of judgment a supervisor carries — "read three papers and you know whether this topic works" — and breaks it into explicit rules and questions, written as processes you can invoke at any time.** It shrinks information gaps; it does not do your research for you.
+
+## 🧭 Core Beliefs
 
 > ### AI is the copilot, not the captain.
 
-- **Outsource labor, keep judgment.** Skills can help with search planning, verification, formatting, simulated questioning, and review. Research questions, method choices, interpretation, and final claims stay with you.
-- **Every citation goes back to the source.** A skill can help establish that a source exists. It cannot prove that the source supports your argument.
-- **Transparency over concealment.** The workflow encourages traceable collaboration and honest AI-use statements.
-- **Human-led, not one-click.** This is not an automatic paper machine. The AI does work; you steer.
+Boya's top design principle is **human-in-the-loop**: the workflow can auto-relay from one step to the next, but at every gate where "only you can decide," it **hard-stops and waits for your call** — and that is the only dividing line between Boya and a "fully automatic paper machine." The four points below are all expansions of this principle.
 
-## Workflow Map
+- **Outsource labor, keep judgment.** Skills handle search, verification, formatting, and simulated questioning; research questions, method choices, and interpretation are always yours.
+- **Every citation goes back to the source.** A skill only proves a reference exists — not that it supports your argument.
+- **Transparency over concealment.** Every skill encourages traceability and honest AI-use disclosure; the goal is quality, not hiding the collaboration.
+- **Human-in-the-loop, not one-click.** This is not a fully automatic paper machine — the workflow auto-relays into the next step, but it stops at every gate where "only you can decide"; at each step the AI works, you steer.
 
-From a rough idea to a thesis or paper ready for submission, the 15 skills each cover one part of the workflow. `boya` sits above them as the navigator.
+## 🗺️ Workflow Map
+
+From a rough idea to a paper ready for submission, fifteen skills each cover one stage. `boya` sits at the top as the navigator:
 
 ```mermaid
 flowchart TD
-    Start([An idea]) --> S1[Refine topic<br/>topic-refine]
-    S1 --> S2[Find and check sources<br/>lit-discovery→citation-verify]
+    Start([💡 An idea]) --> S1[Refine topic<br/>topic-refine]
+    S1 --> S2[Find sources<br/>lit-discovery→citation-verify]
     S2 --> S3[Read literature<br/>lit-matrix]
     S3 --> SF[Anchor framework<br/>framework-build]
     SF --> S4[Design methods<br/>method-design]
     S4 --> S5[Build outline<br/>outline-builder]
-    S5 --> S6[Draft and tune style<br/>style-tune]
+    S5 --> S6[Draft & tune style<br/>style-tune]
     S6 --> S7[Self-review<br/>self-review]
-    S7 --> S8[Finalize and defend<br/>defense-prep · cite-format · abstract-bilingual]
+    S7 --> S8[Finalize & defend<br/>defense-prep · cite-format · abstract-bilingual]
     S8 --> S9[Venue fit<br/>venue-fit]
-    S9 --> S10[AI-use statement<br/>ai-disclosure]
-    S10 --> End([A paper or thesis ready to submit])
+    S9 --> S10[AI disclosure<br/>ai-disclosure]
+    S10 --> End([📄 A paper ready to submit])
     RM{{boya<br/>workflow navigator}} -.where am I?.-> S1
     RM -.which skill next?.-> S5
     RM -.what must only I decide?.-> S10
 ```
 
-## The 15 Skills
+## 📦 The 15 Skills
 
-> **Twelve core skills** + **two final-stage skills** + **one navigator** = **15 skills**. Twelve are Stable, `venue-fit` is Beta, and `framework-build` and `lit-discovery` are Draft.
+> **Twelve core** (one per stage) + **two final-stage** (formatting & abstract) + **one navigator** (the spine) = **fifteen**; all fifteen skills now have real-world cases and evidence ledgers and are rated Stable.
 
-### Core Skills
+### Core · One Per Stage
 
-| skill | What it does | Stage |
+| Skill | What It Does | Stage |
 |---|---|---|
-| [`topic-refine`](skills/topic-refine) | Socratic topic refinement: problem awareness, bounded divergence, three convergence questions (new / feasible / who cares), supervisor-style questioning, and a one-page research-question brief. | Topic |
-| [`lit-discovery`](skills/lit-discovery) | Literature discovery: turns a research question into a search strategy, pulls a **to-verify candidate list** from OpenAlex / Crossref / Semantic Scholar, sorts by relevance tier, and hands off to verification and reading. Never fabricates; marks uncovered items for manual search. | Sources |
-| [`citation-verify`](skills/citation-verify) | Citation verification with Crossref, OpenAlex, Semantic Scholar, and related public sources. Flags wrong DOIs, split names, suspicious references, and items that need manual source checking. | Sources |
-| [`lit-matrix`](skills/lit-matrix) | Close reading and literature matrices: claim / evidence / method / challenge notes, cross-paper comparison, and literature-review dialogue maps. | Reading |
-| [`framework-build`](skills/framework-build) | Theoretical framework anchoring: turns a literature map into candidate frameworks, compares what each explains, its theoretical cost, and evidence support, recommends a layered structure, and stops at a hard gate for you to choose the main framework. | Framework |
-| [`method-design`](skills/method-design) | Research design support: method maps, interview or survey drafts for human calibration, pre-interview role play, coding suggestions, statistical fallacy checks, and ethics prompts. | Design |
-| [`outline-builder`](skills/outline-builder) | Thesis or paper structure: IMRaD, review, theoretical, and policy-analysis structures; chapter outline; paragraph-level claim-evidence-warrant chains. | Outline |
-| [`style-tune`](skills/style-tune) | Voice calibration: learns from your previous writing, supports paragraph-level revision, and flags generic AI academic style. | Draft |
-| [`self-review`](skills/self-review) | Simulated review: methodology reviewer, field reviewer, devil's advocate, and editor-in-chief roles, plus integrity checks and issue triage. | Review |
-| [`defense-prep`](skills/defense-prep) | Defense preparation: presentation skeleton, layered hard questions, and response strategies, including English Q&A support. | Defense |
-| [`venue-fit`](skills/venue-fit) | Venue-fit checking: compares a manuscript with a target venue’s real author guidelines, producing must-fix, should-fix, and needs-check gaps without inventing journal requirements. | Submission |
-| [`ai-disclosure`](skills/ai-disclosure) | AI-use statement support: usage inventory, assistance vs. authorship distinction, institution- or journal-specific statements, and traceability notes. | Disclosure |
+| [`topic-refine`](skills/topic-refine) | Socratic topic refinement: problem awareness → bounded divergence → three convergence questions (new / feasible / who cares) → supervisor simulation → one-page research-question brief; only asks, never answers for you | Topic |
+| [`lit-discovery`](skills/lit-discovery) | Literature discovery: splits a research question into search strategies, pulls a **to-verify candidate list** from OpenAlex / Crossref / Semantic Scholar, sorts by relevance tier; optionally flags "read first" source hints (cross-checks CSSCI / TSSCI / PKU Core / AMI Core / SSCI / A&HCI official lists with edition year — marks unverified as pending); hands off to verification and close reading; never fabricates, marks gaps for manual search | Sources |
+| [`citation-verify`](skills/citation-verify) | Citation verification: uses Crossref / OpenAlex / Semantic Scholar public APIs to check whether references **actually exist**, catches wrong DOIs, split names, and fabricated citations | Sources |
+| [`lit-matrix`](skills/lit-matrix) | Close reading & matrix: single-paper four-column notes (claim / evidence / method / challengeable points), cross-paper comparison matrix, literature-review dialogue map | Reading |
+| [`framework-build`](skills/framework-build) | Theoretical framework anchoring: spreads candidate frameworks from the literature map (what it explains / theoretical cost / evidence support), recommends layering (main framework → mediating mechanism → empirical handles → landing points), hard GATE for you to choose the main framework; also offers auxiliary framework embedding and reverse health-check modes | Framework |
+| [`method-design`](skills/method-design) | Research design: method map, drafts interview guides / questionnaires + human calibration, role-play pre-interviews, coding suggestions (interpretation stays with you), statistical fallacy checks | Design |
+| [`outline-builder`](skills/outline-builder) | Paper skeleton: choose structure pattern (IMRaD / review / speculative / policy), generate outline, paragraph-level claim–evidence–warrant chains (bridges reasoning gaps) | Outline |
+| [`style-tune`](skills/style-tune) | Voice calibration: uses your previous writing to teach AI your style, paragraph-level revision (guards the no-ghostwriting red line), Chinese academic AI-tone detection checklist | Draft |
+| [`self-review`](skills/self-review) | Self-review (**simulated review**): a panel of reviewers (methodology / field / devil's advocate / editor-in-chief) takes turns + integrity self-check + issue triage (must-fix / debatable / misread) | Review |
+| [`defense-prep`](skills/defense-prep) | Defense preparation: paper → presentation skeleton, layered hard questions (clarification / method / theory / contribution / traps), response strategies (including English) | Defense |
+| [`venue-fit`](skills/venue-fit) | Venue-fit check: compares your manuscript against a target venue's real author guidelines, lists must-fix / should-fix / needs-check gaps; never invents journal requirements or decides where you submit | Submission |
+| [`ai-disclosure`](skills/ai-disclosure) | AI-use disclosure: inventory usage → plagiarism / ghostwriting / assistance trichotomy → generate honest, specific statements in target institution format → traceability evidence | Disclosure |
 
-### Final-Stage Skills
+### Final Stage · Formatting & Abstract
 
-| skill | What it does | Stage |
+| Skill | What It Does | Stage |
 |---|---|---|
-| [`cite-format`](skills/cite-format) | Citation formatting: APA, Chicago, MLA, or user-provided templates; checks in-text citations against bibliography entries; formats without inventing missing data. | Formatting |
-| [`abstract-bilingual`](skills/abstract-bilingual) | Bilingual abstract support: condenses from the final manuscript, writes English abstracts according to English academic conventions, aligns keywords, and checks numbers and proper names. | Abstract |
+| [`cite-format`](skills/cite-format) | Citation formatting: APA / Chicago / MLA conversion & full-text consistency, in-text ↔ bibliography one-to-one matching (catches orphans), marks missing fields instead of inventing them; **format only, no authenticity verification** | Format |
+| [`abstract-bilingual`](skills/abstract-bilingual) | Bilingual abstract: condenses a Chinese abstract + English abstract from the final manuscript (rewritten per English conventions, not word-for-word translation) + bilingual keywords; condenses only, never adds; checks every number | Abstract |
 
-### Navigator
+### Navigator · The Spine
 
-| skill | What it does | Stage |
+| Skill | What It Does | Stage |
 |---|---|---|
-| [`boya`](skills/boya) | Full-workflow navigation and entry point (formerly `research-roadmap`): determines where you are, which skill to call next, what output proves the stage is done, and which decisions must stay with you. Acts as a guided dispatcher — auto-relays into the next skill so you are walked one skill at a time, but stops at every decision gate for you to decide. | Navigation |
+| [`boya`](skills/boya) | Full-workflow navigation & entry point (formerly `research-roadmap`): determines where you are, which skill to call next, which gates only you can decide, when to pass; **guided dispatcher — auto-relays into the next skill, stops at every gate for your call**, links the other fourteen | Navigation |
 
-## Installation
+## 🚀 Installation
 
-### Option 1: Ask an Agent to Install All Boya Skills
+### Option 1: Ask an Agent to Install All Boya Skills (Recommended)
 
 Open an agent such as Claude Code or Codex and paste:
 
@@ -120,7 +131,7 @@ Use a single skill name such as `citation-verify` only when you intentionally wa
 
 Each skill directory only needs a `SKILL.md` file.
 
-**Codex global install**
+**Codex global install (available to all projects)**
 
 ```bash
 git clone https://github.com/DylanChiang-Dev/boya.git
@@ -136,7 +147,7 @@ mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
 cp -r boya/skills/* "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
-**Codex project-local install**
+**Codex project-local install (current project only)**
 
 ```bash
 mkdir -p .agents/skills
@@ -145,14 +156,14 @@ cp -r boya/skills/* .agents/skills/
 
 After installation, call a skill explicitly, such as `$citation-verify`, or use natural language such as: "Check whether these references are real."
 
-**Claude Code global install**
+**Claude Code global install (available to all projects)**
 
 ```bash
 mkdir -p ~/.claude/skills
 cp -r boya/skills/* ~/.claude/skills/
 ```
 
-**Claude Code project-local install**
+**Claude Code project-local install (current project only)**
 
 ```bash
 mkdir -p .claude/skills
@@ -168,17 +179,17 @@ mkdir -p ~/.cc-switch/skills
 cp -r boya/skills/* ~/.cc-switch/skills/
 ```
 
-## Notes for International Use
+## 🌍 Notes for International Use
 
-The workflow is designed for humanities and social-science research, but citation systems, disclosure policies, and databases differ by country, university, discipline, and journal.
+The underlying methods apply broadly to humanities and social-science research, but **terminology, databases, citation styles, and AI-use policies** vary by country, university, discipline, and journal.
 
 ### Source Verification
 
-`citation-verify` uses public sources such as Crossref, OpenAlex, and Semantic Scholar. These are useful for many journal articles, books, preprints, and DOI-bearing records, but they are not complete.
+`citation-verify` uses public APIs: Crossref, OpenAlex, and Semantic Scholar. These work well for English-language journals, preprints, and DOI-bearing records, but they cannot cover everything.
 
-**Not found through an API does not mean the source is fake.** Books, chapters, dissertations, conference papers, government documents, newspapers, local-language journals, and archival materials often require manual checking.
+**Not found through an API does not mean a source is fake.** Books, chapters, dissertations, conference papers, government documents, newspapers, local-language journals, and archival materials often require manual checking.
 
-Recommended manual source checks include:
+Recommended manual verification channels:
 
 - University library discovery systems.
 - Publisher pages.
@@ -190,7 +201,7 @@ Recommended manual source checks include:
 
 ### Citation Style
 
-Citation priority should be:
+Citation style priority should be:
 
 ```text
 University or department template > supervisor requirement > journal instructions > generic style guide
@@ -204,59 +215,84 @@ AI-use policies are changing quickly. `ai-disclosure` does not assume a universa
 
 This repository helps you state AI use honestly. It does not help with hiding AI use, bypassing detection, disguising ghostwriting, or inventing institutional policy.
 
-## Tested Cases
+## 🔬 Tested Cases
 
-Each skill has been tested on real research materials, including thesis references, literature-review drafts, teaching manuscripts, and workflow cases.
+Every skill has been run on **real research materials**, and the problems exposed have been written back into the rules — most cases come from the author's own master's thesis, serving as a real end-to-end workflow demonstration.
 
-Validation status has three levels: `Draft` (designed but not yet evidence-backed), `Beta` (usable but still being refined), and `Stable` (tested on real materials, with lessons written back into the skill). 12 current skills are **Stable**, `venue-fit` is **Beta**, and `framework-build` is **Draft**. See [`VERIFICATION.md`](VERIFICATION.md) for the evidence chain, minimum evidence ledger, source map, and action map conventions.
+Validation status has three levels: `Draft` (designed, not yet evidence-backed), `Beta` (usable but still being refined), `Stable` (tested on real materials with lessons written back into the skill). All 15 skills are currently **Stable**; individual knowledge-table entries may still carry `❓/TBD` without affecting skill stability. See [`VERIFICATION.md`](VERIFICATION.md) for evidence chains, minimum evidence ledgers, source maps, and action maps.
 
-| # | Case | Result |
+| # | Case | One-Line Result |
 |---|---|---|
-| 001 | [citation-verify on a master's thesis bibliography](examples/2026-06-12-master-thesis-case.md) | Checked 47 references; found wrong DOIs, split names, incomplete records, and duplicates. |
-| 002 | [lit-matrix on thesis literature](examples/2026-06-13-litmatrix-thesis-litreview.md) | Built comparison matrices and exposed the difference between citation context and paper topic. |
-| 003 | [self-review on a teaching chapter](examples/2026-06-13-selfreview-teaching-chapter.md) | Found genre mismatch, evidence-claim scale problems, and over-absolute claims. |
-| 004 | [defense-prep on a thesis draft](examples/2026-06-14-defenseprep-thesis.md) | Produced layered defense questions and highlighted qualitative generalizability issues. |
-| 005 | [topic-refine on a cross-strait relations topic](examples/2026-06-14-topicrefine-cross-strait.md) | Exposed feasibility problems around inaccessible data and reframed the topic. |
-| 006 | [method-design on a thesis design](examples/2026-06-14-methoddesign-thesis.md) | Flagged unclear participant grouping and overly compliant AI role-play answers. |
-| 007 | [outline-builder on a thesis structure](examples/2026-06-14-outlinebuilder-thesis.md) | Found completeness illusion and missing warrants. |
-| 008 | [style-tune on thesis prose](examples/2026-06-14-styletune-thesis.md) | Detected generic AI academic style in a thesis about GenAI. |
-| 009 | [ai-disclosure for heavy AI collaboration](examples/2026-06-14-aidisclosure-heavy-ai-use.md) | Showed that AI tends to understate heavy AI use unless instructed otherwise. |
-| 010 | [abstract-bilingual on a thesis abstract](examples/2026-06-14-abstractbilingual-thesis.md) | Found keyword mismatch and misuse of statistically loaded language. |
-| 011 | [cite-format on a thesis bibliography](examples/2026-06-14-citeformat-thesis.md) | Confirmed that formatting must come after verification. |
-| 012 | [boya (formerly research-roadmap) across the full workflow](examples/2026-06-14-researchroadmap-workflow.md) | Avoided becoming a process reciter by locating stages through actual outputs. |
-| 013 | [venue-fit on a thesis and Journal of Public Administration](examples/2026-06-18-venuefit-thesis-jpa.md) | Confirmed that venue-fit must not invent author guidelines and must first detect the thesis-to-journal genre gap. |
-| 014 | [framework-build anchors a Japan-Taiwan semiconductor framework](examples/2026-06-21-framework-jasm.md) | Captures framework anchoring rules: no framework salad, no invented load-bearing literature, and a hard gate for the researcher’s main-framework choice. |
-| 015 | [lit-discovery on generative AI in the public sector](examples/2026-06-21-litdiscovery-genai-public-sector.md) | Real OpenAlex/Crossref run: every candidate from a real hit, Chinese-coverage gaps marked for manual search, low-relevance kept not dropped, non-article grant records filtered out. |
+| 001 | [citation-verify on author's master's thesis](examples/2026-06-12-master-thesis-case.md) | Full check of 47 references; caught **3 wrong DOIs**, 1 split name, 11 incomplete records; public errata attached |
+| 002 | [lit-matrix on thesis literature](examples/2026-06-13-litmatrix-thesis-litreview.md) | 5 heterogeneous papers grouped into a matrix; exposed "citation context ≠ topic / heterogeneous corpus grouping" |
+| 003 | [self-review on a teaching chapter](examples/2026-06-13-selfreview-teaching-chapter.md) | Exposed "genre mismatch / evidence-claim scale mismatch / absolute claims" |
+| 004 | [defense-prep simulating thesis defense](examples/2026-06-14-defenseprep-thesis.md) | Layered real exam questions; exposed "stage misjudgment / missing qualitative generalizability" |
+| 005 | [topic-refine on a "cross-strait relations" topic](examples/2026-06-14-topicrefine-cross-strait.md) | Hit a feasibility red light on "Japan-Taiwan informal security" (closed data); demonstrated reframing while preserving the question |
+| 006 | [method-design reviewing thesis design](examples/2026-06-14-methoddesign-thesis.md) | Exposed "think through participant stratification / AI interviewee too compliant" |
+| 007 | [outline-builder reviewing thesis skeleton](examples/2026-06-14-outlinebuilder-thesis.md) | Exposed "completeness illusion (comprehensive ≠ argument thread) / missing warrants" |
+| 008 | [style-tune scanning thesis for AI tone](examples/2026-06-14-styletune-thesis.md) | A thesis on GenAI whose own introduction reads like AI-generated text; exposed "AI tone's professional disguise" |
+| 009 | [ai-disclosure for heavy AI collaboration](examples/2026-06-14-aidisclosure-heavy-ai-use.md) | Exposed "AI downplays when use is heavy" |
+| 010 | [abstract-bilingual on thesis abstracts](examples/2026-06-14-abstractbilingual-thesis.md) | Caught "official keywords misaligned between Chinese and English / 'significant' is a stats term — don't copy blindly" |
+| 011 | [cite-format on thesis bibliography](examples/2026-06-14-citeformat-thesis.md) | Confirmed "verify before formatting — an unverified list is just a pretty wrapper for wrong data" |
+| 012 | [boya (formerly research-roadmap) navigating a full workflow](examples/2026-06-14-researchroadmap-workflow.md) | Caught the biggest degeneration "table-of-contents reciter" — must locate by output artifacts, not linear order |
+| 013 | [venue-fit on thesis vs. Journal of Public Administration](examples/2026-06-18-venuefit-thesis-jpa.md) | Confirmed "never invent author guidelines" and "detect thesis-to-journal genre gap first"; first venue-fit live test |
+| 014 | [framework-build anchoring a Japan-Taiwan semiconductor framework](examples/2026-06-21-framework-jasm.md) | Solidified framework anchoring: no framework salad, no invented load-bearing literature, hard GATE for researcher's main-framework choice |
+| 015 | [outline-builder building a speculative silicon-sampling outline](examples/2026-06-27-outlinebuilder-silicon-sampling.md) | Positive skeleton-building test of topic-sentence-first; hit two speculative-type pitfalls: concession sentences posing as topic sentences, paragraph topic sentences parroting chapter thesis |
+| 016 | [lit-discovery full-chain Chinese-title exploration](examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md) | Precise Chinese title reverse-lookup hit real DOIs; filled the "Chinese-title discovery → candidate tiering → venue pending" full chain |
+| 017 | [framework-build on Taiwan carbon-fee policy framework](examples/2026-06-30-framework-carbon-fee-policy.md) | Filled the policy-analysis branch: policy problem, analysis dimensions, evaluation criteria, policy costs, and GATE all passed |
+| 018 | [venue-fit benchmarking a JALT English higher-ed assessment paper](examples/2026-06-30-venuefit-jalt-genai-assessment.md) | Checked JALT submissions page; confirmed article page ≠ author guidelines, AI disclosure & APA 7 must trace to real sources |
 
-## Design Principles
+## 🧱 Design Principles
 
-- **Single-file skills:** each skill is a `SKILL.md` that can be read, modified, and forked.
-- **No fabrication:** missing or uncertain information must be marked, not invented.
-- **Use, test, revise:** rules are updated after running skills on real materials.
-- **Humanities and social sciences first:** built for interpretation-heavy research, not only lab-style workflows.
-- **Multilingual entry, single skill source:** README files may be localized, but the 15 skills remain one maintained set.
-- **Lightweight reference layer:** `VERIFICATION.md` summarizes tested evidence, `knowledge/` stores venue and Chinese academic-style reference cards, and `templates/` provides fill-in paper and defense skeletons.
-- **No heavy automation framework:** Boya does not adopt `_shared/` fragments, `manifest.yaml` loading, or long-running multi-agent orchestration unless a specific skill becomes too large to read directly.
+- **Human-in-the-loop:** The repository's highest principle — the workflow auto-relays into the next step, but at every gate where "only you can decide" it hard-stops and waits for your call. This is the dividing line between Boya and a "fully automatic paper machine"; all remaining principles serve this one.
+- **Single-file skills:** Each skill is one `SKILL.md` — readable, editable, and fork-friendly.
+- **No fabrication:** Every skill has a built-in hard rule: "if not found, mark it; if uncertain, say so."
+- **Use → test → write:** Every skill is first run on real materials; problems are written back into the rules before the version number goes up — no armchair framework building.
+- **Chinese-first:** Designed for Chinese-language humanities and social-science research contexts (including Taiwan's academic citation and policy environment).
+- **Lightweight reference layer:** `VERIFICATION.md` summarizes tested evidence, `knowledge/` holds venue and Chinese academic writing cheat sheets, `templates/` holds fill-in-the-blank paper and defense skeletons.
+- **No heavy automation framework:** No `_shared/` fragments, `manifest.yaml` split loading, or long-running multi-agent orchestrators; shared material is extracted only if a specific skill truly becomes unreadable.
 
-## Versioning
+## 💬 Join the Discussion
+
+Questions, usage feedback, or want to share your forked version? Jump into the chat:
+
+<table>
+<tr>
+<td align="center"><b>WeChat Group</b><br/>Boya Skills<br/><sub>(QR codes expire periodically — if expired, open an issue and the author will update)</sub></td>
+<td align="center"><b>Telegram Group</b></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/wechat-group.jpg" width="220"/></td>
+<td align="center"><img src="assets/telegram-group.jpg" width="220"/></td>
+</tr>
+</table>
+
+## ⭐ Star History
+
+If this repo helps you, leave a star — so more humanities students stuck in their papers, with no one to talk to, can find it.
+
+[![Star History Chart](https://api.star-history.com/svg?repos=DylanChiang-Dev/boya&type=Date)](https://star-history.com/#DylanChiang-Dev/boya&Date)
+
+## 🏷️ Versioning
 
 | Version | Meaning |
 |---|---|
-| `0.0.X` | Testing and refinement round. |
-| `0.X.0` | New skill or workflow structure change. |
-| `1.0.0` | Stable full skill set. |
+| `0.0.X` | Refinement round — any skill tested and revised bumps the patch number |
+| `0.X.0` | New skill release or workflow structure change |
+| `1.0.0` | Stable full skill set |
 
-Changelog notes are kept in [`MEMORY.md`](MEMORY.md#changelog).
+Each version is git-tagged; changelog is in [`MEMORY.md`](MEMORY.md#changelog).
 
-## License and Acknowledgements
+## 📄 License & Acknowledgements
 
-**MIT License**. Copyright Dylan Chiang.
+**MIT License** (Copyright Dylan Chiang 蔣濤) — free to use, modify, and redistribute (including commercial use); keep the copyright notice.
 
-This work is inspired by public projects and research including:
+Workflow ideas were inspired by the following public projects and research, with thanks:
 
-- [**academic-research-skills**](https://github.com/Imbad0202/academic-research-skills) for integrity gates and citation-verification direction.
-- [**Supervisor-Skills**](https://github.com/HKUSTDial/Supervisor-Skills) for the idea of encoding supervisor-like judgment into skills and pre-submission review.
-- **The AI Scientist** (Lu et al., 2024, [arXiv:2408.06292](https://arxiv.org/abs/2408.06292), Sakana AI) for failure modes of fully automated research.
-- **Zhao et al. (2026)** for large-scale empirical work on hallucinated citations.
+- [**academic-research-skills**](https://github.com/Imbad0202/academic-research-skills) (ARS) — integrity gates and citation-verification direction
+- [**Supervisor-Skills**](https://github.com/HKUSTDial/Supervisor-Skills) (HKUST) — encoding supervisor judgment as skills; pre-submission self-review (simulated review) concept
+- **The AI Scientist** (Lu et al., 2024, [arXiv:2408.06292](https://arxiv.org/abs/2408.06292), Sakana AI) — failure modes of fully automated research
+- **Zhao et al. (2026)** — large-scale empirical work on hallucinated citations
+- [**Peng Sida's public research notes**](https://pengsida.notion.site/c1a22465a0fa4b15a12985223916048e) — paragraph writing methodology (topic-sentence-first, reverse outline) as conceptual inspiration; only the method idea is borrowed — rules and prose are originally written
 
-The prompts, structure, and cases in this repository are original.
+> Only conceptual direction and problem awareness are borrowed; **prompts, structure, and cases are entirely original** — zero content paraphrasing, no copied prompts, no screenshots. This distinction is part of the academic integrity this repository insists on.
