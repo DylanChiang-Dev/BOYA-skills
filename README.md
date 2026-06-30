@@ -113,10 +113,10 @@ flowchart TD
 
 ### 方式一：請 agent 自動安裝整套 Boya（推薦）
 
-打開 Claude Code、Codex 或 CC Switch，把這句話貼進去：
+打開 Claude Code 或 Codex 這類 agent，把這句話貼進去：
 
 ```text
-幫我從 https://github.com/DylanChiang-Dev/boya 安裝全部 Boya skills，不要只安裝 citation-verify。請先判斷我目前使用的是 Claude Code、Codex 還是 CC Switch，說明會寫入哪些 skills 目錄，等我確認後再執行。
+幫我從 https://github.com/DylanChiang-Dev/boya 安裝全部 Boya skills，不要只安裝 citation-verify。請先判斷我目前的 agent 環境與可用的 skills 目錄，說明會寫入哪些路徑，等我確認後再執行。
 ```
 
 常見目標路徑：

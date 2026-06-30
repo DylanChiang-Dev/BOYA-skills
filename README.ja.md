@@ -67,10 +67,10 @@
 
 ### 方法 1：agent に 15 個の skill をインストールしてもらう
 
-Claude Code、Codex、または CC Switch に次のように依頼します。
+Claude Code や Codex などの agent に次のように依頼します。
 
 ```text
-https://github.com/DylanChiang-Dev/boya から Boya の全 skill をインストールしてください。citation-verify だけをインストールしないでください。まず Claude Code、Codex、CC Switch のどれを使っているかを判断し、書き込む skills ディレクトリを説明して、確認を待ってから実行してください。
+https://github.com/DylanChiang-Dev/boya から Boya の全 skill をインストールしてください。citation-verify だけをインストールしないでください。まず現在の agent 環境と利用可能な skills ディレクトリを判断し、書き込むパスを説明して、確認を待ってから実行してください。
 ```
 
 よく使う保存先：

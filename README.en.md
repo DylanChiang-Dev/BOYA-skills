@@ -102,10 +102,10 @@ flowchart TD
 
 ### Option 1: Ask an Agent to Install All Boya Skills
 
-Open Claude Code, Codex, or CC Switch and paste:
+Open an agent such as Claude Code or Codex and paste:
 
 ```text
-Install all Boya skills from https://github.com/DylanChiang-Dev/boya, not only citation-verify. First detect whether I am using Claude Code, Codex, or CC Switch, tell me which skills directories you will write to, and wait for my confirmation before making changes.
+Install all Boya skills from https://github.com/DylanChiang-Dev/boya, not only citation-verify. First detect my current agent environment and available skills directories, tell me which paths you will write to, and wait for my confirmation before making changes.
 ```
 
 Common target paths:
