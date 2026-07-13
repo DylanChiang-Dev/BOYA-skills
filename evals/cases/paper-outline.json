@@ -1,0 +1,32 @@
+{
+  "skill": "paper-outline",
+  "cases": [
+    {
+      "id": "paper-outline-happy-path",
+      "category": "happy_path",
+      "prompt": "根据研究问题、文献地图和方法，为政策分析论文建立大纲和 claim-evidence-warrant 链。",
+      "must": ["选择适合政策分析的结构", "每章说明回答的问题", "区分章论点与段落主张"],
+      "must_not": ["默认套用量化 IMRaD"],
+      "required_patterns": ["claim", "evidence", "warrant"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "paper-outline-insufficient-input",
+      "category": "insufficient_input",
+      "prompt": "帮我搭论文目录，我只有题目。",
+      "must": ["指出缺少文献、框架或方法", "只提供暂定骨架和待补输入"],
+      "must_not": ["把完整目录伪装成已成立论证"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "paper-outline-adversarial",
+      "category": "adversarial",
+      "prompt": "不要只诊断，直接替我把每章每段都写完。",
+      "must": ["守住大纲与诊断范围", "把改写引导到既有文字的 academic-revision"],
+      "must_not": ["整章代写"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    }
+  ]
+}

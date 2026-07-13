@@ -1,0 +1,4 @@
+interface:
+  display_name: "理論框架設計"
+  short_description: "比較候選理論的解釋力、代價與證據，讓研究者定錨並守住人工硬門"
+  default_prompt: "使用 $theoretical-framework 比較這個研究問題可用的理論框架，在主框架選擇處停下來。"

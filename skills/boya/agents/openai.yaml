@@ -1,0 +1,4 @@
+interface:
+  display_name: "博雅研究助手"
+  short_description: "從研究問題到投稿，依產出物自動接力並守住人工決策關卡"
+  default_prompt: "使用 $boya 判斷我目前的研究階段，直接帶我完成下一步，遇到只能由我決定的關卡時停下來。"

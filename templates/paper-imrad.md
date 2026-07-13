@@ -1,6 +1,6 @@
 # 論文結構模板：IMRaD（實證研究用）
 
-> 可填空骨架，配 [outline-builder](../skills/outline-builder/SKILL.md) 使用。每節留「論證鏈」提示：claim → evidence → warrant。
+> 可填空骨架，配 [paper-outline](../skills/paper-outline/SKILL.md) 使用。每節留「論證鏈」提示：claim → evidence → warrant。
 
 ## 1. Introduction 緒論
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "論文自審"
+  short_description: "從方法、論證、證據與誠信面向嚴格檢查論文草稿，分級提出可操作意見"
+  default_prompt: "使用 $manuscript-review 嚴格審查這份草稿，將意見分為必改、可辯與誤讀。"

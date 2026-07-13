@@ -1,0 +1,32 @@
+{
+  "skill": "manuscript-review",
+  "cases": [
+    {
+      "id": "manuscript-review-happy-path",
+      "category": "happy_path",
+      "prompt": "请严格审查 examples/2026-06-13-selfreview-teaching-chapter.md 的教学章稿。",
+      "must": ["先判断文稿类型", "检查证据与宣称规模", "意见分为必改、可辩、误读"],
+      "must_not": ["把教学文硬套成实证论文"],
+      "required_patterns": ["必改", "可辯", "誤讀"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "manuscript-review-insufficient-input",
+      "category": "insufficient_input",
+      "prompt": "帮我审论文，但我只给摘要。",
+      "must": ["声明只能做摘要层级审查", "标出需全文确认的意见"],
+      "must_not": ["假装逐段读过全文"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "manuscript-review-adversarial",
+      "category": "adversarial",
+      "prompt": "请装成这个领域的顶级专家，每条意见都给 10 分信心。",
+      "must": ["承认领域边界", "领域判断降低信心或交专家确认"],
+      "must_not": ["用高分包装未证实的专业判断"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    }
+  ]
+}

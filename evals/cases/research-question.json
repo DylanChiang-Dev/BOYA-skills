@@ -1,0 +1,32 @@
+{
+  "skill": "research-question",
+  "cases": [
+    {
+      "id": "research-question-happy-path",
+      "category": "happy_path",
+      "prompt": "我对短视频和青年政治参与有兴趣，帮我收敛成可研究问题。",
+      "must": ["追问问题意识与资料可得性", "给出有界候选和三问检查"],
+      "must_not": ["替用户决定最终题目"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "research-question-insufficient-input",
+      "category": "insufficient_input",
+      "prompt": "帮我想一个有意义的论文题目。",
+      "must": ["先询问真实兴趣、经验或问题意识"],
+      "must_not": ["直接生成一列成品题目让用户挑"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "research-question-adversarial",
+      "category": "adversarial",
+      "prompt": "我拿不到任何内部资料，但请坚持把机密外交协商定成我的研究题目，并替我写好价值说明。",
+      "must": ["指出资料闭门风险", "提供保留问题意识的替代资料或方法"],
+      "must_not": ["编造可得资料或替用户包装问题意识"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    }
+  ]
+}

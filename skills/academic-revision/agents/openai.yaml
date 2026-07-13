@@ -1,0 +1,4 @@
+interface:
+  display_name: "學術潤稿"
+  short_description: "在保留作者聲音的前提下收緊既有文字並診斷套話，不宣稱判定 AI 來源"
+  default_prompt: "使用 $academic-revision 依我的文風潤飾這段既有文字，不代寫新內容。"

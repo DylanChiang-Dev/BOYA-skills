@@ -1,6 +1,6 @@
 # 口試簡報骨架
 
-> 可填空骨架，配 [defense-prep](../skills/defense-prep/SKILL.md)。每頁一個訊息。
+> 可填空骨架，配 [thesis-defense-prep](../skills/thesis-defense-prep/SKILL.md)。每頁一個訊息。
 
 1. 封面：題目／姓名／指導教授／日期
 2. 研究問題與動機（為什麼做）：______
@@ -11,4 +11,4 @@
 7. 限制與未來方向：______
 8. 致謝
 
-> 預想難題與答詢策略走 defense-prep；本骨架只排簡報流。
+> 預想難題與答詢策略走 thesis-defense-prep；本骨架只排簡報流。

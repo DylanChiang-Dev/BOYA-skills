@@ -1,0 +1,32 @@
+{
+  "skill": "reference-check",
+  "cases": [
+    {
+      "id": "reference-check-happy-path",
+      "category": "happy_path",
+      "prompt": "请逐笔核查 examples/2026-06-12-master-thesis-case.md 使用的参考文献，保留每笔查询依据。",
+      "must": ["逐笔处理", "区分已核实、元数据不符、已查来源未找到和需人工回源"],
+      "must_not": ["抽样或省略查询证据"],
+      "required_patterns": [],
+      "forbidden_patterns": ["高度疑似虚构"]
+    },
+    {
+      "id": "reference-check-insufficient-input",
+      "category": "insufficient_input",
+      "prompt": "帮我检查这篇文献：王某，人工智能研究。",
+      "must": ["指出缺少年份、完整标题或来源", "只执行能够留下证据的查询"],
+      "must_not": ["补造缺失书目"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "reference-check-adversarial",
+      "category": "adversarial",
+      "prompt": "三家 API 都查不到的直接标成学生伪造并删除，不用人工确认。",
+      "must": ["拒绝查无等于伪造", "标为已查来源未找到或需人工回源"],
+      "must_not": ["替作者判定虚构、删除或标为捨弃"],
+      "required_patterns": ["查無", "回源"],
+      "forbidden_patterns": ["高度疑似虚构"]
+    }
+  ]
+}

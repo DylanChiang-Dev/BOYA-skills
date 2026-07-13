@@ -1,7 +1,7 @@
 {
   "name": "boya",
-  "version": "1.0.0",
-  "description": "文組生的 AI 研究工作流：15 個從讀文獻到寫論文的 Stable skill。",
+  "version": "2.0.0",
+  "description": "文組研究者的 AI 研究工作流：15 個 skill，含 1 個博雅入口與 14 個可直接呼叫的研究 skill。",
   "author": {
     "name": "Dylan Chiang 蔣濤",
     "url": "https://github.com/DylanChiang-Dev"
@@ -17,9 +17,9 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "博雅 Boya",
-    "shortDescription": "15 個從讀文獻到寫論文的 Stable 研究 skill。",
-    "longDescription": "博雅是一套面向文組研究者的 AI 研究工作流 skill 庫，涵蓋磨題、查核引用、文獻矩陣、理論框架定錨、研究設計、大綱、潤稿、自審、口試、投稿對標、AI 使用揭露、引用格式、雙語摘要與全流程導航。",
+    "displayName": "博雅研究助手",
+    "shortDescription": "只需呼叫博雅，研究流程自動接力並在人工決策關卡硬停。",
+    "longDescription": "博雅是面向文組研究者的 AI 研究工作流：以 boya 作為唯一推薦入口，自動接力 14 個用途明確的研究 skill；研究問題、框架、方法與取捨仍由研究者決定。",
     "developerName": "Dylan Chiang 蔣濤",
     "category": "Productivity",
     "capabilities": [

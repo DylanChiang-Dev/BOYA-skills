@@ -1,0 +1,4 @@
+interface:
+  display_name: "中英雙語摘要"
+  short_description: "從定稿忠實濃縮中英文摘要與對應關鍵詞，逐項核對數字與專有名詞"
+  default_prompt: "使用 $bilingual-abstract 從這份定稿產出中英文摘要與關鍵詞，不新增原稿沒有的內容。"

@@ -1,6 +1,6 @@
 # 論文結構模板：政策分析
 
-> 可填空骨架，配 [outline-builder](../skills/outline-builder/SKILL.md)。
+> 可填空骨架，配 [paper-outline](../skills/paper-outline/SKILL.md)。
 
 ## 1. 政策問題
 

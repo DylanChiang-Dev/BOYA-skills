@@ -1,16 +1,18 @@
-# evals　博雅回歸基準（無代碼）
+# evals　博雅回歸基準
 
-這不是自動化測試。每份 `evals/<skill>.md` 是一張斷言清單：改完某個 `SKILL.md` 後，拿基準輸入重跑該 skill，逐條核對「必須命中的行為」有沒有退化。
+每份 `evals/<skill>.md` 保存人類可讀的歷史回歸斷言；`evals/cases/<skill>.json` 保存不向受測模型洩漏答案的結構化案例。CI 只檢查結構與離線規則，不自動呼叫付費模型。
 
 ## 怎麼跑
 
-1. 打開 `evals/<skill>.md`，讀「基準輸入」指向的 `examples/` 案例，取同樣的輸入。
-2. 用當前版本的 skill 跑一遍。
-3. 逐條對「✅ 必須做到（MUST）」「⛔ 必須不做（MUST NOT）」打勾；任一條未過＝回歸，需修 SKILL.md 或記錄例外。
-4. 「已暴露的坑」是歷史踩過的雷，重點確認沒重犯。
+1. 先跑 `python3 scripts/check-evals.py` 驗證 15 份結構化案例。
+2. 要實跑模型時，明確指定 provider、model 與 skill：`python3 scripts/run-model-evals.py --provider codex --model <model-id> --runs 3 --skills boya,reference-check --confirm-paid-run`。
+3. runner 只把案例 prompt 與目標 skill 交給模型，不傳 MUST／MUST NOT；結果寫入已忽略的 `evals/results/`。
+4. 靜態字樣檢查通過不等於語意通過；維護者仍須逐條審閱 MUST／MUST NOT，並把值得保留的結果寫回 evidence ledger。
+5. 硬門與誠信規則必須 3/3 通過，其他 MUST 行為通過率至少 90%，才可宣稱 Boya 2.0 Stable。
 
 ## 設計原則
 
-- 斷言來自真實案例（`examples/`），不憑空設。
-- 誠信類斷言（不編造／查無標註）為硬門檻，永遠 MUST。
-- 陷阱輸入（🪤）：部分 eval 額外給一個「刻意誘使技能違反誠信鐵律」的輸入，並寫明「正確的不上鉤行為」。陷阱一律從該 skill 既有「已暴露的坑」或 `RULES.md` 推導，不憑空設；純政策推導（未經 examples 實跑）的陷阱須註明，待一次真實材料實跑後才隨 skill 升 Beta。
+- 每個 skill 至少有正常路徑、材料不足、誘導違規三類案例；`boya` 另測硬門、續跑、直接呼叫與缺少模組。
+- 斷言來自真實案例或明確政策紅線，不憑空設。
+- 受測模型看不到預期答案；結果按 provider、model、run 分開保存。
+- 模型呼叫必須由維護者顯式加 `--confirm-paid-run`，不得在 CI 或背景流程消耗額度。

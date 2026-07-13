@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 使用揭露"
+  short_description: "依真實使用與機構原文起草具體透明的 AI 使用聲明"
+  default_prompt: "使用 $ai-use-disclosure 盤點我的 AI 使用並依目標機構原文起草揭露聲明。"

@@ -4,8 +4,9 @@
 
 ## 1. 目錄約定
 
-- 一個 skill 一個目錄：`skills/<name>/SKILL.md`，單檔，繁體中文優先。
-- skill 名一律 kebab-case（如 `citation-verify`）。
+- 一個 skill 一個目錄：`skills/<name>/SKILL.md` 是執行時唯一規則主檔，繁體中文優先。
+- 每個 skill 必須有 `agents/openai.yaml` 提供展示名、短說明與預設提示；脆弱或重複的工具步驟可放 `scripts/`。
+- skill 名一律 kebab-case（如 `reference-check`）。
 
 ## 2. frontmatter schema
 
@@ -20,9 +21,9 @@ description: <一句話功能 ＋ 觸發情境。必須寫明「當使用者說�
 
 ## 3. SKILL.md 段落模板
 
-依現有 12 個 skill 的共性，新 skill 至少含：
+依現有 15 個 skill 的共性，新 skill 至少含：
 
-1. `# <英文名>　<中文名>`
+1. `# <直白中文名>`
 2. `## 你的角色` — 一句話界定 agent 扮演誰、只做一件事。
 3. `## 鐵律` — 編號硬規，誠信類必含「絕不編造」「查無≠偽造」「逐筆不抽樣」「留痕」。
 4. `## 工作流` — 分步驟；標出「僅使用者能決定」的關卡。
@@ -32,16 +33,18 @@ description: <一句話功能 ＋ 觸發情境。必須寫明「當使用者說�
 
 - 任一 skill **升版號前**，必須在 `examples/` 有 ≥1 篇實跑真錄（檔名 `日期-skill-案例.md`），記錄：用什麼真實材料跑、暴露了什麼坑、怎麼寫回規則。
 - 對應的回歸斷言寫進 `evals/<skill>.md`（見 evals/README.md）。
+- 同時新增 `evals/cases/<skill>.json`，至少含正常路徑、材料不足、誘導違規三類；模型測試由維護者顯式執行，不在 CI 消耗額度。
 
 ## 5. 版號規則
 
-見 [AGENTS.md](AGENTS.md) 版本策略（0.0.X／0.X.0／1.0.0），與 [RULES.md](RULES.md) 第 4 條三段式鐵律。本文不重述。
+見 [AGENTS.md](AGENTS.md) 版本策略。2.X.0 用於技術 ID、安裝介面或其他破壞性變更；仍守三段式版號。
 
 ## 6. 命名規範
 
 - skill 目錄／name：kebab-case。
 - 案例檔：`YYYY-MM-DD-<skill 簡名>-<案例簡述>.md`。
 - eval 檔：`evals/<skill>.md`，與 skill 同名。
+- 結構化案例：`evals/cases/<skill>.json`，與 skill 同名。
 
 ## 7. 知識庫／模板／驗證日誌維護
 
@@ -53,7 +56,7 @@ description: <一句話功能 ＋ 觸發情境。必須寫明「當使用者說�
 
 當一塊參考料超出 SKILL.md 該怎麼放，按三層收納 ＋ 一條軟警戒線。此規矩是**讀者不可見的內部維護決定**：書正文只教概念、按名字叫 skill，不描述目錄結構，故本節不影響書稿。
 
-1. **預設單檔**。`SKILL.md` 只放 §3 四段（角色／鐵律／工作流／輸出格式）。常態，既有 skill 不動。
+1. **預設精簡主檔**。`SKILL.md` 只放角色／鐵律／工作流／輸出格式與必要失敗處理；歷史案例不塞回執行時正文。
 2. **跨 skill 複用的料 → repo 級共享庫**（同 §7）：參考卡進 `knowledge/`，可填空骨架進 `templates/`。
 3. **該 skill 獨佔、又塞不進四段的長料 → `skills/<name>/references/`**。
 
@@ -101,7 +104,7 @@ description: <一句話功能 ＋ 觸發情境。必須寫明「當使用者說�
 
 ### 9.3 用法與邊界
 
-- 表是**輔助、不強制**；但誠信類 skill（citation-verify／self-review／ai-disclosure）預設會幫忙填／讀。
+- 表是**輔助、不強制**；但誠信類 skill（reference-check／manuscript-review／ai-use-disclosure）預設會幫忙填／讀。
 - 標記只記「**誰做的**」這個事實，**不替使用者判斷對不對**——對不對永遠是使用者的事。
 - **查無就標 ❓，絕不偽造 ✅**（守 RULES.md 與誠信鐵律「查無≠偽造」）。
 - 🗑（捨棄）代表「作者已確認並放棄」，**只由作者標記**；skill 不得替作者把「查無」直接判成捨棄或造假。

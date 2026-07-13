@@ -1,0 +1,4 @@
+interface:
+  display_name: "引用格式整理"
+  short_description: "統一參考文獻與隨文引註格式並檢查雙向對應，缺漏欄位一律保留待補"
+  default_prompt: "使用 $citation-format 將這份參考文獻整理成指定格式，缺漏欄位不要編造。"

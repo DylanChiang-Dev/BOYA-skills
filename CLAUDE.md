@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 這是什麼倉庫
 
-博雅（Boya）是面向文組／人文社科研究者的開源 AI Agent **skill 庫**，整理從讀文獻到寫論文的完整研究工作流。**它是散文式的提示工程產物，不是程式專案**：沒有編譯、沒有套件依賴、沒有自動化測試框架。每個 skill 是單一 `skills/<name>/SKILL.md`，內容為繁體中文的角色設定＋鐵律＋工作流。
+博雅（Boya）是面向文組／人文社科研究者的開源 AI Agent **skill 庫**，整理從讀文獻到寫論文的完整研究工作流。每個 skill 以繁體中文 `SKILL.md` 為規則主檔，另有展示元資料；查核與檢索等脆弱步驟可附無第三方依賴的 Python 工具。
 
 整套同時以兩種 plugin 形式分發：Claude（`.claude-plugin/plugin.json`）與 Codex（`.codex-plugin/plugin.json`），兩者都指向同一個 `skills/` 目錄。
 
@@ -18,27 +18,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 方向不可逆：發現問題先回頭修倉庫，再讓書與自媒體跟進；不得反過來用書或自媒體的說法覆蓋倉庫標準。
 
-## 沒有 build／lint／test，「測試」是手動回歸
+## 品質閘門
 
-不要找 `package.json`、`make`、`pytest`。本倉庫的品質閘門是 **evals 手動回歸**：
+本倉庫沒有套件建置流程；品質閘門由靜態契約、離線單元測試與維護者顯式啟動的模型回歸組成：
 
-- 每個 skill 對應一份 `evals/<skill>.md`，是一張「MUST／MUST NOT」斷言清單。
-- 改完某個 `SKILL.md` 後，依 `evals/README.md`：打開對應 eval → 讀「基準輸入」指向的 `examples/` 案例 → 取同樣輸入用當前 skill 跑一遍 → 逐條核對行為有沒有退化。
+- 每個 skill 有人類可讀的 `evals/<skill>.md` 與結構化的 `evals/cases/<skill>.json`。
+- CI 執行 `scripts/check-skills.py --check`、`scripts/check-evals.py` 與 `python3 -m unittest discover -s tests -v`，不呼叫付費模型。
+- 模型矩陣只能由維護者顯式執行 `scripts/run-model-evals.py`，且必須傳 `--confirm-paid-run`。
 - 誠信類斷言（不編造／查無標註）是硬門檻，永遠 MUST。
 - 驗證留痕寫進 `VERIFICATION.md` 的 evidence ledger（claim／source／check／result／next 五欄）。
 
-skill 內若示範了實際指令（如 citation-verify 用 `curl` 打 Crossref／OpenAlex／Semantic Scholar），那是 skill 的工作流內容，不是本倉庫的建置流程。
+skill 附帶的查詢腳本屬使用時工具；離線測試不得連網，實際資料查詢仍須由使用者任務觸發。
 
 ## 新增或修改 skill 的固定節奏
 
 順序是硬規（見 `GUIDE.md` §9、`CONVENTIONS.md`）：
 
 1. **先寫 `evals/<skill>.md`**，定義 MUST / MUST NOT（eval 先行）。
-2. 再寫 `skills/<skill>/SKILL.md`。
-3. 若需要可填空骨架，新增 `templates/<name>.md`。
-4. 接入 `ROUTER.md`（把觸發語登錄路由表）。
-5. 升版號前，必須在 `examples/` 有 ≥1 篇實跑真錄（檔名 `YYYY-MM-DD-<skill簡名>-<案例>.md`），記錄用什麼真實材料跑、暴露什麼坑、怎麼寫回規則；並在 `VERIFICATION.md` 補一行。
-6. 未實測前只能標 Draft；跑過真實材料、把坑寫回規則後才升 Beta／Stable。**不可未測即標 Stable。**
+2. 新增 `evals/cases/<skill>.json` 的正常、材料不足、誘導違規案例。
+3. 再寫 `skills/<skill>/SKILL.md` 與 `agents/openai.yaml`。
+4. 若需要可填空骨架或確定性工具，新增 `templates/` 或 skill 內 `scripts/`。
+5. 接入 `ROUTER.md`（把觸發語登錄路由表）。
+6. 升版號前，必須在 `examples/` 有 ≥1 篇實跑真錄並在 `VERIFICATION.md` 補一行。
+7. 未實測前只能標 Draft；跑過真實材料、把坑寫回規則後才升 Beta／Stable。**不可未測即標 Stable。**
 
 ### SKILL.md 寫作契約
 

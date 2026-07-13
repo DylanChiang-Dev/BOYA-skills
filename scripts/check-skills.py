@@ -1,225 +1,247 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-check-skills.py — 博雅 skill 防呆檢查器（維護輔助，非 build 依賴）
+"""Validate the Boya 2.0 skill contract and live documentation."""
 
-定位：唯讀、只報告、不改檔。把 CONVENTIONS 的「SKILL.md 寫作契約」與
-「以 SKILL.md 為準」的 ROUTER 同步，從口頭約定變成跑一下就能驗證的事。
+from __future__ import annotations
 
-只用標準函式庫。對人文社科維護者友善：純文字報告、可手動介入。
-
-用法：
-    python3 scripts/check-skills.py            # 印報告
-    python3 scripts/check-skills.py --check    # 有 WARN/ERROR 時回傳非 0（給未來選用的 CI）
-
-檢查項：
-  契約（依 CONVENTIONS「SKILL.md 寫作契約」）
-    - frontmatter 僅 name / description 兩欄，無版本欄
-    - name 為 kebab-case 且與目錄同名
-    - description 含「時使用」與至少一個「」觸發語
-    - SKILL.md 行數 > 200 提醒檢查是否該拆（CONVENTIONS §8）
-    - 誠信聲明（不編造／查無標註）存在與否（僅提示，由作者判斷是否誠信類）
-  ROUTER 同步（依 ROUTER「以 SKILL.md 為準」）
-    - 每個 skill 目錄都有對應 ROUTER 列
-    - 每個指向 skill 的 ROUTER 列都對得上既有目錄（抓改名／錯字）
-    - ROUTER 列裡的觸發語都能在該 skill 的 description 找到（抓 ROUTER 殘留舊觸發語）
-"""
-
-import os
+import argparse
+import json
 import re
 import sys
+import urllib.parse
+from pathlib import Path
 
-REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKILLS_DIR = os.path.join(REPO, "skills")
-ROUTER = os.path.join(REPO, "ROUTER.md")
-
+REPO = Path(__file__).resolve().parents[1]
+SKILLS_DIR = REPO / "skills"
+ROUTER = REPO / "ROUTER.md"
+EXPECTED_SKILLS = {
+    "academic-revision",
+    "ai-use-disclosure",
+    "bilingual-abstract",
+    "boya",
+    "citation-format",
+    "journal-fit",
+    "literature-analysis",
+    "literature-search",
+    "manuscript-review",
+    "paper-outline",
+    "reference-check",
+    "research-design",
+    "research-question",
+    "theoretical-framework",
+    "thesis-defense-prep",
+}
+OLD_SKILLS = {
+    "abstract-bilingual",
+    "ai-disclosure",
+    "citation-verify",
+    "cite-format",
+    "defense-prep",
+    "framework-build",
+    "lit-discovery",
+    "lit-matrix",
+    "method-design",
+    "outline-builder",
+    "self-review",
+    "style-tune",
+    "topic-refine",
+    "venue-fit",
+}
+FRONTMATTER_KEYS = {"name", "description"}
 KEBAB = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
-# 中文角括號觸發語：「...」
-QUOTE = re.compile(r"「([^」]+)」")
-ALLOWED_FM_KEYS = {"name", "description"}
-SPLIT_LINE_LIMIT = 200
-
-# ROUTER 表中合法但「非 skill 目錄」的 skill 欄目標（工具列），不應被當成漏目錄
-NON_SKILL_TARGETS = {"templates/", "knowledge/venues.md", "VERIFICATION.md"}
-
-ERRORS, WARNS, INFOS = [], [], []
+LINK = re.compile(r"!?\[[^]]*\]\(([^)]+)\)")
+SKILL_CALL = re.compile(r"\$([a-z0-9]+(?:-[a-z0-9]+)*)")
+SKILL_PATH = re.compile(
+    r"(?<![a-z0-9_.-])skills/([a-z0-9]+(?:-[a-z0-9]+)*)(?=[/#)\s`]|$)"
+)
+HISTORICAL_REFERENCE_FILES = {"GUIDE.md", "MEMORY.md", "VERIFICATION.md"}
+ALLOWED_EXTERNAL_SKILL_CALLS = {"skill-installer"}
 
 
-def err(s):
-    ERRORS.append(s)
-
-
-def warn(s):
-    WARNS.append(s)
-
-
-def info(s):
-    INFOS.append(s)
-
-
-def parse_frontmatter(path):
-    """回傳 (keys_in_order, dict, line_count)；非 --- 開頭則 keys 為 None。"""
-    with open(path, encoding="utf-8") as f:
-        text = f.read()
-    lines = text.splitlines()
+def parse_frontmatter(path: Path) -> tuple[list[str] | None, dict[str, str], int]:
+    lines = path.read_text(encoding="utf-8").splitlines()
     if not lines or lines[0].strip() != "---":
         return None, {}, len(lines)
-    keys, data = [], {}
-    for i in range(1, len(lines)):
-        if lines[i].strip() == "---":
+    keys: list[str] = []
+    values: dict[str, str] = {}
+    closed = False
+    for line in lines[1:]:
+        if line.strip() == "---":
+            closed = True
             break
-        m = re.match(r"^([A-Za-z0-9_]+):\s?(.*)$", lines[i])
-        if m:
-            keys.append(m.group(1))
-            data[m.group(1)] = m.group(2).strip()
-    return keys, data, len(lines)
+        match = re.match(r"^([A-Za-z0-9_]+):\s?(.*)$", line)
+        if match:
+            keys.append(match.group(1))
+            values[match.group(1)] = match.group(2).strip()
+    return (keys if closed else None), values, len(lines)
 
 
-def check_skill(name):
-    sk_path = os.path.join(SKILLS_DIR, name, "SKILL.md")
-    if not os.path.isfile(sk_path):
-        err(f"[{name}] 找不到 skills/{name}/SKILL.md")
-        return None
-    keys, fm, n_lines = parse_frontmatter(sk_path)
-
-    if keys is None:
-        err(f"[{name}] SKILL.md 開頭不是 frontmatter（--- 區塊）")
-        return None
-
-    # 僅 name / description
-    extra = [k for k in keys if k not in ALLOWED_FM_KEYS]
-    if extra:
-        err(f"[{name}] frontmatter 多出欄位 {extra}（契約：僅 name / description，版本走 git tag）")
-    for need in ("name", "description"):
-        if need not in fm:
-            err(f"[{name}] frontmatter 缺 {need}")
-
-    # name kebab-case 且與目錄同名
-    fm_name = fm.get("name", "")
-    if fm_name and not KEBAB.match(fm_name):
-        err(f"[{name}] name「{fm_name}」非 kebab-case")
-    if fm_name and fm_name != name:
-        err(f"[{name}] name「{fm_name}」與目錄名「{name}」不一致")
-
-    # description 觸發語契約
-    desc = fm.get("description", "")
-    triggers = [q.strip() for q in QUOTE.findall(desc)]
-    if desc:
-        if "時使用" not in desc:
-            warn(f"[{name}] description 未見「……時使用」句型（契約：須寫明觸發語境）")
-        if not triggers:
-            warn(f"[{name}] description 未見任何「」觸發語")
-
-    # 誠信聲明（提示，不判定誰是誠信類）：偵測「不編造／查無標註」這類具體字樣，
-    # 而非泛用的「絕不／不得」（那幾乎每個 description 都有，會失去鑑別力）。
-    integrity_markers = (
-        "編造", "捏造", "查無", "查不到", "待人工", "待補", "需補", "真偽", "如實",
-    )
-    if desc and not any(m in desc for m in integrity_markers):
-        info(f"[{name}] description 未含誠信聲明字樣（若屬誠信類技能，契約要求聲明「絕不編造／查無標註」）")
-
-    # 行數提醒
-    if n_lines > SPLIT_LINE_LIMIT:
-        info(f"[{name}] SKILL.md {n_lines} 行 > {SPLIT_LINE_LIMIT}，CONVENTIONS §8 要求檢查是否該拆 references/")
-
-    return {"name": name, "triggers": triggers}
+def live_files() -> list[Path]:
+    files: set[Path] = set()
+    for pattern in (
+        "README*.md",
+        "GUIDE.md",
+        "ROUTER.md",
+        "CONVENTIONS.md",
+        "RULES.md",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "VERIFICATION.md",
+        "MEMORY.md",
+        ".codex-plugin/*.md",
+        ".codex-plugin/*.json",
+        ".claude-plugin/*.json",
+        "skills/**/*.md",
+        "skills/**/*.yaml",
+        "evals/*.md",
+        "evals/cases/*.json",
+        "templates/*.md",
+        "knowledge/*.md",
+    ):
+        files.update(path for path in REPO.glob(pattern) if path.is_file())
+    return sorted(files)
 
 
-def parse_router():
-    """從 ROUTER.md 表格抽 (skill欄文字, 觸發語cell文字)；回傳 list[(skill, trigger_cell)]。"""
-    rows = []
-    if not os.path.isfile(ROUTER):
-        err("找不到 ROUTER.md")
-        return rows
-    with open(ROUTER, encoding="utf-8") as f:
-        for line in f:
-            line = line.rstrip("\n")
-            if not line.startswith("|"):
-                continue
-            cells = [c.strip() for c in line.strip().strip("|").split("|")]
-            if len(cells) < 2:
-                continue
-            trig, skill = cells[0], cells[1]
-            # 跳過表頭與分隔列
-            if set(skill) <= set("-: ") or skill in ("skill",):
-                continue
-            rows.append((skill, trig))
-    return rows
-
-
-def router_skill_token(skill_cell):
-    """ROUTER skill 欄可能含反引號或附註，抽出主 token。"""
-    m = re.search(r"`?([A-Za-z0-9_./-]+)`?", skill_cell)
-    return m.group(1) if m else skill_cell.strip("`")
-
-
-def main():
-    if not os.path.isdir(SKILLS_DIR):
-        err(f"找不到 skills/ 目錄：{SKILLS_DIR}")
-        report()
-        return 2
-
-    skill_names = sorted(
-        d for d in os.listdir(SKILLS_DIR)
-        if os.path.isdir(os.path.join(SKILLS_DIR, d)) and not d.startswith(".")
-    )
-
-    parsed = {}
-    for name in skill_names:
-        r = check_skill(name)
-        if r:
-            parsed[name] = r
-
-    router_rows = parse_router()
-    router_targets = {router_skill_token(s): trig for (s, trig) in router_rows}
-
-    # 每個 skill 目錄都有 ROUTER 列
-    for name in skill_names:
-        if name not in router_targets:
-            warn(f"[{name}] skills/ 有此目錄，ROUTER.md 卻無對應列")
-
-    # 每個指向 skill 的 ROUTER 列都對得上目錄
-    for tok, trig in router_targets.items():
-        if tok in NON_SKILL_TARGETS or tok.endswith("/") or "." in tok:
+def check_links(path: Path, errors: list[str]) -> None:
+    if path.suffix != ".md":
+        return
+    text = path.read_text(encoding="utf-8")
+    for raw_target in LINK.findall(text):
+        target = raw_target.strip().strip("<>")
+        if not target or target.startswith(("#", "http://", "https://", "mailto:")):
             continue
-        if tok not in skill_names:
-            warn(f"[ROUTER] 列指向「{tok}」，但 skills/ 沒有此目錄（改名或錯字？）")
-
-    # ROUTER 觸發語應能回溯到 description（抓殘留舊觸發語）
-    for name, data in parsed.items():
-        trig_cell = router_targets.get(name)
-        if not trig_cell:
+        target = urllib.parse.unquote(target.split("#", 1)[0])
+        if not target:
             continue
-        router_trigs = [q.strip() for q in QUOTE.findall(trig_cell)]
-        desc_blob = "".join(data["triggers"])
-        for rt in router_trigs:
-            # 寬鬆：ROUTER 觸發語的關鍵詞是否出現在 description 觸發語裡
-            core = re.split(r"[／/]", rt)[0].strip()
-            if core and core not in desc_blob:
-                info(f"[{name}] ROUTER 觸發語「{rt}」未在 description 觸發語中找到（ROUTER 為摘要，請人工確認非殘留）")
-
-    return report()
+        resolved = (path.parent / target).resolve()
+        if not resolved.exists():
+            errors.append(f"[{path.relative_to(REPO)}] broken link: {raw_target}")
 
 
-def report():
-    line = "─" * 56
-    print(line)
-    print("博雅 skill 防呆檢查報告  check-skills.py")
-    print(line)
-    for tag, bucket in (("ERROR", ERRORS), ("WARN", WARNS), ("INFO", INFOS)):
-        print(f"\n{tag}（{len(bucket)}）")
-        if not bucket:
-            print("  （無）")
-        for s in bucket:
-            print(f"  • {s}")
-    print("\n" + line)
-    print(f"ERROR {len(ERRORS)}　WARN {len(WARNS)}　INFO {len(INFOS)}")
-    print("註：ERROR=違反契約硬規；WARN=結構漂移待修；INFO=供人工確認，非必修。")
-    print(line)
-    if "--check" in sys.argv:
-        return 1 if (ERRORS or WARNS) else 0
+def explicit_skill_references(text: str) -> set[str]:
+    """Return IDs used as explicit skill calls or skills/<id> paths."""
+    return set(SKILL_CALL.findall(text)) | set(SKILL_PATH.findall(text))
+
+
+def nonexistent_skill_references(text: str) -> set[str]:
+    """Return explicit references that cannot resolve locally or as approved externals."""
+    calls = set(SKILL_CALL.findall(text)) - ALLOWED_EXTERNAL_SKILL_CALLS
+    paths = set(SKILL_PATH.findall(text))
+    return (calls | paths) - EXPECTED_SKILLS - OLD_SKILLS
+
+
+def parse_router_targets() -> list[str]:
+    targets = []
+    for line in ROUTER.read_text(encoding="utf-8").splitlines():
+        if not line.startswith("|"):
+            continue
+        cells = [cell.strip() for cell in line.strip("|").split("|")]
+        if len(cells) < 2 or cells[1] in {"skill", "---"}:
+            continue
+        if set(cells[1]) <= {"-", ":", " "}:
+            continue
+        match = re.search(r"([a-z0-9]+(?:-[a-z0-9]+)*)", cells[1])
+        if match and match.group(1) in EXPECTED_SKILLS:
+            targets.append(match.group(1))
+    return targets
+
+
+def check_openai_yaml(skill: str, path: Path, errors: list[str]) -> None:
+    if not path.is_file():
+        errors.append(f"[{skill}] missing agents/openai.yaml")
+        return
+    text = path.read_text(encoding="utf-8")
+    values = {}
+    for key in ("display_name", "short_description", "default_prompt"):
+        match = re.search(rf"^\s+{key}:\s+\"([^\"]+)\"\s*$", text, re.MULTILINE)
+        if not match:
+            errors.append(f"[{skill}] openai.yaml missing quoted interface.{key}")
+        else:
+            values[key] = match.group(1)
+    short = values.get("short_description", "")
+    if short and not 25 <= len(short) <= 64:
+        errors.append(f"[{skill}] short_description must be 25-64 characters, got {len(short)}")
+    prompt = values.get("default_prompt", "")
+    if prompt and f"${skill}" not in prompt:
+        errors.append(f"[{skill}] default_prompt must mention ${skill}")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--check", action="store_true", help="kept for compatibility")
+    parser.parse_args()
+    errors: list[str] = []
+    warnings: list[str] = []
+
+    actual = {path.parent.name for path in SKILLS_DIR.glob("*/SKILL.md")}
+    if actual != EXPECTED_SKILLS:
+        errors.append(f"skill set mismatch: missing={sorted(EXPECTED_SKILLS-actual)} extra={sorted(actual-EXPECTED_SKILLS)}")
+
+    for skill in sorted(actual):
+        skill_file = SKILLS_DIR / skill / "SKILL.md"
+        keys, frontmatter, line_count = parse_frontmatter(skill_file)
+        if keys is None:
+            errors.append(f"[{skill}] invalid or unclosed frontmatter")
+            continue
+        if set(keys) != FRONTMATTER_KEYS or len(keys) != 2:
+            errors.append(f"[{skill}] frontmatter must contain only name and description")
+        if frontmatter.get("name") != skill or not KEBAB.fullmatch(frontmatter.get("name", "")):
+            errors.append(f"[{skill}] frontmatter name must equal directory and use kebab-case")
+        description = frontmatter.get("description", "")
+        if "時使用" not in description:
+            errors.append(f"[{skill}] description must state when to use the skill")
+        if "「" not in description or "」" not in description:
+            errors.append(f"[{skill}] description must include concrete trigger examples")
+        if len(description) > 240:
+            warnings.append(f"[{skill}] description is {len(description)} characters; consider shortening")
+        if line_count > 200:
+            warnings.append(f"[{skill}] SKILL.md is {line_count} lines; review progressive disclosure")
+        if not (REPO / "evals" / f"{skill}.md").is_file():
+            errors.append(f"[{skill}] missing evals/{skill}.md")
+        if not (REPO / "evals" / "cases" / f"{skill}.json").is_file():
+            errors.append(f"[{skill}] missing structured eval cases")
+        check_openai_yaml(skill, SKILLS_DIR / skill / "agents" / "openai.yaml", errors)
+
+    targets = parse_router_targets()
+    if set(targets) != EXPECTED_SKILLS or len(targets) != len(EXPECTED_SKILLS):
+        errors.append("ROUTER must contain each Boya 2.0 skill exactly once")
+
+    for manifest_path in (REPO / ".codex-plugin/plugin.json", REPO / ".claude-plugin/plugin.json"):
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            errors.append(f"[{manifest_path.relative_to(REPO)}] invalid JSON: {exc}")
+            continue
+        if manifest.get("version") != "2.0.0":
+            errors.append(f"[{manifest_path.relative_to(REPO)}] version must be 2.0.0")
+        if "15" not in manifest.get("description", ""):
+            errors.append(f"[{manifest_path.relative_to(REPO)}] description must state 15 skills")
+
+    for path in live_files():
+        text = path.read_text(encoding="utf-8")
+        for old in OLD_SKILLS:
+            retired = re.compile(rf"(?<![a-z0-9-]){re.escape(old)}(?![a-z0-9-])")
+            if path.name not in HISTORICAL_REFERENCE_FILES and retired.search(text):
+                errors.append(f"[{path.relative_to(REPO)}] contains retired skill ID: {old}")
+        if path.name not in HISTORICAL_REFERENCE_FILES:
+            for reference in sorted(nonexistent_skill_references(text)):
+                errors.append(
+                    f"[{path.relative_to(REPO)}] references nonexistent skill: {reference}"
+                )
+        check_links(path, errors)
+
+    if warnings:
+        print("WARN")
+        for warning in warnings:
+            print(f"  - {warning}")
+    if errors:
+        print("ERROR")
+        for error in errors:
+            print(f"  - {error}")
+        print(f"ERROR {len(errors)}  WARN {len(warnings)}")
+        return 1
+    print(f"Boya skill check passed: {len(actual)} skills, ERROR 0, WARN {len(warnings)}")
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    raise SystemExit(main())

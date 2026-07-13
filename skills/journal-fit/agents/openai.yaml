@@ -1,0 +1,4 @@
+interface:
+  display_name: "期刊投稿對標"
+  short_description: "依有來源的作者須知核對定稿並列出投稿前差距，每條硬規都回指來源"
+  default_prompt: "使用 $journal-fit 依目標刊真實作者須知對標我的定稿，每條硬要求都附來源。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "研究問題打磨"
+  short_description: "把模糊興趣收斂成可行、重要且能取得資料的研究問題，守住研究者決策權"
+  default_prompt: "使用 $research-question 透過追問幫我收斂研究問題，最後選擇留給我。"

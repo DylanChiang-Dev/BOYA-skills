@@ -1,6 +1,6 @@
 # 中文學術寫作範本卡
 
-> 從 [style-tune](../skills/style-tune/SKILL.md) 的中文學術 AI 腔識別清單外化，供寫初稿時隨手對照。潤稿仍用 style-tune；本卡只是速查。
+> 從 [academic-revision](../skills/academic-revision/SKILL.md) 的中文學術 AI 腔識別清單外化，供寫初稿時隨手對照。潤稿仍用 academic-revision；本卡只是速查。
 
 ## AI 腔 vs 學術中文（對照）
 
@@ -13,4 +13,4 @@
 | 每段都用「總之」收尾 | 只在真正完成推論時收束，避免機械湊結構 |
 | hedging 失調：通篇「可能／或許」或零保留把推測講成定論 | 依證據強度加限定條件，回到證據規模 |
 
-> 完整識別與段落級潤稿走 style-tune；新發現的 AI 腔徵狀同步回填 style-tune SKILL。
+> 完整識別與段落級潤稿走 academic-revision；新發現的 AI 腔徵狀同步回填 academic-revision SKILL。

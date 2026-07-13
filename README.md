@@ -20,7 +20,7 @@ Boya 幫你磨題、查引用、讀文獻、設計方法、搭大綱、修初稿
 [![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/boya?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/boya/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4caf50?style=for-the-badge)](LICENSE)
 [![Skills](https://img.shields.io/badge/skills-15-7e57c2?style=for-the-badge)](#十五個-skill)
-[![version](https://img.shields.io/badge/version-1.0.0-7e57c2?style=for-the-badge)](MEMORY.md)
+[![version](https://img.shields.io/badge/version-2.0.0-7e57c2?style=for-the-badge)](MEMORY.md)
 [![繁體中文](https://img.shields.io/badge/繁體中文-First-e4002b?style=for-the-badge)](#)
 
 </div>
@@ -58,17 +58,17 @@ Boya 的最高設計原則是**人類在環（human-in-the-loop）**：流程可
 
 ```mermaid
 flowchart TD
-    Start([💡 一個念頭]) --> S1[磨題目<br/>topic-refine]
-    S1 --> S2[找文獻<br/>lit-discovery→citation-verify]
-    S2 --> S3[讀文獻<br/>lit-matrix]
-    S3 --> SF[理論框架<br/>framework-build]
-    SF --> S4[研究設計<br/>method-design]
-    S4 --> S5[搭骨架<br/>outline-builder]
-    S5 --> S6[寫初稿<br/>style-tune]
-    S6 --> S7[自我審查<br/>self-review]
-    S7 --> S8[定稿・口試<br/>defense-prep · cite-format · abstract-bilingual]
-    S8 --> S9[投稿對標<br/>venue-fit]
-    S9 --> S10[倫理揭露<br/>ai-disclosure]
+    Start([💡 一個念頭]) --> S1[磨題目<br/>research-question]
+    S1 --> S2[找文獻<br/>literature-search→reference-check]
+    S2 --> S3[讀文獻<br/>literature-analysis]
+    S3 --> SF[理論框架<br/>theoretical-framework]
+    SF --> S4[研究設計<br/>research-design]
+    S4 --> S5[搭骨架<br/>paper-outline]
+    S5 --> S6[寫初稿<br/>academic-revision]
+    S6 --> S7[自我審查<br/>manuscript-review]
+    S7 --> S8[定稿・口試<br/>thesis-defense-prep · citation-format · bilingual-abstract]
+    S8 --> S9[投稿對標<br/>journal-fit]
+    S9 --> S10[倫理揭露<br/>ai-use-disclosure]
     S10 --> End([📄 可投出去的論文])
     RM{{boya<br/>全程導航書脊}} -.隨時定位你在哪.-> S1
     RM -.該喚哪個 skill.-> S5
@@ -77,46 +77,48 @@ flowchart TD
 
 ## 📦 十五個 skill
 
-> **十二個核心**（逐階段工作）＋ **兩個收尾**（定稿階段）＋ **一個導航**（書脊）＝ **十五個**；目前十五個 skill 均具備真實案例與 evidence ledger，列為 Stable。
+> **一個入口＋十四個專用 skill＝十五個**。使用者只需先呼叫 `boya`，它會自動接力；熟練使用者仍可直接呼叫任何專用 skill。1.0 的真實案例證據保留，2.0 的新命名、接力協定與模型回歸目前列為 Beta，待顯式模型矩陣通過後恢復 Stable。
 
 ### 核心 · 一階段一個
 
 | skill | 功能 | 階段 |
 |---|---|---|
-| [`topic-refine`](skills/topic-refine) | 蘇格拉底式磨題：問題意識 → 有界發散 → 三問收斂（新／可行／誰在乎）→ 指導教授模擬 → 一頁研究問題簡報；只追問不給答案 | 磨題 |
-| [`lit-discovery`](skills/lit-discovery) | 文獻探勘：把研究問題拆成檢索策略，用 OpenAlex / Crossref / Semantic Scholar 撈**待核候選清單**、按相關性分層；選用「先讀哪篇」出處提示（回查 CSSCI／TSSCI／北大核心／AMI核心／SSCI／A&HCI 官方名單、標版次年份，查不到標待查），交棒查核與精讀；絕不編造、查無標待人工 | 找文獻 |
-| [`citation-verify`](skills/citation-verify) | 引用查核：用 Crossref / OpenAlex / Semantic Scholar 公開 API 驗證參考文獻是否**真實存在**，抓 DOI 貼錯、拆名、虛構引用 | 找文獻 |
-| [`lit-matrix`](skills/lit-matrix) | 文獻精讀與矩陣：單篇四欄筆記（主張／證據／方法／可挑戰處）、跨篇對照矩陣、綜述對話地圖 | 讀文獻 |
-| [`framework-build`](skills/framework-build) | 理論框架定錨：從文獻地圖攤候選框架（解釋什麼／理論代價／庫存支撐）、推薦分層（主框架→中介機制→實證抓手→落點）、硬 GATE 讓你拍板主框架；另有輔助框架嵌入與逆向體檢兩模式。 | 框架 |
-| [`method-design`](skills/method-design) | 研究設計：方法地圖、起草訪談大綱／問卷＋人工校準、角色扮演預訪談、編碼建議（詮釋留你）、統計謬誤核驗 | 設計 |
-| [`outline-builder`](skills/outline-builder) | 論文骨架：選結構模式（IMRaD／綜述／思辨／政策）、長出大綱、段落論證鏈 claim–evidence–warrant（專補推理橋） | 大綱 |
-| [`style-tune`](skills/style-tune) | 聲音校準：用舊文讓 AI 學你的文風、段落級潤稿（守整篇代寫紅線）、中文學術 AI 腔識別清單 | 初稿 |
-| [`self-review`](skills/self-review) | 自我審查（**模擬審查**）：一桌審稿人（方法論／領域／魔鬼代言人／主編）輪審＋誠信自查＋意見分級（必改／可辯／誤讀） | 自審 |
-| [`defense-prep`](skills/defense-prep) | 口試準備：論文 → 簡報骨架、分層出難題（澄清／方法／理論／貢獻／陷阱）、答詢策略（含英文） | 口試 |
-| [`venue-fit`](skills/venue-fit) | 投稿對標：用定稿對上目標 venue 的真實作者須知，列出 must-fix／should-fix／待補查證；不編期刊規範、不代決定投哪裡 | 投稿 |
-| [`ai-disclosure`](skills/ai-disclosure) | AI 使用揭露：盤點使用 → 抄襲／代寫／輔助三分法 → 按目標機構格式生成誠實具體聲明 → 留痕自證 | 揭露 |
+| [`research-question`](skills/research-question) | 蘇格拉底式磨題：問題意識 → 有界發散 → 三問收斂（新／可行／誰在乎）→ 指導教授模擬 → 一頁研究問題簡報；只追問不給答案 | 磨題 |
+| [`literature-search`](skills/literature-search) | 文獻探勘：把研究問題拆成檢索策略，用 OpenAlex / Crossref / Semantic Scholar 撈**待核候選清單**、按相關性分層；選用「先讀哪篇」出處提示（回查 CSSCI／TSSCI／北大核心／AMI核心／SSCI／A&HCI 官方名單、標版次年份，查不到標待查），交棒查核與精讀；絕不編造、查無標待人工 | 找文獻 |
+| [`reference-check`](skills/reference-check) | 參考文獻查核：以公開 API 核對存在性與書目欄位，抓 DOI 貼錯、拆名與已查來源未找到；查無不判虛構 | 找文獻 |
+| [`literature-analysis`](skills/literature-analysis) | 文獻精讀與矩陣：單篇四欄筆記（主張／證據／方法／可挑戰處）、跨篇對照矩陣、綜述對話地圖 | 讀文獻 |
+| [`theoretical-framework`](skills/theoretical-framework) | 理論框架定錨：從文獻地圖攤候選框架（解釋什麼／理論代價／庫存支撐）、推薦分層（主框架→中介機制→實證抓手→落點）、硬 GATE 讓你拍板主框架；另有輔助框架嵌入與逆向體檢兩模式。 | 框架 |
+| [`research-design`](skills/research-design) | 研究設計：方法地圖、起草訪談大綱／問卷＋人工校準、角色扮演預訪談、編碼建議（詮釋留你）、統計謬誤核驗 | 設計 |
+| [`paper-outline`](skills/paper-outline) | 論文骨架：選結構模式（IMRaD／綜述／思辨／政策）、長出大綱、段落論證鏈 claim–evidence–warrant（專補推理橋） | 大綱 |
+| [`academic-revision`](skills/academic-revision) | 學術潤稿：依舊文校準作者聲音、修改既有段落、診斷套話與空洞結構；不判定 AI 來源、不協助規避偵測 | 初稿 |
+| [`manuscript-review`](skills/manuscript-review) | 自我審查（**模擬審查**）：一桌審稿人（方法論／領域／魔鬼代言人／主編）輪審＋誠信自查＋意見分級（必改／可辯／誤讀） | 自審 |
+| [`thesis-defense-prep`](skills/thesis-defense-prep) | 口試準備：論文 → 簡報骨架、分層出難題（澄清／方法／理論／貢獻／陷阱）、答詢策略（含英文） | 口試 |
+| [`journal-fit`](skills/journal-fit) | 投稿對標：用定稿對上目標 venue 的真實作者須知，列出 must-fix／should-fix／待補查證；不編期刊規範、不代決定投哪裡 | 投稿 |
+| [`ai-use-disclosure`](skills/ai-use-disclosure) | AI 使用揭露：盤點使用 → 抄襲／代寫／輔助三分法 → 按目標機構格式生成誠實具體聲明 → 留痕自證 | 揭露 |
 
 ### 收尾 · 定稿階段
 
 | skill | 功能 | 階段 |
 |---|---|---|
-| [`cite-format`](skills/cite-format) | 引用格式整理：APA／Chicago／MLA 轉換與全文統一、隨文引註↔文末清單一一對應（抓孤兒）、缺欄位標註不編造；**只管格式不驗真偽** | 格式 |
-| [`abstract-bilingual`](skills/abstract-bilingual) | 中英雙語摘要：從定稿濃縮中文摘要＋英文摘要（按英文慣例重寫、非逐字翻譯）＋中英關鍵詞；只濃縮不新增、數字逐一核對 | 摘要 |
+| [`citation-format`](skills/citation-format) | 引用格式整理：APA／Chicago／MLA 轉換與全文統一、隨文引註↔文末清單一一對應（抓孤兒）、缺欄位標註不編造；**只管格式不驗真偽** | 格式 |
+| [`bilingual-abstract`](skills/bilingual-abstract) | 中英雙語摘要：從定稿濃縮中文摘要＋英文摘要（按英文慣例重寫、非逐字翻譯）＋中英關鍵詞；只濃縮不新增、數字逐一核對 | 摘要 |
 
 ### 導航 · 書脊
 
 | skill | 功能 | 階段 |
 |---|---|---|
-| [`boya`](skills/boya) | 全流程導航與入口（原 `research-roadmap`）：判斷你在哪一階段、該喚哪個 skill、哪些關卡只有你能決定、何時過關；**引導式精靈——自動接力喚起下一個 skill、每關停下等你拍板**，串起其餘十四個 | 導航 |
+| [`boya`](skills/boya) | **唯一推薦入口**：第一次呼叫後自動定位、執行下一個 skill、保存檢查點；研究問題、框架、方法與取捨一律硬停等你拍板 | 導航 |
 
 ## 🚀 安裝
+
+> Boya 2.0 已更換 14 個技術 ID。從 1.x 升級時不可只覆蓋複製，否則舊目錄會與新 skill 並存、造成重複觸發；請按 [GUIDE.md 的 2.0 遷移表](GUIDE.md#boya-20-名稱遷移) 先確認並移除舊安裝副本。新使用者安裝整套後，只需從 boya 開始。
 
 ### 方式一：請 agent 自動安裝整套 Boya（推薦）
 
 打開 Claude Code 或 Codex 這類 agent，把這句話貼進去：
 
 ```text
-幫我從 https://github.com/DylanChiang-Dev/boya 安裝全部 Boya skills，不要只安裝 citation-verify。請先判斷我目前的 agent 環境與可用的 skills 目錄，說明會寫入哪些路徑，等我確認後再執行。
+幫我從 https://github.com/DylanChiang-Dev/boya 安裝全部 Boya skills，不要只安裝 reference-check。請先判斷我目前的 agent 環境與可用的 skills 目錄，說明會寫入哪些路徑，等我確認後再執行。
 ```
 
 常見目標路徑：
@@ -125,7 +127,7 @@ flowchart TD
 - Codex：全域 `~/.agents/skills/`；專案內 `.agents/skills/`；若使用 Codex 內建 `$skill-installer`，也可能寫入 `$CODEX_HOME/skills/`（預設常見為 `~/.codex/skills/`）
 - CC Switch：全域 `~/.cc-switch/skills/`
 
-只想安裝單一技能時，才把「全部 Boya skills」改成具體 skill 名，例如 `citation-verify`。
+只想安裝單一技能時，才把「全部 Boya skills」改成具體 skill 名，例如 `reference-check`。
 
 ### 方式二：手動複製整套 skills
 
@@ -154,7 +156,7 @@ mkdir -p .agents/skills
 cp -r boya/skills/* .agents/skills/
 ```
 
-裝好後在 Codex 裡可用 `$citation-verify` 這類明確呼叫，也可以直接用自然語言觸發，例如：「幫我查核這份參考文獻的真偽」。
+裝好後在 Codex 裡可用 `$reference-check` 這類明確呼叫，也可以直接用自然語言觸發，例如：「幫我查核這份參考文獻的真偽」。
 
 **Claude Code 全域安裝（所有專案可用）**
 
@@ -183,28 +185,28 @@ cp -r boya/skills/* ~/.cc-switch/skills/
 
 每個 skill 都拿**真實研究材料**跑過、把暴露的坑寫回規則——多數用在作者自己那本碩士論文上，是一條工作流全鏈的真實示範。
 
-驗證狀態採三層：`Draft`（草稿，尚未形成證據鏈）、`Beta`（可用但仍在磨）、`Stable`（已用真實材料跑過並寫回規則）。目前 15 個 skill 均為 **Stable**；知識表中的單筆事實仍可保留 `❓/待補`，不影響 skill 穩定狀態。證據鏈、最小 evidence ledger、source map／action map 規格見 [`VERIFICATION.md`](VERIFICATION.md)。
+驗證狀態採三層：`Draft`、`Beta`、`Stable`。1.0 工作流的真實案例與 evidence ledger 全部保留；2.0 因技術 ID、觸發描述與自動接力協定均有變更，目前 15 個 skill 暫列 **Beta**。結構化案例與手動模型 runner 已就位，通過硬門／誠信 3/3 與其他 MUST ≥90% 後才恢復 Stable。詳見 [`VERIFICATION.md`](VERIFICATION.md)。
 
 | # | 案例 | 一句話戰果 |
 |---|---|---|
-| 001 | [citation-verify 查作者碩論](examples/2026-06-12-master-thesis-case.md) | 47 筆全量查核，抓到 **3 筆 DOI 貼錯**、1 筆拆名、11 筆出處不全，附公開勘誤表 |
-| 002 | [lit-matrix 整理碩論文獻](examples/2026-06-13-litmatrix-thesis-litreview.md) | 5 篇異質文獻分群做矩陣；暴露「引用語境≠主題／異質語料分群」 |
-| 003 | [self-review 審教學稿](examples/2026-06-13-selfreview-teaching-chapter.md) | 暴露「文稿類型錯配／證據-宣稱規模不相稱／絕對宣稱」 |
-| 004 | [defense-prep 模擬碩論口試](examples/2026-06-14-defenseprep-thesis.md) | 分層出真考題；暴露「論文階段誤判／漏質性可推論性」 |
-| 005 | [topic-refine 磨「兩岸關係」題](examples/2026-06-14-topicrefine-cross-strait.md) | 在「日台非官方安全」踩出可行性紅燈（資料閉門），示範換做法保住問題 |
-| 006 | [method-design 檢視碩論設計](examples/2026-06-14-methoddesign-thesis.md) | 暴露「對象分層要想清楚／AI 扮受訪者太乖」 |
-| 007 | [outline-builder 檢視碩論骨架](examples/2026-06-14-outlinebuilder-thesis.md) | 暴露「完整性幻覺（齊全≠論證線）／warrant 缺席」 |
-| 008 | [style-tune 掃碩論 AI 腔](examples/2026-06-14-styletune-thesis.md) | 一本談 GenAI 的論文緒論本身讀起來像 AI 生成；暴露「AI 腔的專業偽裝」 |
-| 009 | [ai-disclosure 處理重度 AI 協作聲明](examples/2026-06-14-aidisclosure-heavy-ai-use.md) | 暴露「重度使用時 AI 不敢說」 |
-| 010 | [abstract-bilingual 生碩論中英摘要](examples/2026-06-14-abstractbilingual-thesis.md) | 抓到「官方關鍵詞中英本身不對齊／『顯著』是統計詞別照搬」 |
-| 011 | [cite-format 排碩論參考文獻](examples/2026-06-14-citeformat-thesis.md) | 坐實「先驗後排——未查核清單＝錯資料的漂亮包裝」 |
+| 001 | [reference-check 查作者碩論](examples/2026-06-12-master-thesis-case.md) | 47 筆全量查核，抓到 **3 筆 DOI 貼錯**、1 筆拆名、11 筆出處不全，附公開勘誤表 |
+| 002 | [literature-analysis 整理碩論文獻](examples/2026-06-13-litmatrix-thesis-litreview.md) | 5 篇異質文獻分群做矩陣；暴露「引用語境≠主題／異質語料分群」 |
+| 003 | [manuscript-review 審教學稿](examples/2026-06-13-selfreview-teaching-chapter.md) | 暴露「文稿類型錯配／證據-宣稱規模不相稱／絕對宣稱」 |
+| 004 | [thesis-defense-prep 模擬碩論口試](examples/2026-06-14-defenseprep-thesis.md) | 分層出真考題；暴露「論文階段誤判／漏質性可推論性」 |
+| 005 | [research-question 磨「兩岸關係」題](examples/2026-06-14-topicrefine-cross-strait.md) | 在「日台非官方安全」踩出可行性紅燈（資料閉門），示範換做法保住問題 |
+| 006 | [research-design 檢視碩論設計](examples/2026-06-14-methoddesign-thesis.md) | 暴露「對象分層要想清楚／AI 扮受訪者太乖」 |
+| 007 | [paper-outline 檢視碩論骨架](examples/2026-06-14-outlinebuilder-thesis.md) | 暴露「完整性幻覺（齊全≠論證線）／warrant 缺席」 |
+| 008 | [academic-revision 掃碩論 AI 腔](examples/2026-06-14-styletune-thesis.md) | 一本談 GenAI 的論文緒論本身讀起來像 AI 生成；暴露「AI 腔的專業偽裝」 |
+| 009 | [ai-use-disclosure 處理重度 AI 協作聲明](examples/2026-06-14-aidisclosure-heavy-ai-use.md) | 暴露「重度使用時 AI 不敢說」 |
+| 010 | [bilingual-abstract 生碩論中英摘要](examples/2026-06-14-abstractbilingual-thesis.md) | 抓到「官方關鍵詞中英本身不對齊／『顯著』是統計詞別照搬」 |
+| 011 | [citation-format 排碩論參考文獻](examples/2026-06-14-citeformat-thesis.md) | 坐實「先驗後排——未查核清單＝錯資料的漂亮包裝」 |
 | 012 | [boya（原 research-roadmap）導航完整研究工作流](examples/2026-06-14-researchroadmap-workflow.md) | 抓到最大退化「目錄朗讀機」——要依產出物倒推、非按線性順序 |
-| 013 | [venue-fit 對標作者碩論與《公共行政學報》](examples/2026-06-18-venuefit-thesis-jpa.md) | 坐實「不編作者須知」與「學位論文轉期刊先判文稿類型」，作為 venue-fit 首輪實測 |
-| 014 | [framework-build 定錨日台半導體框架](examples/2026-06-21-framework-jasm.md) | 固化理論框架定錨：不堆框架沙拉、不編承重文獻、硬 GATE 讓研究者拍板主框架 |
-| 015 | [outline-builder 搭 silicon sampling 思辨型大綱](examples/2026-06-27-outlinebuilder-silicon-sampling.md) | 正向搭骨架實測 topic-sentence 前置，撞出思辨型兩坑：讓步句冒充主題句、段主題句覆讀章論點 |
-| 016 | [lit-discovery 中文題全鏈探勘](examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md) | 中文精準題名反查命中真實 DOI，補齊「中文題探勘→候選分層→venue 待查」全鏈 |
-| 017 | [framework-build 台灣碳費政策分析框架](examples/2026-06-30-framework-carbon-fee-policy.md) | 補足政策分析型分流：政策問題、分析維度、評估準則、政策代價與 GATE 全跑通 |
-| 018 | [venue-fit 對標 JALT 英文高教評量稿](examples/2026-06-30-venuefit-jalt-genai-assessment.md) | 核 JALT submissions page，坐實文章頁不等於作者須知、AI 揭露與 APA 7 必須回真實來源 |
+| 013 | [journal-fit 對標作者碩論與《公共行政學報》](examples/2026-06-18-venuefit-thesis-jpa.md) | 坐實「不編作者須知」與「學位論文轉期刊先判文稿類型」，作為 journal-fit 首輪實測 |
+| 014 | [theoretical-framework 定錨日台半導體框架](examples/2026-06-21-framework-jasm.md) | 固化理論框架定錨：不堆框架沙拉、不編承重文獻、硬 GATE 讓研究者拍板主框架 |
+| 015 | [paper-outline 搭 silicon sampling 思辨型大綱](examples/2026-06-27-outlinebuilder-silicon-sampling.md) | 正向搭骨架實測 topic-sentence 前置，撞出思辨型兩坑：讓步句冒充主題句、段主題句覆讀章論點 |
+| 016 | [literature-search 中文題全鏈探勘](examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md) | 中文精準題名反查命中真實 DOI，補齊「中文題探勘→候選分層→venue 待查」全鏈 |
+| 017 | [theoretical-framework 台灣碳費政策分析框架](examples/2026-06-30-framework-carbon-fee-policy.md) | 補足政策分析型分流：政策問題、分析維度、評估準則、政策代價與 GATE 全跑通 |
+| 018 | [journal-fit 對標 JALT 英文高教評量稿](examples/2026-06-30-venuefit-jalt-genai-assessment.md) | 核 JALT submissions page，坐實文章頁不等於作者須知、AI 揭露與 APA 7 必須回真實來源 |
 
 ## 🧱 設計原則
 
@@ -244,6 +246,7 @@ cp -r boya/skills/* ~/.cc-switch/skills/
 | `0.0.X` | 打磨輪——任何 skill 經實測修訂一輪，尾號 +1 |
 | `0.X.0` | 新 skill 發布或工作流結構調整，中號 +1 |
 | `1.0.0` | 全套 skill 穩定版 |
+| `2.0.0` | 直白技術 ID、博雅單入口接力、結構化模型回歸與確定性查詢工具 |
 
 每個版本打 git tag，CHANGELOG 記在 [`MEMORY.md`](MEMORY.md#changelog)。
 

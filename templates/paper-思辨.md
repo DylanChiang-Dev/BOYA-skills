@@ -1,6 +1,6 @@
 # 論文結構模板：思辨／理論論證
 
-> 可填空骨架，配 [outline-builder](../skills/outline-builder/SKILL.md)。重點在論證鏈，不是章節齊全。
+> 可填空骨架，配 [paper-outline](../skills/paper-outline/SKILL.md)。重點在論證鏈，不是章節齊全。
 
 ## 1. 問題與立場
 

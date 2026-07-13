@@ -20,7 +20,7 @@ Boya はテーマの絞り込み、引用確認、文献読解、方法設計、
 [![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/boya?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/boya/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4caf50?style=for-the-badge)](LICENSE)
 [![Skills](https://img.shields.io/badge/skills-15-7e57c2?style=for-the-badge)](#15-個の-skill)
-[![version](https://img.shields.io/badge/version-1.0.0-7e57c2?style=for-the-badge)](MEMORY.md)
+[![version](https://img.shields.io/badge/version-2.0.0-7e57c2?style=for-the-badge)](MEMORY.md)
 [![日本語](https://img.shields.io/badge/日本語-Ready-e4002b?style=for-the-badge)](#)
 
 </div>
@@ -58,17 +58,17 @@ Boya の最上位の設計原則は**ヒューマン・イン・ザ・ループ�
 
 ```mermaid
 flowchart TD
-    Start([💡 一つのアイデア]) --> S1[テーマを絞る<br/>topic-refine]
-    S1 --> S2[文献を探す<br/>lit-discovery→citation-verify]
-    S2 --> S3[文献を読む<br/>lit-matrix]
-    S3 --> SF[理論枠組み<br/>framework-build]
-    SF --> S4[研究設計<br/>method-design]
-    S4 --> S5[骨格を作る<br/>outline-builder]
-    S5 --> S6[初稿を書く<br/>style-tune]
-    S6 --> S7[自己レビュー<br/>self-review]
-    S7 --> S8[定稿・口頭試問<br/>defense-prep · cite-format · abstract-bilingual]
-    S8 --> S9[投稿対標<br/>venue-fit]
-    S9 --> S10[AI 利用説明<br/>ai-disclosure]
+    Start([💡 一つのアイデア]) --> S1[テーマを絞る<br/>research-question]
+    S1 --> S2[文献を探す<br/>literature-search→reference-check]
+    S2 --> S3[文献を読む<br/>literature-analysis]
+    S3 --> SF[理論枠組み<br/>theoretical-framework]
+    SF --> S4[研究設計<br/>research-design]
+    S4 --> S5[骨格を作る<br/>paper-outline]
+    S5 --> S6[初稿を書く<br/>academic-revision]
+    S6 --> S7[自己レビュー<br/>manuscript-review]
+    S7 --> S8[定稿・口頭試問<br/>thesis-defense-prep · citation-format · bilingual-abstract]
+    S8 --> S9[投稿対標<br/>journal-fit]
+    S9 --> S10[AI 利用説明<br/>ai-use-disclosure]
     S10 --> End([📄 投稿可能な論文])
     RM{{boya<br/>全体ナビゲーター}} -.今どこにいるか.-> S1
     RM -.次にどの skill か.-> S5
@@ -77,46 +77,48 @@ flowchart TD
 
 ## 📦 15 個の skill
 
-> **12 個のコア**（段階ごとの作業）＋ **2 個の仕上げ**（定稿段階）＋ **1 個のナビゲーター**（背骨）＝ **15 個**。現在 15 個すべてが実際の事例と evidence ledger を備え、Stable です。
+> **1 個の入口＋14 個の専用 skill＝15 個**。利用者は最初に `boya` を呼ぶだけで、自動的に次へ引き継がれます。熟練者は各 skill を直接呼ぶこともできます。1.0 の実証記録は維持し、2.0 の名称・引継ぎ・モデル回帰は現在 Beta です。
 
 ### コア · 一段階に一つ
 
 | skill | 内容 | 段階 |
 |---|---|---|
-| [`topic-refine`](skills/topic-refine) | ソクラテス式テーマ絞り込み：問題意識 → 有界発散 → 三問収束（新しいか／実行可能か／誰が気にするか）→ 指導教員シミュレーション → 研究問題一枚ブリーフ；問い続けるだけで答えは出さない | テーマ |
-| [`lit-discovery`](skills/lit-discovery) | 文献探索：研究の問いを検索戦略に分解し、OpenAlex / Crossref / Semantic Scholar から**要確認の候選リスト**を収集して関連度で層別；「先に読むべき論文」の出典ヒント（CSSCI / TSSCI / 北大核心 / AMI核心 / SSCI / A&HCI 公式リストで版次・年を照合、確認できなければ「要確認」と表示）を選択的に提示し、確認・精読へ引き継ぎ；捏造せず、カバーされない項目は手動検索用に印を付ける | 文献探索 |
-| [`citation-verify`](skills/citation-verify) | 引用確認：Crossref / OpenAlex / Semantic Scholar の公開 API で参考文献が**実在するか**検証し、DOI ミス・著者名分割・捏造引用を捕捉する | 文献確認 |
-| [`lit-matrix`](skills/lit-matrix) | 精読とマトリクス：単一論文の四欄ノート（主張／証拠／方法／反論可能点）、複数論文比較マトリクス、レビュー対話マップ | 文献読解 |
-| [`framework-build`](skills/framework-build) | 理論枠組み定錨：文献地図から候補枠組みを並べ（何を説明するか／理論的代償／エビデンスの裏付け）、階層推奨（主枠組み→媒介メカニズム→実証的取っ手→着地点）、硬い GATE で主枠組みの選択はあなたに委ねる；補助枠組み嵌入と逆向き体検の二つのモードもある | 理論枠組み |
-| [`method-design`](skills/method-design) | 研究設計：方法地図、インタビューガイド／質問紙の起草＋人間による校正、ロールプレイ予備インタビュー、コーディング提案（解釈はあなたに）、統計的誤謬チェック | 研究設計 |
-| [`outline-builder`](skills/outline-builder) | 論文骨格：構造パターン選択（IMRaD／レビュー／思弁／政策分析）、アウトライン生成、段落レベルの claim–evidence–warrant チェーン（推論の橋を補う） | アウトライン |
-| [`style-tune`](skills/style-tune) | 文体校正：過去の文章から AI にあなたの文体を学ばせ、段落レベルの修正（丸ごと代筆の赤線を守る）、中国語学術 AI 調検出チェックリスト | 初稿 |
-| [`self-review`](skills/self-review) | 自己レビュー（**模擬審査**）：審査員パネル（方法論／分野／悪魔の代弁者／編集長）が順番にレビュー＋誠実性自己チェック＋意見のトリアージ（必修正／議論可能／誤読） | 自己レビュー |
-| [`defense-prep`](skills/defense-prep) | 口頭試問準備：論文 → 発表骨格、階層的に難問を出す（確認／方法／理論／貢献／罠）、回答戦略（英語を含む） | 口頭試問 |
-| [`venue-fit`](skills/venue-fit) | 投稿対標：完成稿を対象 venue の実際の投稿規程と照合し、must-fix／should-fix／確認待ちの差分を整理；投稿規程の捏造はせず、投稿先の決定も代行しない | 投稿 |
-| [`ai-disclosure`](skills/ai-disclosure) | AI 利用説明：利用の棚卸し → 盗用／代筆／補助の三分法 → 対象機関の形式で正直かつ具体的な声明を生成 → トレーサビリティ証拠 | AI 利用説明 |
+| [`research-question`](skills/research-question) | ソクラテス式テーマ絞り込み：問題意識 → 有界発散 → 三問収束（新しいか／実行可能か／誰が気にするか）→ 指導教員シミュレーション → 研究問題一枚ブリーフ；問い続けるだけで答えは出さない | テーマ |
+| [`literature-search`](skills/literature-search) | 文献探索：研究の問いを検索戦略に分解し、OpenAlex / Crossref / Semantic Scholar から**要確認の候選リスト**を収集して関連度で層別；「先に読むべき論文」の出典ヒント（CSSCI / TSSCI / 北大核心 / AMI核心 / SSCI / A&HCI 公式リストで版次・年を照合、確認できなければ「要確認」と表示）を選択的に提示し、確認・精読へ引き継ぎ；捏造せず、カバーされない項目は手動検索用に印を付ける | 文献探索 |
+| [`reference-check`](skills/reference-check) | 参考文献確認：公開 API で実在性と書誌情報を照合し、DOI ミス、著者名分割、検索元で未発見の記録を示す；未発見だけで捏造とは判定しない | 文献確認 |
+| [`literature-analysis`](skills/literature-analysis) | 精読とマトリクス：単一論文の四欄ノート（主張／証拠／方法／反論可能点）、複数論文比較マトリクス、レビュー対話マップ | 文献読解 |
+| [`theoretical-framework`](skills/theoretical-framework) | 理論枠組み定錨：文献地図から候補枠組みを並べ（何を説明するか／理論的代償／エビデンスの裏付け）、階層推奨（主枠組み→媒介メカニズム→実証的取っ手→着地点）、硬い GATE で主枠組みの選択はあなたに委ねる；補助枠組み嵌入と逆向き体検の二つのモードもある | 理論枠組み |
+| [`research-design`](skills/research-design) | 研究設計：方法地図、インタビューガイド／質問紙の起草＋人間による校正、ロールプレイ予備インタビュー、コーディング提案（解釈はあなたに）、統計的誤謬チェック | 研究設計 |
+| [`paper-outline`](skills/paper-outline) | 論文骨格：構造パターン選択（IMRaD／レビュー／思弁／政策分析）、アウトライン生成、段落レベルの claim–evidence–warrant チェーン（推論の橋を補う） | アウトライン |
+| [`academic-revision`](skills/academic-revision) | 学術推敲：過去文から著者の声を校正し、既存段落の定型表現や空疎な構造を診断；AI 由来を判定せず、検出回避にも協力しない | 初稿 |
+| [`manuscript-review`](skills/manuscript-review) | 自己レビュー（**模擬審査**）：審査員パネル（方法論／分野／悪魔の代弁者／編集長）が順番にレビュー＋誠実性自己チェック＋意見のトリアージ（必修正／議論可能／誤読） | 自己レビュー |
+| [`thesis-defense-prep`](skills/thesis-defense-prep) | 口頭試問準備：論文 → 発表骨格、階層的に難問を出す（確認／方法／理論／貢献／罠）、回答戦略（英語を含む） | 口頭試問 |
+| [`journal-fit`](skills/journal-fit) | 投稿対標：完成稿を対象 venue の実際の投稿規程と照合し、must-fix／should-fix／確認待ちの差分を整理；投稿規程の捏造はせず、投稿先の決定も代行しない | 投稿 |
+| [`ai-use-disclosure`](skills/ai-use-disclosure) | AI 利用説明：利用の棚卸し → 盗用／代筆／補助の三分法 → 対象機関の形式で正直かつ具体的な声明を生成 → トレーサビリティ証拠 | AI 利用説明 |
 
 ### 仕上げ · 定稿段階
 
 | skill | 内容 | 段階 |
 |---|---|---|
-| [`cite-format`](skills/cite-format) | 引用形式整理：APA／Chicago／MLA 変換と全文統一、本文中引用↔文末リストの一対一対応（孤立項目を捕捉）、欠落フィールドは捏造せず注記する；**形式のみ、真偽確認は別** | 形式 |
-| [`abstract-bilingual`](skills/abstract-bilingual) | 中英二言語要旨：定稿から中文要旨＋英文要旨（英語の慣例に沿って書き直す、逐語翻訳ではない）＋中英キーワード；濃縮のみ、新規追加なし、数字は一つずつ照合 | 要旨 |
+| [`citation-format`](skills/citation-format) | 引用形式整理：APA／Chicago／MLA 変換と全文統一、本文中引用↔文末リストの一対一対応（孤立項目を捕捉）、欠落フィールドは捏造せず注記する；**形式のみ、真偽確認は別** | 形式 |
+| [`bilingual-abstract`](skills/bilingual-abstract) | 中英二言語要旨：定稿から中文要旨＋英文要旨（英語の慣例に沿って書き直す、逐語翻訳ではない）＋中英キーワード；濃縮のみ、新規追加なし、数字は一つずつ照合 | 要旨 |
 
 ### ナビゲーター · 背骨
 
 | skill | 内容 | 段階 |
 |---|---|---|
-| [`boya`](skills/boya) | 全体ナビゲーションとエントリポイント（旧 `research-roadmap`）：あなたがどの段階にいるか、次にどの skill を呼ぶか、どの関門はあなたにしか決められないか、いつ通過するかを判断；**ガイド付きディスパッチャー——自動的に次の skill へ引き継ぎ、各関門であなたの判断を待って停止**、残り 14 個を一つに繋ぐ | ナビゲーション |
+| [`boya`](skills/boya) | **推奨される唯一の入口**：初回呼出し後に段階を特定し、次の skill を実行してチェックポイントを保持；研究課題、枠組み、方法、採否は必ず研究者の判断を待つ | ナビゲーション |
 
 ## 🚀 インストール
+
+> Boya 2.0 では 14 個の技術 ID を変更しました。1.x からの更新時に上書きコピーだけを行うと旧・新ディレクトリが共存して重複起動します。[GUIDE.md の 2.0 移行表](GUIDE.md#boya-20-名稱遷移) に従って旧インストールを整理してください。新規利用者は boya から始めるだけです。
 
 ### 方法 1：agent に全 Boya skill のインストールを依頼する（推奨）
 
 Claude Code や Codex などの agent に次のように依頼します：
 
 ```text
-https://github.com/DylanChiang-Dev/boya から Boya の全 skill をインストールしてください。citation-verify だけをインストールしないでください。まず現在の agent 環境と利用可能な skills ディレクトリを判断し、書き込むパスを説明して、確認を待ってから実行してください。
+https://github.com/DylanChiang-Dev/boya から Boya の全 skill をインストールしてください。reference-check だけをインストールしないでください。まず現在の agent 環境と利用可能な skills ディレクトリを判断し、書き込むパスを説明して、確認を待ってから実行してください。
 ```
 
 よく使う保存先：
@@ -125,7 +127,7 @@ https://github.com/DylanChiang-Dev/boya から Boya の全 skill をインスト
 - Codex：全体 `~/.agents/skills/`；プロジェクト内 `.agents/skills/`；Codex の組み込み `$skill-installer` を使う場合は `$CODEX_HOME/skills/`（よくある既定値は `~/.codex/skills/`）に書き込むこともあります
 - CC Switch：全体 `~/.cc-switch/skills/`
 
-`citation-verify` など単一の skill 名を指定するのは、15 個すべてではなく 1 個だけ入れたい場合に限ります。
+`reference-check` など単一の skill 名を指定するのは、15 個すべてではなく 1 個だけ入れたい場合に限ります。
 
 ### 方法 2：全 skill を手動でコピーする
 
@@ -154,7 +156,7 @@ mkdir -p .agents/skills
 cp -r boya/skills/* .agents/skills/
 ```
 
-インストール後は、`$citation-verify` のように明示的に呼び出すか、「この参考文献が実在するか確認して」のように自然言語で依頼できます。
+インストール後は、`$reference-check` のように明示的に呼び出すか、「この参考文献が実在するか確認して」のように自然言語で依頼できます。
 
 **Claude Code 全体インストール（全プロジェクト共用）**
 
@@ -185,7 +187,7 @@ cp -r boya/skills/* ~/.cc-switch/skills/
 
 ### 文献確認
 
-`citation-verify` は Crossref / OpenAlex / Semantic Scholar などの公開 API を使います。英語論文や DOI のある文献には有効ですが、日本語文献、書籍、紀要、学位論文、政府資料、新聞記事、アーカイブ資料は API だけでは確認できないことがあります。
+`reference-check` は Crossref / OpenAlex / Semantic Scholar などの公開 API を使います。英語論文や DOI のある文献には有効ですが、日本語文献、書籍、紀要、学位論文、政府資料、新聞記事、アーカイブ資料は API だけでは確認できないことがあります。
 
 **API で見つからないことは、文献が存在しないことを意味しません。** 日本語資料では、必要に応じて次のような経路で原典確認してください。
 
@@ -206,11 +208,11 @@ cp -r boya/skills/* ~/.cc-switch/skills/
 大学・研究科・授業の指定様式 > 指導教員の指示 > 投稿先の規定 > 一般的なスタイル
 ```
 
-`cite-format` は形式整理を補助しますが、大学や投稿先の正式ルールを自動で知っているわけではありません。使うときは、指定様式、投稿規定、または正しいサンプルを agent に渡してください。
+`citation-format` は形式整理を補助しますが、大学や投稿先の正式ルールを自動で知っているわけではありません。使うときは、指定様式、投稿規定、または正しいサンプルを agent に渡してください。
 
 ### AI 利用説明
 
-大学、授業、学会、投稿先によって AI 利用の扱いは異なり、今後も変わります。`ai-disclosure` を使うときは、最新の方針文を一緒に渡してください。
+大学、授業、学会、投稿先によって AI 利用の扱いは異なり、今後も変わります。`ai-use-disclosure` を使うときは、最新の方針文を一緒に渡してください。
 
 このリポジトリは AI 利用を正直に説明するための補助をします。AI 利用を隠す、検出を回避する、代筆を軽い校正のように見せる、といった用途は扱いません。
 
@@ -218,28 +220,28 @@ cp -r boya/skills/* ~/.cc-switch/skills/
 
 すべての skill は**実際の研究材料**で検証済みで、見つかった問題はルールに書き戻されています——多くのケースは著者自身の修士論文を使っており、ワークフロー全体を通した実際のデモンストレーションです。
 
-検証状態は三段階：`Draft`（設計段階、まだ証拠チェーン未形成）、`Beta`（利用可能だが調整中）、`Stable`（実際の材料で検証し、教訓をルールに反映済み）。現在 15 個すべてが **Stable** です。知識テーブル内の個別事実は `❓/要確認` が残ることがありますが、skill の安定状態には影響しません。証拠チェーン、最小 evidence ledger、source map / action map の規格は [`VERIFICATION.md`](VERIFICATION.md) にまとめています。
+検証状態は `Draft`、`Beta`、`Stable` の三段階です。1.0 の実事例と evidence ledger はすべて維持していますが、2.0 は技術 ID、トリガー説明、自動引継ぎを変更したため、15 個すべてを一時的に **Beta** とします。関門・誠実性が 3/3、その他の MUST が 90% 以上で Stable に戻します。
 
 | # | 事例 | 一言の成果 |
 |---|---|---|
-| 001 | [citation-verify で著者の修論を全量確認](examples/2026-06-12-master-thesis-case.md) | 47 件を全量核査、**DOI ミス 3 件**・著者名分割 1 件・出典不全 11 件を捕捉、公開正誤表付き |
-| 002 | [lit-matrix で修論文献を整理](examples/2026-06-13-litmatrix-thesis-litreview.md) | 異質な 5 論文をマトリクスに；「引用コンテキスト≠テーマ／異質コーパスの分群」を暴露 |
-| 003 | [self-review で教材原稿を審査](examples/2026-06-13-selfreview-teaching-chapter.md) | 「文稿タイプの不一致／証拠と主張のスケール不均衡／絶対的主張」を暴露 |
-| 004 | [defense-prep で修論口頭試問をシミュレーション](examples/2026-06-14-defenseprep-thesis.md) | 階層的に本番レベルの質問を生成；「論文段階の誤判断／質的一般化可能性の欠落」を暴露 |
-| 005 | [topic-refine で「両岸関係」テーマを絞り込み](examples/2026-06-14-topicrefine-cross-strait.md) | 「日台非公式安全保障」で可行性の赤信号（資料非公開）を踏み、方法を変えて問いを保つ例を示す |
-| 006 | [method-design で修論の研究設計を検討](examples/2026-06-14-methoddesign-thesis.md) | 「対象の層別を詰めること／AI が被験者役で従順すぎる」を暴露 |
-| 007 | [outline-builder で修論の骨格を検討](examples/2026-06-14-outlinebuilder-thesis.md) | 「完全性の幻想（網羅的≠論証線）／warrant の欠席」を暴露 |
-| 008 | [style-tune で修論の AI 調を検出](examples/2026-06-14-styletune-thesis.md) | GenAI を論じる論文の緒論自体が AI 生成のように読める；「AI 調の専門的偽装」を暴露 |
-| 009 | [ai-disclosure で重度 AI 協力の声明を作成](examples/2026-06-14-aidisclosure-heavy-ai-use.md) | 「重度利用時に AI が過小報告しがちなこと」を暴露 |
-| 010 | [abstract-bilingual で修論の中英要旨を生成](examples/2026-06-14-abstractbilingual-thesis.md) | 「公式キーワードの中英不一致／『顕著』は統計用語、無断転用禁止」を捕捉 |
-| 011 | [cite-format で修論の参考文献を整理](examples/2026-06-14-citeformat-thesis.md) | 「先に確認、後に整形——未確認リスト＝誤データのきれいな包装」を実証 |
+| 001 | [reference-check で著者の修論を全量確認](examples/2026-06-12-master-thesis-case.md) | 47 件を全量核査、**DOI ミス 3 件**・著者名分割 1 件・出典不全 11 件を捕捉、公開正誤表付き |
+| 002 | [literature-analysis で修論文献を整理](examples/2026-06-13-litmatrix-thesis-litreview.md) | 異質な 5 論文をマトリクスに；「引用コンテキスト≠テーマ／異質コーパスの分群」を暴露 |
+| 003 | [manuscript-review で教材原稿を審査](examples/2026-06-13-selfreview-teaching-chapter.md) | 「文稿タイプの不一致／証拠と主張のスケール不均衡／絶対的主張」を暴露 |
+| 004 | [thesis-defense-prep で修論口頭試問をシミュレーション](examples/2026-06-14-defenseprep-thesis.md) | 階層的に本番レベルの質問を生成；「論文段階の誤判断／質的一般化可能性の欠落」を暴露 |
+| 005 | [research-question で「両岸関係」テーマを絞り込み](examples/2026-06-14-topicrefine-cross-strait.md) | 「日台非公式安全保障」で可行性の赤信号（資料非公開）を踏み、方法を変えて問いを保つ例を示す |
+| 006 | [research-design で修論の研究設計を検討](examples/2026-06-14-methoddesign-thesis.md) | 「対象の層別を詰めること／AI が被験者役で従順すぎる」を暴露 |
+| 007 | [paper-outline で修論の骨格を検討](examples/2026-06-14-outlinebuilder-thesis.md) | 「完全性の幻想（網羅的≠論証線）／warrant の欠席」を暴露 |
+| 008 | [academic-revision で修論の AI 調を検出](examples/2026-06-14-styletune-thesis.md) | GenAI を論じる論文の緒論自体が AI 生成のように読める；「AI 調の専門的偽装」を暴露 |
+| 009 | [ai-use-disclosure で重度 AI 協力の声明を作成](examples/2026-06-14-aidisclosure-heavy-ai-use.md) | 「重度利用時に AI が過小報告しがちなこと」を暴露 |
+| 010 | [bilingual-abstract で修論の中英要旨を生成](examples/2026-06-14-abstractbilingual-thesis.md) | 「公式キーワードの中英不一致／『顕著』は統計用語、無断転用禁止」を捕捉 |
+| 011 | [citation-format で修論の参考文献を整理](examples/2026-06-14-citeformat-thesis.md) | 「先に確認、後に整形——未確認リスト＝誤データのきれいな包装」を実証 |
 | 012 | [boya（旧 research-roadmap）で研究ワークフロー全体をナビ](examples/2026-06-14-researchroadmap-workflow.md) | 最大の退化「目次朗読機」を捕捉——線形順序ではなく成果物で現在位置を特定すべき |
-| 013 | [venue-fit で修論と『公共行政学報』を照合](examples/2026-06-18-venuefit-thesis-jpa.md) | 「投稿規程を捏造しない」「学位論文→期刊変換はまず文稿タイプを判断」を実証 |
-| 014 | [framework-build で日台半導体の理論枠組みを定錨](examples/2026-06-21-framework-jasm.md) | 理論枠組み定錨を固化：枠組みサラダ禁止、承重文献の捏造禁止、硬い GATE で研究者が主枠組みを選択 |
-| 015 | [outline-builder で silicon sampling 思弁型アウトラインを作成](examples/2026-06-27-outlinebuilder-silicon-sampling.md) | トピックセンテンス前置の正向実測で思弁型の二つの落とし穴を発見：譲歩文がトピックセンテンスに偽装、段落トピックセンテンスが章論点を復唱 |
-| 016 | [lit-discovery で中国語タイトルの全チェーン探索](examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md) | 中国語タイトルの精密逆引きで実際の DOI にヒット、「中文題探索→候補層別→venue 要確認」全チェーンを補完 |
-| 017 | [framework-build で台湾炭素費政策の分析枠組み](examples/2026-06-30-framework-carbon-fee-policy.md) | 政策分析型分岐を補完：政策問題、分析次元、評価基準、政策コスト、GATE すべて通過 |
-| 018 | [venue-fit で JALT 英語高等教育評価論文を照合](examples/2026-06-30-venuefit-jalt-genai-assessment.md) | JALT の submissions page を確認し、記事ページ≠投稿規程、AI 開示と APA 7 は実際の出典に遡る必要があることを実証 |
+| 013 | [journal-fit で修論と『公共行政学報』を照合](examples/2026-06-18-venuefit-thesis-jpa.md) | 「投稿規程を捏造しない」「学位論文→期刊変換はまず文稿タイプを判断」を実証 |
+| 014 | [theoretical-framework で日台半導体の理論枠組みを定錨](examples/2026-06-21-framework-jasm.md) | 理論枠組み定錨を固化：枠組みサラダ禁止、承重文献の捏造禁止、硬い GATE で研究者が主枠組みを選択 |
+| 015 | [paper-outline で silicon sampling 思弁型アウトラインを作成](examples/2026-06-27-outlinebuilder-silicon-sampling.md) | トピックセンテンス前置の正向実測で思弁型の二つの落とし穴を発見：譲歩文がトピックセンテンスに偽装、段落トピックセンテンスが章論点を復唱 |
+| 016 | [literature-search で中国語タイトルの全チェーン探索](examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md) | 中国語タイトルの精密逆引きで実際の DOI にヒット、「中文題探索→候補層別→venue 要確認」全チェーンを補完 |
+| 017 | [theoretical-framework で台湾炭素費政策の分析枠組み](examples/2026-06-30-framework-carbon-fee-policy.md) | 政策分析型分岐を補完：政策問題、分析次元、評価基準、政策コスト、GATE すべて通過 |
+| 018 | [journal-fit で JALT 英語高等教育評価論文を照合](examples/2026-06-30-venuefit-jalt-genai-assessment.md) | JALT の submissions page を確認し、記事ページ≠投稿規程、AI 開示と APA 7 は実際の出典に遡る必要があることを実証 |
 
 ## 🧱 設計原則
 
@@ -279,6 +281,7 @@ cp -r boya/skills/* ~/.cc-switch/skills/
 | `0.0.X` | 磨き込みラウンド——いずれかの skill を実測で修正すると末尾番号 +1 |
 | `0.X.0` | 新 skill のリリースまたはワークフロー構造の変更 |
 | `1.0.0` | 全 skill 安定版 |
+| `2.0.0` | 明確な技術 ID、博雅の単一入口、構造化モデル回帰、決定論的検索ツール |
 
 各バージョンは git tag を打ちます。CHANGELOG は [`MEMORY.md`](MEMORY.md#changelog) に記録。
 

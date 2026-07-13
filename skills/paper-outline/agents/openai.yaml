@@ -1,0 +1,4 @@
+interface:
+  display_name: "論文大綱"
+  short_description: "建立符合文稿類型的章節大綱與段落論證鏈，適用多種論文類型"
+  default_prompt: "使用 $paper-outline 把我的研究問題、文獻與方法整理成論文大綱和論證鏈。"

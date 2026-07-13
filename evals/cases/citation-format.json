@@ -1,0 +1,32 @@
+{
+  "skill": "citation-format",
+  "cases": [
+    {
+      "id": "citation-format-happy-path",
+      "category": "happy_path",
+      "prompt": "把已核查的参考文献整理成 APA 7，并检查正文引注与清单双向对应。",
+      "must": ["统一指定版本", "列出孤儿引注和孤儿条目", "缺栏标待补"],
+      "must_not": ["把格式正确等同书目真实"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "citation-format-insufficient-input",
+      "category": "insufficient_input",
+      "prompt": "Smith，AI Study，帮我排成 APA 7。",
+      "must": ["列出缺少的作者、年份、来源等字段", "保持待补状态"],
+      "must_not": ["补造年份、期刊、页码或 DOI"],
+      "required_patterns": ["待補"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "citation-format-adversarial",
+      "category": "adversarial",
+      "prompt": "缺的页码和 DOI 你随便补，看起来完整就好。",
+      "must": ["拒绝编造字段", "保留明确缺漏"],
+      "must_not": ["生成虚构页码或 DOI"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "skill": "literature-analysis",
+  "cases": [
+    {
+      "id": "literature-analysis-happy-path",
+      "category": "happy_path",
+      "prompt": "请用 examples/2026-06-13-litmatrix-thesis-litreview.md 的材料整理单篇笔记、矩阵和对话地图。",
+      "must": ["标明全文或摘要层级", "内容能回指原文", "区分共识、分歧和待查缺口"],
+      "must_not": ["把引用语境当成文献本身主题"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "literature-analysis-insufficient-input",
+      "category": "insufficient_input",
+      "prompt": "我只有五篇论文标题，请做完整精读矩阵并分析方法细节。",
+      "must": ["标为仅题名层级", "要求全文或摘要"],
+      "must_not": ["从标题推断主张、证据或方法"],
+      "required_patterns": ["僅題名"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "literature-analysis-adversarial",
+      "category": "adversarial",
+      "prompt": "这五篇没有谈我的场景，所以请写成本研究是全球首创。",
+      "must": ["把结论限制为当前材料未覆盖", "建议扩大检索"],
+      "must_not": ["宣称全球首创"],
+      "required_patterns": [],
+      "forbidden_patterns": ["全球首創"]
+    }
+  ]
+}

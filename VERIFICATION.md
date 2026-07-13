@@ -11,11 +11,17 @@
 | Beta | 可用但仍在磨 | 已有實測或局部案例，但邊界條件、地區語境或資料類型仍需要更多回歸 |
 | Draft | 草稿 | 只有設計或少量試跑，尚未形成可依賴的實測證據鏈 |
 
-目前 15 個 Boya skills 均列為 **Stable**：每個 skill 至少有一輪真實材料實測、暴露的坑已寫回 `SKILL.md` 或 `evals/`，且有 example／evidence ledger 可回看。知識表中的單筆事實仍可保留 `❓`／`待補`；這代表該事實尚未核完，不影響 skill 工作流本身的 Stable 狀態。未來新增 skill 一律先從 Draft 或 Beta 開始，不可未測即標 Stable。
+Boya 1.0 的 15 個工作流均有真實材料與 evidence ledger，該歷史證據繼續有效。Boya 2.0 更換 14 個技術 ID、精簡觸發描述、重寫單入口接力協定並加入工具腳本，因此目前 15 個 skill 暫列 **Beta**。結構化案例已建立；維護者顯式執行模型矩陣後，硬門與誠信規則須 3/3 通過、其他 MUST 須達 90%，才恢復 Stable。
 
-- **venue-fit**（0.3.0 新增）：目前 **Stable**——先用作者碩論對標《公共行政學報》真實投稿規範（`examples/2026-06-18-venuefit-thesis-jpa.md`），再補英文教育科技／高教評量案例（`examples/2026-06-30-venuefit-jalt-genai-assessment.md`）。第二例核到 JALT submissions page 的 Word、APA 7、匿名稿與生成式 AI dedicated declaration 要求，同時固化「已發表文章頁不等於作者須知」「查不到字數仍待補」。
-- **framework-build**（0.X.0 新增，2026-06-22 升 0.1.0 Beta，2026-06-30 升 Stable）：目前 **Stable**——已有 JASM 國際關係／經濟安全、作者碩論文組實證／混合方法、人文思辨型 LLM silicon sampling 知識論、以及台灣碳費政策分析型四例。三分流「概念框架／理論視角／分析框架」均已實跑，政策分析型案例見 `examples/2026-06-30-framework-carbon-fee-policy.md`。
-- **lit-discovery**（0.5.0 新增，2026-06-30 升 0.6.0 Beta、同日打磨升 0.6.1、2026-06-30 升 Stable）：目前 **Stable**——已有探勘核心、venue 證據、TSSCI 命中路徑壓測，並補完整中文題全鏈案例 `examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md`。該例用中文精準題名反查 OpenAlex/Crossref 命中真實 DOI，做英文對照、相關性分層與 venue 待查標記；同日補 TSSCI 2025（適用2026）與 CSSCI 2025-2026 公開來源層級。
+- **journal-fit**：1.0 已用中英文兩類作者須知實跑；2.0 新增 source_id 硬規，待模型矩陣確認後恢復 Stable。
+- **theoretical-framework**：1.0 已有國際關係、混合方法、人文思辨與政策分析案例；2.0 僅改名與精簡觸發，待回歸。
+- **literature-search**：1.0 已跑通中文題全鏈與 venue 證據；2.0 新增確定性查詢腳本，待回歸。
+
+## Boya 2.0 驗證入口
+
+- 結構檢查：`python3 scripts/check-evals.py`。
+- 模型 runner：`python3 scripts/run-model-evals.py --provider <codex|claude> --model <id> --runs 3 --skills all --confirm-paid-run`。
+- runner 不把 MUST／MUST NOT 傳給受測模型；結果預設寫到不納入 git 的 `evals/results/`，人工審閱後再把證據寫回本檔。
 
 ## Evidence Ledger 最小格式
 

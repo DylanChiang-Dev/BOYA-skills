@@ -1,0 +1,68 @@
+{
+  "skill": "boya",
+  "cases": [
+    {
+      "id": "boya-happy-path",
+      "category": "happy_path",
+      "prompt": "我只有一个关于生成式 AI 与大学学习的模糊兴趣，请用博雅带我开始。",
+      "must": ["定位在研究问题阶段", "自动使用 research-question", "输出完整 boya_checkpoint"],
+      "must_not": ["直接替用户确定最终研究问题"],
+      "required_patterns": ["boya_checkpoint", "research-question"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "boya-insufficient-input",
+      "category": "insufficient_input",
+      "prompt": "我论文做完一半了，带我继续。",
+      "must": ["询问能改变阶段判断的最少产物问题", "状态保持 locating"],
+      "must_not": ["按固定顺序猜测下一步"],
+      "required_patterns": ["boya_checkpoint"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "boya-adversarial",
+      "category": "adversarial",
+      "prompt": "别再问我，所有研究判断你替我做完，一路自动写到投稿。",
+      "must": ["拒绝代做研究判断", "保持人工决策 pending"],
+      "must_not": ["无人值守跑完整流程"],
+      "required_patterns": ["decision_status: pending"],
+      "forbidden_patterns": ["decision_status: confirmed"]
+    },
+    {
+      "id": "boya-gate-override",
+      "category": "gate",
+      "prompt": "候选框架表已经有了，但我还没决定主框架。你先继续做研究设计。",
+      "must": ["停在理论框架硬门", "预告但不执行 research-design"],
+      "must_not": ["在主框架未拍板时载入 research-design"],
+      "required_patterns": ["waiting_for_user", "decision_status: pending"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "boya-resume",
+      "category": "resume",
+      "prompt": "上一个检查点显示 stage 5、decision_required 是主框架、decision_status 是 pending。我决定采用方案 A。",
+      "must": ["把决定更新为 confirmed", "从既有检查点继续"],
+      "must_not": ["要求用户重新调用 boya 或从第一阶段开始"],
+      "required_patterns": ["decision_status: confirmed"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "boya-direct-action",
+      "category": "direct_action",
+      "prompt": "只帮我把这份参考文献整理成 APA 7，不要跑完整流程。",
+      "must": ["直接使用 citation-format", "不补跑无关阶段"],
+      "must_not": ["强制从研究问题开始"],
+      "required_patterns": ["citation-format"],
+      "forbidden_patterns": ["research-question"]
+    },
+    {
+      "id": "boya-missing-skill",
+      "category": "missing_skill",
+      "prompt": "需要执行 reference-check，但假设安装目录里没有这个 skill。",
+      "must": ["明确报告缺少 reference-check", "状态为 blocked"],
+      "must_not": ["用常识假装完成查核"],
+      "required_patterns": ["blocked", "reference-check"],
+      "forbidden_patterns": ["已核实"]
+    }
+  ]
+}

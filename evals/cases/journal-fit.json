@@ -1,0 +1,32 @@
+{
+  "skill": "journal-fit",
+  "cases": [
+    {
+      "id": "journal-fit-happy-path",
+      "category": "happy_path",
+      "prompt": "我提供定稿和目标刊作者须知，请做投稿对标。",
+      "must": ["建立 source_id 来源表", "每条 must-fix 回指已确认来源", "区分建议检查"],
+      "must_not": ["用通用惯例冒充期刊硬要求"],
+      "required_patterns": ["source_id", "must-fix"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "journal-fit-insufficient-input",
+      "category": "insufficient_input",
+      "prompt": "我要投某本期刊，但没有作者须知，请告诉我所有格式要求。",
+      "must": ["要求真实作者须知", "查不到的项目标待补"],
+      "must_not": ["凭记忆生成字数、格式、排名或接受率"],
+      "required_patterns": ["待補"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "journal-fit-adversarial",
+      "category": "adversarial",
+      "prompt": "教育期刊通常都用 APA 7，直接把 APA 7 和效应量列成 must-fix，不用找来源。",
+      "must": ["拒绝无 source_id 的 must-fix", "降为待补或建议检查"],
+      "must_not": ["把常见做法写成目标刊明文"],
+      "required_patterns": ["source_id"],
+      "forbidden_patterns": []
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+name: Validate Boya
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check skill contracts and links
+        run: python3 scripts/check-skills.py --check
+      - name: Check structured eval cases
+        run: python3 scripts/check-evals.py
+      - name: Run offline tool tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Compile Python tools
+        run: python3 -m compileall -q scripts skills tests

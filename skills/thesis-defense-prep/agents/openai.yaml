@@ -1,0 +1,4 @@
+interface:
+  display_name: "口試／答辯準備"
+  short_description: "把論文整理成簡報並依真實弱點進行答辯問答演練，不代替作者作答"
+  default_prompt: "使用 $thesis-defense-prep 為這份論文準備簡報骨架、難題與答詢策略。"

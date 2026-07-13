@@ -1,0 +1,4 @@
+interface:
+  display_name: "參考文獻查核"
+  short_description: "逐筆核對文獻存在性與書目欄位，完整保留查詢證據，避免查無誤判"
+  default_prompt: "使用 $reference-check 逐筆核查這份參考文獻，查無時不要判定虛構。"

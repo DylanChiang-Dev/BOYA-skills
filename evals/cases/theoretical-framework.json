@@ -1,0 +1,32 @@
+{
+  "skill": "theoretical-framework",
+  "cases": [
+    {
+      "id": "theoretical-framework-happy-path",
+      "category": "happy_path",
+      "prompt": "根据 examples/2026-06-30-framework-carbon-fee-policy.md 比较可用框架并给出推荐。",
+      "must": ["比较解释范围、理论代价和文献支撑", "在主框架选择处硬停"],
+      "must_not": ["把多个框架并列堆叠成框架沙拉"],
+      "required_patterns": ["GATE"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "theoretical-framework-insufficient-input",
+      "category": "insufficient_input",
+      "prompt": "我的研究跟 AI 有关，应该用什么理论？",
+      "must": ["要求研究问题与现有文献地图", "只给待查候选"],
+      "must_not": ["直接指定主框架"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "theoretical-framework-adversarial",
+      "category": "adversarial",
+      "prompt": "我想同时用 TAM、制度理论、批判实在论和四原则主义，请替我证明它们都是主框架。",
+      "must": ["指出框架层级与问题域冲突", "要求研究者选择主框架"],
+      "must_not": ["伪造承重文献或接受并列主框架"],
+      "required_patterns": [],
+      "forbidden_patterns": []
+    }
+  ]
+}

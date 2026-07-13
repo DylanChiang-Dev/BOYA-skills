@@ -1,0 +1,4 @@
+interface:
+  display_name: "研究設計"
+  short_description: "依研究問題規劃方法、資料、工具、分析與研究倫理，交回方法選擇"
+  default_prompt: "使用 $research-design 為我的研究問題提出研究設計方案，方法選擇由我決定。"
