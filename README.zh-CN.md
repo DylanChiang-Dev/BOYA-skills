@@ -6,13 +6,13 @@
 
 ### 给文科／人文社科研究者的 AI 论文工作流
 
-**不会写代码，也可以用 Claude Code / Codex，把一篇论文从"模糊题目"一步步推到"可以交出去"。**
+**不会写代码，也可以用 Open Science Desktop / Codex / Claude Code，把一篇论文从"模糊题目"一步步推到"可以交出去"。**
 
 <strong>AI 做苦工，你做判断。</strong><br/>
 Boya 帮你磨题、查引用、读文献、设计方法、搭大纲、修初稿、自我审查、准备答辩与投稿对标；<br/>
 但不替你编文献、不代写结论、不帮你隐藏 AI 使用。
 
-*A Claude Code / Codex workflow for liberal-arts and social-science researchers — from vague idea to submission-ready paper, no coding required.*
+*An Open Science Desktop / Codex / Claude Code workflow for liberal-arts and social-science researchers — from vague idea to submission-ready paper, no coding required.*
 
 <br/>
 
@@ -115,23 +115,34 @@ flowchart TD
 
 ### 方式一：请 agent 自动安装整套 Boya（推荐）
 
-打开 Claude Code 或 Codex 这类 agent，把这句话贴进去：
+打开 Open Science Desktop、Codex 或 Claude Code，把这句话贴进去：
 
 ```text
-帮我从 https://github.com/DylanChiang-Dev/boya 安装全部 Boya skills，不要只安装 reference-check。请先判断我目前的 agent 环境与可用的 skills 目录，说明会写入哪些路径，等我确认后再执行。
+帮我从 https://github.com/DylanChiang-Dev/boya 安装全部 15 个 Boya skills，不要只安装 reference-check。如果在 Open Science Desktop，请安装到当前工作区的 .opencode/skills/；否则先判断当前的 agent 环境与可用的 skills 目录。请说明会写入哪些路径，等我确认后再执行。
 ```
 
 常见目标路径：
 
-- Claude Code：全局 `~/.claude/skills/`；项目内 `.claude/skills/`
+- Open Science Desktop（推荐）：当前工作区 `.opencode/skills/`
 - Codex：全局 `~/.agents/skills/`；项目内 `.agents/skills/`；若使用 Codex 内置 `$skill-installer`，也可能写入 `$CODEX_HOME/skills/`（默认常见为 `~/.codex/skills/`）
-- CC Switch：全局 `~/.cc-switch/skills/`
+- Claude Code：全局 `~/.claude/skills/`；项目内 `.claude/skills/`
 
 只想安装单一技能时，才把"全部 Boya skills"改成具体 skill 名，例如 `reference-check`。
 
 ### 方式二：手动复制整套 skills
 
 每个 skill 目录只要包含 `SKILL.md` 就能被识别。
+
+**Open Science Desktop 工作区安装（推荐）**
+
+```bash
+git clone https://github.com/DylanChiang-Dev/boya.git
+
+mkdir -p .opencode/skills
+cp -r boya/skills/* .opencode/skills/
+```
+
+安装后应在 Skills 页看到全部 15 个 Boya skills。从 `boya` 开始，不要用 Open Science Desktop 内置的全自动 `ai4s-agent` 取代 Boya 的人工决策硬门。
 
 **Codex 全局安装（所有项目可用）**
 
@@ -173,13 +184,6 @@ cp -r boya/skills/* .claude/skills/
 ```
 
 装好后在 Claude Code 里直接用自然语言触发，例如："帮我核查这份参考文献的真伪"。
-
-**CC Switch 全局安装**
-
-```bash
-mkdir -p ~/.cc-switch/skills
-cp -r boya/skills/* ~/.cc-switch/skills/
-```
 
 ## 🏫 中国大陆高校使用注意
 

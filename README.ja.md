@@ -6,13 +6,13 @@
 
 ### 文系・人文社会科学系研究者のための AI 論文ワークフロー
 
-**コードを書かなくても、Claude Code / Codex で論文を「ぼんやりしたテーマ」から「提出できる状態」まで一歩ずつ進められます。**
+**コードを書かなくても、Open Science Desktop / Codex / Claude Code で論文を「ぼんやりしたテーマ」から「提出できる状態」まで一歩ずつ進められます。**
 
 <strong>AI が作業を担い、あなたが判断する。</strong><br/>
 Boya はテーマの絞り込み、引用確認、文献読解、方法設計、アウトライン作成、初稿修正、自己レビュー、口頭試問・投稿準備を手伝います。<br/>
 ただし、文献の捏造、結論の代筆、AI 利用の隠蔽には加担しません。
 
-*A Claude Code / Codex workflow for liberal-arts and social-science researchers — from vague idea to submission-ready paper, no coding required.*
+*An Open Science Desktop / Codex / Claude Code workflow for liberal-arts and social-science researchers — from vague idea to submission-ready paper, no coding required.*
 
 <br/>
 
@@ -115,23 +115,34 @@ flowchart TD
 
 ### 方法 1：agent に全 Boya skill のインストールを依頼する（推奨）
 
-Claude Code や Codex などの agent に次のように依頼します：
+Open Science Desktop、Codex、または Claude Code に次のように依頼します：
 
 ```text
-https://github.com/DylanChiang-Dev/boya から Boya の全 skill をインストールしてください。reference-check だけをインストールしないでください。まず現在の agent 環境と利用可能な skills ディレクトリを判断し、書き込むパスを説明して、確認を待ってから実行してください。
+https://github.com/DylanChiang-Dev/boya から Boya の 15 個すべての skill をインストールしてください。reference-check だけをインストールしないでください。Open Science Desktop では、現在のワークスペースの .opencode/skills/ にインストールしてください。それ以外の環境では、まず現在の agent 環境と利用可能な skills ディレクトリを判断してください。書き込むパスを説明し、確認を待ってから実行してください。
 ```
 
 よく使う保存先：
 
-- Claude Code：全体 `~/.claude/skills/`；プロジェクト内 `.claude/skills/`
+- Open Science Desktop（推奨）：現在のワークスペース `.opencode/skills/`
 - Codex：全体 `~/.agents/skills/`；プロジェクト内 `.agents/skills/`；Codex の組み込み `$skill-installer` を使う場合は `$CODEX_HOME/skills/`（よくある既定値は `~/.codex/skills/`）に書き込むこともあります
-- CC Switch：全体 `~/.cc-switch/skills/`
+- Claude Code：全体 `~/.claude/skills/`；プロジェクト内 `.claude/skills/`
 
 `reference-check` など単一の skill 名を指定するのは、15 個すべてではなく 1 個だけ入れたい場合に限ります。
 
 ### 方法 2：全 skill を手動でコピーする
 
 各 skill ディレクトリには `SKILL.md` が入っています。
+
+**Open Science Desktop ワークスペースへのインストール（推奨）**
+
+```bash
+git clone https://github.com/DylanChiang-Dev/boya.git
+
+mkdir -p .opencode/skills
+cp -r boya/skills/* .opencode/skills/
+```
+
+インストール後、Skills ページに Boya の 15 個すべての skill が表示されることを確認してください。`boya` から始め、Boya の人間による判断ゲートを Open Science Desktop 組み込みの全自動 `ai4s-agent` で置き換えないでください。
 
 **Codex 全体インストール（全プロジェクト共用）**
 
@@ -173,13 +184,6 @@ cp -r boya/skills/* .claude/skills/
 ```
 
 インストール後は Claude Code で自然言語で依頼できます。例：「この参考文献が実在するか確認して」。
-
-**CC Switch 全体インストール**
-
-```bash
-mkdir -p ~/.cc-switch/skills
-cp -r boya/skills/* ~/.cc-switch/skills/
-```
 
 ## 🇯🇵 日本語環境で使うときの注意
 

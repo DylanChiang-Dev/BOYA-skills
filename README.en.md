@@ -6,13 +6,13 @@ Languages: [繁體中文](README.md) | [简体中文](README.zh-CN.md) | [Englis
 
 ### An AI Paper Workflow for Liberal-Arts & Social-Science Researchers
 
-**You don't need to write code. With Claude Code / Codex you can push a paper from "vague idea" to "ready to submit," step by step.**
+**You don't need to write code. With Open Science Desktop / Codex / Claude Code, you can push a paper from "vague idea" to "ready to submit," step by step.**
 
 <strong>AI does the grunt work; you make the calls.</strong><br/>
 Boya helps you refine your topic, check citations, read literature, design methods, build outlines, revise drafts, manuscript-review, and prepare for defense or submission —<br/>
 but it will not fabricate references, ghostwrite conclusions, or help you hide AI use.
 
-*A Claude Code / Codex workflow for liberal-arts and social-science researchers — from vague idea to submission-ready paper, no coding required.*
+*An Open Science Desktop / Codex / Claude Code workflow for liberal-arts and social-science researchers — from vague idea to submission-ready paper, no coding required.*
 
 <br/>
 
@@ -115,23 +115,34 @@ flowchart TD
 
 ### Option 1: Ask an Agent to Install All Boya Skills (Recommended)
 
-Open an agent such as Claude Code or Codex and paste:
+Open Open Science Desktop, Codex, or Claude Code and paste:
 
 ```text
-Install all Boya skills from https://github.com/DylanChiang-Dev/boya, not only reference-check. First detect my current agent environment and available skills directories, tell me which paths you will write to, and wait for my confirmation before making changes.
+Install all 15 Boya skills from https://github.com/DylanChiang-Dev/boya, not only reference-check. In Open Science Desktop, install them into the current workspace's .opencode/skills/ directory; otherwise, first detect my current agent environment and available skills directories. Tell me which paths you will write to, and wait for my confirmation before making changes.
 ```
 
 Common target paths:
 
-- Claude Code: global `~/.claude/skills/`; project-local `.claude/skills/`
+- Open Science Desktop (recommended): current workspace `.opencode/skills/`
 - Codex: global `~/.agents/skills/`; project-local `.agents/skills/`; Codex's built-in `$skill-installer` may instead write to `$CODEX_HOME/skills/` (commonly `~/.codex/skills/`)
-- CC Switch: global `~/.cc-switch/skills/`
+- Claude Code: global `~/.claude/skills/`; project-local `.claude/skills/`
 
 Use a single skill name such as `reference-check` only when you intentionally want to install one skill instead of the full set.
 
 ### Option 2: Manually Copy the Full Skill Set
 
 Each skill directory only needs a `SKILL.md` file.
+
+**Open Science Desktop workspace install (recommended)**
+
+```bash
+git clone https://github.com/DylanChiang-Dev/boya.git
+
+mkdir -p .opencode/skills
+cp -r boya/skills/* .opencode/skills/
+```
+
+After installation, all 15 Boya skills should appear on the Skills page. Start with `boya`; do not replace Boya's human decision gates with Open Science Desktop's fully autonomous `ai4s-agent`.
 
 **Codex global install (available to all projects)**
 
@@ -173,13 +184,6 @@ cp -r boya/skills/* .claude/skills/
 ```
 
 After installation, use natural language in Claude Code, for example: "Check whether these references are real."
-
-**CC Switch global install**
-
-```bash
-mkdir -p ~/.cc-switch/skills
-cp -r boya/skills/* ~/.cc-switch/skills/
-```
 
 ## 🌍 Notes for International Use
 
