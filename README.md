@@ -6,13 +6,13 @@
 
 ### 給文組／人文社科研究者的 AI 論文工作流
 
-**不會寫程式，也可以用 Open Science Desktop / Codex / Claude Code，把一篇論文從「模糊題目」一步步推到「可以交出去」。**
+**不會寫程式，也可以用 BOYA Desktop / Codex / Claude Code / OpenCode，把一篇論文從「模糊題目」一步步推到「可以交出去」。**
 
 <strong>AI 做苦工，你做判斷。</strong><br/>
 Boya 幫你磨題、查引用、讀文獻、設計方法、搭大綱、修初稿、自我審查、準備口試與投稿對標；<br/>
 但不替你編文獻、不代寫結論、不幫你隱藏 AI 使用。
 
-*An Open Science Desktop / Codex / Claude Code workflow for liberal-arts and social-science researchers — from vague idea to submission-ready paper, no coding required.*
+*A BOYA Desktop / Codex / Claude Code / OpenCode workflow for liberal-arts and social-science researchers — from vague idea to submission-ready paper, no coding required.*
 
 <br/>
 
@@ -117,27 +117,33 @@ flowchart TD
 
 > Boya 2.0 已更換 14 個技術 ID。從 1.x 升級時不可只覆蓋複製，否則舊目錄會與新 skill 並存、造成重複觸發；請按 [GUIDE.md 的 2.0 遷移表](GUIDE.md#boya-20-名稱遷移) 先確認並移除舊安裝副本。新使用者安裝整套後，只需從 boya 開始。
 
-### 方式一：請 agent 自動安裝整套 Boya（推薦）
+### 方式一：BOYA Desktop（推薦）
 
-打開 Open Science Desktop、Codex 或 Claude Code，把這句話貼進去：
+[BOYA Desktop](https://boya-website.pages.dev/zh-hant/desktop/) 是本地優先的第一方研究工作台，已把 Boya 工作流、文件、Notebook、執行紀錄與證據鏈放在同一個介面。安裝後打開研究資料夾，直接從 `boya` 開始；不用另外複製 skill。
+
+目前公開的是 macOS Apple Silicon Preview。Windows、Intel Mac，或偏好既有 agent 的使用者，請用下方手動安裝方式。
+
+### 方式二：請 agent 自動安裝整套 Boya
+
+打開 Codex、Claude Code 或 OpenCode，把這句話貼進去：
 
 ```text
-幫我從 https://github.com/DylanChiang-Dev/BOYA-skills 安裝全部 17 個 Boya skills，不要只安裝 reference-check。若在 Open Science Desktop，請安裝到當前工作區的 .opencode/skills/；否則先判斷目前的 agent 環境與可用的 skills 目錄。請說明會寫入哪些路徑，等我確認後再執行。
+幫我從 https://github.com/DylanChiang-Dev/BOYA-skills 安裝全部 17 個 Boya skills，不要只安裝 reference-check。請先判斷目前的 agent 環境與可用的 skills 目錄，說明會寫入哪些路徑，等我確認後再執行。
 ```
 
 常見目標路徑：
 
-- Open Science Desktop（推薦）：當前工作區 `.opencode/skills/`
+- OpenCode：當前工作區 `.opencode/skills/`
 - Codex：全域 `~/.agents/skills/`；專案內 `.agents/skills/`；若使用 Codex 內建 `$skill-installer`，也可能寫入 `$CODEX_HOME/skills/`（預設常見為 `~/.codex/skills/`）
 - Claude Code：全域 `~/.claude/skills/`；專案內 `.claude/skills/`
 
 只想安裝單一技能時，才把「全部 Boya skills」改成具體 skill 名，例如 `reference-check`。
 
-### 方式二：手動複製整套 skills
+### 方式三：手動複製整套 skills
 
 每個 skill 目錄只要包含 `SKILL.md` 就能被辨識。
 
-**Open Science Desktop 工作區安裝（推薦）**
+**OpenCode 工作區安裝**
 
 ```bash
 git clone https://github.com/DylanChiang-Dev/BOYA-skills.git
@@ -146,7 +152,7 @@ mkdir -p .opencode/skills
 cp -r BOYA-skills/skills/* .opencode/skills/
 ```
 
-安裝後應在 Skills 頁看到全部 17 個 Boya skills。從 `boya` 開始，不要用 Open Science Desktop 內建的全自動 `ai4s-agent` 取代 Boya 的人工決策硬門。
+安裝後應看到全部 17 個 Boya skills，並從 `boya` 開始。若所在環境另有全自動研究 agent，不要用它取代 Boya 的人工決策硬門。
 
 **Codex 全域安裝（所有專案可用）**
 
@@ -226,6 +232,7 @@ cp -r BOYA-skills/skills/* .claude/skills/
 - **用—磨—寫**：每個 skill 都先拿真實材料跑、把坑寫回規則，才升版號——不閉門造框架。
 - **中文優先**：為華語人文社科研究場景設計（含台灣學術環境的引用與政策語境）。
 - **輕量參考層**：`VERIFICATION.md` 彙總實測證據，`knowledge/` 放 venue 與中文學術寫作速查卡，`templates/` 放可填空論文與口試骨架。
+- **可驗證版本契約**：`skills-manifest.json` 固定版號、17 個技術 ID、角色與工作流順序，供 Desktop、網站與書稿同步檢查。
 - **不做重型自動化框架**：不引入 `_shared/` fragments、`manifest.yaml` 分片載入、多 agent 長跑 orchestrator；除非某個 skill 真的長到不可讀，才把少量共用材料外移。
 
 ## 💬 加入討論

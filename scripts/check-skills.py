@@ -13,6 +13,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 SKILLS_DIR = REPO / "skills"
 ROUTER = REPO / "ROUTER.md"
+SKILLS_MANIFEST = REPO / "skills-manifest.json"
 EXPECTED_SKILLS = {
     "academic-revision",
     "ai-use-disclosure",
@@ -178,6 +179,42 @@ def main() -> int:
     if actual != EXPECTED_SKILLS:
         errors.append(f"skill set mismatch: missing={sorted(EXPECTED_SKILLS-actual)} extra={sorted(actual-EXPECTED_SKILLS)}")
 
+    try:
+        release_manifest = json.loads(SKILLS_MANIFEST.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        errors.append(f"[skills-manifest.json] invalid JSON: {exc}")
+        release_manifest = {}
+
+    manifest_skills = release_manifest.get("skills", [])
+    manifest_ids = [item.get("id") for item in manifest_skills if isinstance(item, dict)]
+    if release_manifest.get("schema_version") != 1:
+        errors.append("[skills-manifest.json] schema_version must be 1")
+    if release_manifest.get("name") != "boya":
+        errors.append("[skills-manifest.json] name must be boya")
+    if release_manifest.get("version") != "2.1.0":
+        errors.append("[skills-manifest.json] version must be 2.1.0")
+    if release_manifest.get("skill_count") != len(manifest_ids):
+        errors.append("[skills-manifest.json] skill_count must equal skills length")
+    if len(manifest_ids) != len(set(manifest_ids)):
+        errors.append("[skills-manifest.json] skill IDs must be unique")
+    if set(manifest_ids) != actual:
+        errors.append(
+            "[skills-manifest.json] IDs must exactly match skill directories: "
+            f"missing={sorted(actual-set(manifest_ids))} extra={sorted(set(manifest_ids)-actual)}"
+        )
+    roles = {item.get("id"): item.get("role") for item in manifest_skills if isinstance(item, dict)}
+    if roles.get("boya") != "entry" or roles.get("research-record") != "optional":
+        errors.append("[skills-manifest.json] boya must be entry and research-record optional")
+    workflow_ids = [skill for skill, role in roles.items() if role == "workflow"]
+    if len(workflow_ids) != 15:
+        errors.append("[skills-manifest.json] exactly 15 skills must have role workflow")
+    if any(
+        not isinstance(item.get("stage"), int) or item.get("stage", -1) < 0
+        for item in manifest_skills
+        if isinstance(item, dict)
+    ):
+        errors.append("[skills-manifest.json] every skill needs a non-negative integer stage")
+
     for skill in sorted(actual):
         skill_file = SKILLS_DIR / skill / "SKILL.md"
         keys, frontmatter, line_count = parse_frontmatter(skill_file)
@@ -213,8 +250,10 @@ def main() -> int:
         except (OSError, json.JSONDecodeError) as exc:
             errors.append(f"[{manifest_path.relative_to(REPO)}] invalid JSON: {exc}")
             continue
-        if manifest.get("version") != "2.1.0":
-            errors.append(f"[{manifest_path.relative_to(REPO)}] version must be 2.1.0")
+        if manifest.get("version") != release_manifest.get("version"):
+            errors.append(
+                f"[{manifest_path.relative_to(REPO)}] version must match skills-manifest.json"
+            )
         if "17" not in manifest.get("description", ""):
             errors.append(f"[{manifest_path.relative_to(REPO)}] description must state 17 skills")
 

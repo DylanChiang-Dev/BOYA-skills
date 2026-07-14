@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "name": "boya",
+  "version": "2.1.0",
+  "skill_count": 17,
+  "skills": [
+    { "id": "boya", "role": "entry", "stage": 0 },
+    { "id": "research-record", "role": "optional", "stage": 0 },
+    { "id": "research-question", "role": "workflow", "stage": 1 },
+    { "id": "literature-search", "role": "workflow", "stage": 2 },
+    { "id": "reference-check", "role": "workflow", "stage": 3 },
+    { "id": "literature-analysis", "role": "workflow", "stage": 4 },
+    { "id": "theoretical-framework", "role": "workflow", "stage": 5 },
+    { "id": "research-design", "role": "workflow", "stage": 6 },
+    { "id": "paper-outline", "role": "workflow", "stage": 7 },
+    { "id": "academic-revision", "role": "workflow", "stage": 8 },
+    { "id": "manuscript-review", "role": "workflow", "stage": 9 },
+    { "id": "claim-audit", "role": "workflow", "stage": 10 },
+    { "id": "citation-format", "role": "workflow", "stage": 11 },
+    { "id": "bilingual-abstract", "role": "workflow", "stage": 12 },
+    { "id": "ai-use-disclosure", "role": "workflow", "stage": 13 },
+    { "id": "thesis-defense-prep", "role": "workflow", "stage": 14 },
+    { "id": "journal-fit", "role": "workflow", "stage": 14 }
+  ]
+}
