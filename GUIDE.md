@@ -23,6 +23,10 @@ Boya 不適合用來做這些事：
 
 如果你不知道該喚哪個 skill，直接從 `boya` 開始。它是唯一推薦入口：第一次呼叫後會依你手上的產物定位、執行下一個 skill，並在每輪保存檢查點。研究問題、框架、方法、論證與取捨等關卡一律停下等你拍板；你回答後會直接續跑，不必再次輸入 `boya`。完整接力需要整套 Boya，缺少下游 skill 時會明確停止並報告缺失 ID。
 
+第一次只說「不知道從哪開始」時，`boya` 一次只問一題：先問你手上有什麼，再問這一輪想得到什麼結果。前文已說清就不重問，也不把完整 skill 清單丟給新手自選。
+
+對話內的 `boya_checkpoint` 預設不寫檔。需要跨對話續接時，請明確說「建立研究檔案」以啟用 `research-record`；啟用後才會在人工硬門同步材料指標、決策、未知項與檢查點。
+
 可以這樣問：
 
 ```text
@@ -63,7 +67,7 @@ Boya 不適合用來做這些事：
 | `abstract-bilingual` | `bilingual-abstract` |
 | `ai-disclosure` | `ai-use-disclosure` |
 
-`boya` 的技術 ID 不變，2.0 展示名改為「博雅研究助手」。完成遷移後應只看到 15 個目錄。
+`boya` 的技術 ID 不變，2.0 展示名改為「博雅研究助手」。`claim-audit` 與 `research-record` 是 2.0 新增、沒有 1.x 舊 ID 的能力。完成遷移後應只看到 17 個目錄。
 
 ## 3. 從研究階段選 skill
 
@@ -74,6 +78,7 @@ Boya 不適合用來做這些事：
 | 題目太大、太散、不知道能不能做 | `research-question` |
 | 有題目、還沒文獻清單，要先找該讀哪些 paper | `literature-search` |
 | 檢查參考文獻是不是真的存在 | `reference-check` |
+| 核對某句數字、因果或核心論據是否被原文支持 | `claim-audit` |
 | 讀幾篇文獻、整理共識與分歧 | `literature-analysis` |
 | 文獻讀完，要把理論透鏡／主框架定下來 | `theoretical-framework` |
 | 想研究方法、訪談大綱、問卷或資料設計 | `research-design` |
@@ -85,6 +90,7 @@ Boya 不適合用來做這些事：
 | 統一 APA / Chicago / MLA 等引用格式 | `citation-format` |
 | 從定稿濃縮中英摘要與關鍵詞 | `bilingual-abstract` |
 | 不確定下一步 | `boya` |
+| 保存專案材料、人工決策與檢查點，以便跨對話繼續 | `research-record` |
 | 投稿前對標目標刊作者須知 | `journal-fit` |
 
 若你要讓 agent 自己判斷，請它先讀 [ROUTER.md](ROUTER.md)。
@@ -103,18 +109,20 @@ research-question
 → paper-outline
 → academic-revision
 → manuscript-review
+→ claim-audit
 → citation-format / bilingual-abstract
 → ai-use-disclosure
 → thesis-defense-prep
 ```
 
-如果你是從一份已經寫好的草稿開始，不需要回到第一步。可以直接從 `manuscript-review`、`citation-format`、`bilingual-abstract` 或 `ai-use-disclosure` 開始。
+如果你是從一份已經寫好的草稿開始，不需要回到第一步。可以直接從 `manuscript-review`、`claim-audit`、`citation-format`、`bilingual-abstract` 或 `ai-use-disclosure` 開始。
 
 如果你是準備投稿，建議先跑：
 
 ```text
 manuscript-review
 → reference-check
+→ claim-audit
 → citation-format
 → ai-use-disclosure
 → bilingual-abstract
@@ -152,7 +160,7 @@ manuscript-review
 
 ## 6. Boya 2.0 驗證狀態
 
-1.0 工作流的真實案例與 evidence ledger 全部保留。2.0 更換技術 ID、觸發描述與自動接力協定，因此 15 個 skill 暫列 Beta；結構化案例與手動模型 runner 已就位。
+1.0 工作流的真實案例與 evidence ledger 全部保留。2.0 更換技術 ID、觸發描述與自動接力協定，並新增主張查核、研究檔案、批准後局部修訂與逐題新手定位，因此 17 個 skill 暫列 Beta；結構化案例與手動模型 runner 已就位。
 
 其中 `journal-fit` 仍有三條特別重要的限制：
 
@@ -197,6 +205,12 @@ Boya 的底線很簡單：AI 是副駕駛，不是機長。
 請用 reference-check 檢查這份參考文獻是否真實存在。查不到的不要直接判定偽造，請標成待人工確認，並說明你查了哪些來源。
 ```
 
+### 我想知道引用是否真的支持這句話
+
+```text
+請用 claim-audit 先查這份稿的數字、因果、比較與核心論據。每筆要回到指定來源的頁碼、段落或圖表；只有 DOI 或摘要不足時不要標 supported。
+```
+
 ### 我有五篇文獻想整理
 
 ```text
@@ -207,6 +221,12 @@ Boya 的底線很簡單：AI 是副駕駛，不是機長。
 
 ```text
 請用 manuscript-review 模擬方法論審稿人、領域審稿人、魔鬼代言人與主編，幫我挑出這篇初稿最需要修的問題。請分成必改、可辯、誤讀。
+```
+
+### 我要跨對話保存進度
+
+```text
+請用 research-record 為這個研究專案建立檔案，只保存材料指標、已由我確認的決策、未知項與最新 boya_checkpoint，不要複製論文全文。
 ```
 
 ### 我要投稿前檢查

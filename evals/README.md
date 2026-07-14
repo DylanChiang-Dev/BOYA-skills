@@ -4,7 +4,7 @@
 
 ## 怎麼跑
 
-1. 先跑 `python3 scripts/check-evals.py` 驗證 15 份結構化案例。
+1. 先跑 `python3 scripts/check-evals.py` 驗證 17 份結構化案例。
 2. 要實跑模型時，明確指定 provider、model 與 skill：`python3 scripts/run-model-evals.py --provider codex --model <model-id> --runs 3 --skills boya,reference-check --confirm-paid-run`。
 3. runner 只把案例 prompt 與目標 skill 交給模型，不傳 MUST／MUST NOT；結果寫入已忽略的 `evals/results/`。
 4. 靜態字樣檢查通過不等於語意通過；維護者仍須逐條審閱 MUST／MUST NOT，並把值得保留的結果寫回 evidence ledger。

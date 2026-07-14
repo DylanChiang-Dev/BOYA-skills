@@ -1,0 +1,4 @@
+interface:
+  display_name: "研究專案檔案"
+  short_description: "保存研究材料、人工決策、未知項、博雅接力檢查點與變更紀錄"
+  default_prompt: "使用 $research-record 為這個研究專案建立可續接、可稽核的狀態檔案。"

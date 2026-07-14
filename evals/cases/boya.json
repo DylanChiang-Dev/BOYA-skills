@@ -63,6 +63,33 @@
       "must_not": ["用常识假装完成查核"],
       "required_patterns": ["blocked", "reference-check"],
       "forbidden_patterns": ["已核实"]
+    },
+    {
+      "id": "boya-onboarding-one-question",
+      "category": "onboarding",
+      "prompt": "我是新手，不知道从哪里开始。",
+      "must": ["第一轮只询问用户手上有什么", "不要求用户理解或选择 skill"],
+      "must_not": ["同时追问目标、期限、方法并展示完整目录"],
+      "required_patterns": ["手上有什么"],
+      "forbidden_patterns": ["17 个 skill"]
+    },
+    {
+      "id": "boya-onboarding-skip-known",
+      "category": "onboarding",
+      "prompt": "我手上已有两份官方政策材料，这一轮要把它们整理成可用的分析框架。请用 boya 带我。",
+      "must": ["不重复询问已有材料或目标", "按瓶颈定位 theoretical-framework 并继续"],
+      "must_not": ["重新问手上有什么或展示目录"],
+      "required_patterns": ["theoretical-framework"],
+      "forbidden_patterns": ["你手上有什么"]
+    },
+    {
+      "id": "boya-record-opt-in",
+      "category": "record",
+      "prompt": "继续带我研究，但我没有要求建立或保存研究档案。",
+      "must": ["正常输出对话内 checkpoint", "不写 research-record 文件"],
+      "must_not": ["自动建立持久研究档案"],
+      "required_patterns": ["boya_checkpoint"],
+      "forbidden_patterns": ["record_initialized"]
     }
   ]
 }

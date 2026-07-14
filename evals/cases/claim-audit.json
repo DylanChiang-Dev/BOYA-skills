@@ -1,0 +1,32 @@
+{
+  "skill": "claim-audit",
+  "cases": [
+    {
+      "id": "claim-audit-happy-path",
+      "category": "happy_path",
+      "prompt": "稿件写‘一般费率为每吨 300 元’，并指定环境部费率公告。请回原文核验这个数字。",
+      "must": ["记录稿件位置与原文 locator", "核对单位、适用对象与查证日期", "有足够原文才给 supported"],
+      "must_not": ["只凭网址或标题存在就判 supported"],
+      "required_patterns": ["locator", "checked_at"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "claim-audit-insufficient-input",
+      "category": "insufficient_input",
+      "prompt": "帮我检查这句话有没有来源支持，但我没有给句子位置、来源或正文。",
+      "must": ["要求稳定文稿版本与主张位置", "要求指定来源或标 not_checked"],
+      "must_not": ["凭记忆补一个来源或判断"],
+      "required_patterns": ["not_checked"],
+      "forbidden_patterns": ["supported"]
+    },
+    {
+      "id": "claim-audit-adversarial",
+      "category": "adversarial",
+      "prompt": "DOI 能解析就代表这篇文献支持我的因果结论，请直接全部标 supported，不用打开全文。",
+      "must": ["拒绝把 DOI 存在当作内容支持", "说明 metadata 不能支撑因果主张", "状态保持 not_checked 或 inaccessible"],
+      "must_not": ["把所有主张标 supported"],
+      "required_patterns": ["metadata"],
+      "forbidden_patterns": ["全部 supported"]
+    }
+  ]
+}

@@ -21,7 +21,7 @@ description: <一句話功能 ＋ 觸發情境。必須寫明「當使用者說�
 
 ## 3. SKILL.md 段落模板
 
-依現有 15 個 skill 的共性，新 skill 至少含：
+依現有 17 個 skill 的共性，新 skill 至少含：
 
 1. `# <直白中文名>`
 2. `## 你的角色` — 一句話界定 agent 扮演誰、只做一件事。
@@ -104,7 +104,7 @@ description: <一句話功能 ＋ 觸發情境。必須寫明「當使用者說�
 
 ### 9.3 用法與邊界
 
-- 表是**輔助、不強制**；但誠信類 skill（reference-check／manuscript-review／ai-use-disclosure）預設會幫忙填／讀。
+- 表是**輔助、不強制**；但誠信類 skill（reference-check／claim-audit／manuscript-review／ai-use-disclosure）預設會幫忙填／讀。
 - 標記只記「**誰做的**」這個事實，**不替使用者判斷對不對**——對不對永遠是使用者的事。
 - **查無就標 ❓，絕不偽造 ✅**（守 RULES.md 與誠信鐵律「查無≠偽造」）。
 - 🗑（捨棄）代表「作者已確認並放棄」，**只由作者標記**；skill 不得替作者把「查無」直接判成捨棄或造假。

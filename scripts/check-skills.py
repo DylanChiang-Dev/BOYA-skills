@@ -18,6 +18,7 @@ EXPECTED_SKILLS = {
     "ai-use-disclosure",
     "bilingual-abstract",
     "boya",
+    "claim-audit",
     "citation-format",
     "journal-fit",
     "literature-analysis",
@@ -27,6 +28,7 @@ EXPECTED_SKILLS = {
     "reference-check",
     "research-design",
     "research-question",
+    "research-record",
     "theoretical-framework",
     "thesis-defense-prep",
 }
@@ -211,10 +213,10 @@ def main() -> int:
         except (OSError, json.JSONDecodeError) as exc:
             errors.append(f"[{manifest_path.relative_to(REPO)}] invalid JSON: {exc}")
             continue
-        if manifest.get("version") != "2.0.0":
-            errors.append(f"[{manifest_path.relative_to(REPO)}] version must be 2.0.0")
-        if "15" not in manifest.get("description", ""):
-            errors.append(f"[{manifest_path.relative_to(REPO)}] description must state 15 skills")
+        if manifest.get("version") != "2.1.0":
+            errors.append(f"[{manifest_path.relative_to(REPO)}] version must be 2.1.0")
+        if "17" not in manifest.get("description", ""):
+            errors.append(f"[{manifest_path.relative_to(REPO)}] description must state 17 skills")
 
     for path in live_files():
         text = path.read_text(encoding="utf-8")

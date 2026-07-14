@@ -19,8 +19,8 @@ Boya 幫你磨題、查引用、讀文獻、設計方法、搭大綱、修初稿
 [![Stars](https://img.shields.io/github/stars/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=ffca28)](https://github.com/DylanChiang-Dev/BOYA-skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/BOYA-skills/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4caf50?style=for-the-badge)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-15-7e57c2?style=for-the-badge)](#十五個-skill)
-[![version](https://img.shields.io/badge/version-2.0.0-7e57c2?style=for-the-badge)](MEMORY.md)
+[![Skills](https://img.shields.io/badge/skills-17-7e57c2?style=for-the-badge)](#十七個-skill)
+[![version](https://img.shields.io/badge/version-2.1.0-7e57c2?style=for-the-badge)](MEMORY.md)
 [![繁體中文](https://img.shields.io/badge/繁體中文-First-e4002b?style=for-the-badge)](#)
 
 </div>
@@ -48,13 +48,13 @@ Boya 幫你磨題、查引用、讀文獻、設計方法、搭大綱、修初稿
 Boya 的最高設計原則是**人類在環（human-in-the-loop）**：流程可以自動接力，但每一個「只有你能決定」的關卡都會**硬停下來等你拍板**——這也是它和「全自動論文機」的唯一分界。底下四條，都是這個原則的展開。
 
 - **苦工外包，判斷自留。** skill 處理檢索、查核、格式、模擬提問；研究問題、方法選擇與詮釋，永遠是你的。
-- **凡引用必回源。** skill 只證明文獻存在，不證明它支持你的論點。
+- **凡引用必回源。** `reference-check` 只證明文獻存在與書目相符；承重主張要再用 `claim-audit` 定位原文核對，修不修仍由你決定。
 - **透明而非遮掩。** 全部 skill 鼓勵留痕與 AI 使用揭露，目標是品質，不是隱藏協作事實。
 - **人類在環，不是一鍵跑完。** 這不是全自動論文機——流程會自己接力喚起下一步，但到「只有你能決定」的關卡就停；每一步 AI 幹活、你握方向盤。
 
 ## 🗺️ 工作流地圖
 
-從一個念頭到一篇可以投出去的論文，十五個 skill 各守一段，`boya` 在最上層導航：
+從一個念頭到一篇可以投出去的論文，十七個 skill 各守一段，`boya` 在最上層導航：
 
 ```mermaid
 flowchart TD
@@ -66,18 +66,20 @@ flowchart TD
     S4 --> S5[搭骨架<br/>paper-outline]
     S5 --> S6[寫初稿<br/>academic-revision]
     S6 --> S7[自我審查<br/>manuscript-review]
-    S7 --> S8[定稿・口試<br/>thesis-defense-prep · citation-format · bilingual-abstract]
+    S7 --> SC[承重主張回源<br/>claim-audit]
+    SC --> S8[定稿・口試<br/>thesis-defense-prep · citation-format · bilingual-abstract]
     S8 --> S9[投稿對標<br/>journal-fit]
     S9 --> S10[倫理揭露<br/>ai-use-disclosure]
     S10 --> End([📄 可投出去的論文])
     RM{{boya<br/>全程導航書脊}} -.隨時定位你在哪.-> S1
     RM -.該喚哪個 skill.-> S5
     RM -.哪些只有你能決定.-> S10
+    RR{{research-record<br/>選用專案檔案}} -.啟用後同步檢查點.-> RM
 ```
 
-## 📦 十五個 skill
+## 📦 十七個 skill
 
-> **一個入口＋十四個專用 skill＝十五個**。使用者只需先呼叫 `boya`，它會自動接力；熟練使用者仍可直接呼叫任何專用 skill。1.0 的真實案例證據保留，2.0 的新命名、接力協定與模型回歸目前列為 Beta，待顯式模型矩陣通過後恢復 Stable。
+> **一個入口＋十六個專用 skill＝十七個**。使用者只需先呼叫 `boya`，它會自動接力；熟練使用者仍可直接呼叫任何專用 skill。1.0 的真實案例證據保留，2.0 新增主張查核、選用研究檔案、批准後局部修訂與逐題新手定位；目前全套列為 Beta，待顯式模型矩陣通過後恢復 Stable。
 
 ### 核心 · 一階段一個
 
@@ -90,8 +92,9 @@ flowchart TD
 | [`theoretical-framework`](skills/theoretical-framework) | 理論框架定錨：從文獻地圖攤候選框架（解釋什麼／理論代價／庫存支撐）、推薦分層（主框架→中介機制→實證抓手→落點）、硬 GATE 讓你拍板主框架；另有輔助框架嵌入與逆向體檢兩模式。 | 框架 |
 | [`research-design`](skills/research-design) | 研究設計：方法地圖、起草訪談大綱／問卷＋人工校準、角色扮演預訪談、編碼建議（詮釋留你）、統計謬誤核驗 | 設計 |
 | [`paper-outline`](skills/paper-outline) | 論文骨架：選結構模式（IMRaD／綜述／思辨／政策）、長出大綱、段落論證鏈 claim–evidence–warrant（專補推理橋） | 大綱 |
-| [`academic-revision`](skills/academic-revision) | 學術潤稿：依舊文校準作者聲音、修改既有段落、診斷套話與空洞結構；不判定 AI 來源、不協助規避偵測 | 初稿 |
+| [`academic-revision`](skills/academic-revision) | 學術潤稿：依舊文校準作者聲音、修改既有段落、診斷套話與空洞結構；選用 sidecar hash 與批准清單保證「只改這幾段」 | 初稿 |
 | [`manuscript-review`](skills/manuscript-review) | 自我審查（**模擬審查**）：一桌審稿人（方法論／領域／魔鬼代言人／主編）輪審＋誠信自查＋意見分級（必改／可辯／誤讀） | 自審 |
+| [`claim-audit`](skills/claim-audit) | 主張來源查核：優先回源核對數字、因果、比較、趨勢與核心論據；定位原文、留 verdict 與 pass/review/block，不把 DOI 存在當成內容支持 | 主張查核 |
 | [`thesis-defense-prep`](skills/thesis-defense-prep) | 口試準備：論文 → 簡報骨架、分層出難題（澄清／方法／理論／貢獻／陷阱）、答詢策略（含英文） | 口試 |
 | [`journal-fit`](skills/journal-fit) | 投稿對標：用定稿對上目標 venue 的真實作者須知，列出 must-fix／should-fix／待補查證；不編期刊規範、不代決定投哪裡 | 投稿 |
 | [`ai-use-disclosure`](skills/ai-use-disclosure) | AI 使用揭露：盤點使用 → 抄襲／代寫／輔助三分法 → 按目標機構格式生成誠實具體聲明 → 留痕自證 | 揭露 |
@@ -108,6 +111,7 @@ flowchart TD
 | skill | 功能 | 階段 |
 |---|---|---|
 | [`boya`](skills/boya) | **唯一推薦入口**：第一次呼叫後自動定位、執行下一個 skill、保存檢查點；研究問題、框架、方法與取捨一律硬停等你拍板 | 導航 |
+| [`research-record`](skills/research-record) | 研究專案檔案：使用者明確啟用後，保存材料指標、人工決策、未知項與 boya checkpoint；不複製全文、不自動替使用者確認決策 | 全程選用 |
 
 ## 🚀 安裝
 
@@ -118,7 +122,7 @@ flowchart TD
 打開 Open Science Desktop、Codex 或 Claude Code，把這句話貼進去：
 
 ```text
-幫我從 https://github.com/DylanChiang-Dev/BOYA-skills 安裝全部 15 個 Boya skills，不要只安裝 reference-check。若在 Open Science Desktop，請安裝到當前工作區的 .opencode/skills/；否則先判斷目前的 agent 環境與可用的 skills 目錄。請說明會寫入哪些路徑，等我確認後再執行。
+幫我從 https://github.com/DylanChiang-Dev/BOYA-skills 安裝全部 17 個 Boya skills，不要只安裝 reference-check。若在 Open Science Desktop，請安裝到當前工作區的 .opencode/skills/；否則先判斷目前的 agent 環境與可用的 skills 目錄。請說明會寫入哪些路徑，等我確認後再執行。
 ```
 
 常見目標路徑：
@@ -142,7 +146,7 @@ mkdir -p .opencode/skills
 cp -r BOYA-skills/skills/* .opencode/skills/
 ```
 
-安裝後應在 Skills 頁看到全部 15 個 Boya skills。從 `boya` 開始，不要用 Open Science Desktop 內建的全自動 `ai4s-agent` 取代 Boya 的人工決策硬門。
+安裝後應在 Skills 頁看到全部 17 個 Boya skills。從 `boya` 開始，不要用 Open Science Desktop 內建的全自動 `ai4s-agent` 取代 Boya 的人工決策硬門。
 
 **Codex 全域安裝（所有專案可用）**
 
@@ -189,7 +193,7 @@ cp -r BOYA-skills/skills/* .claude/skills/
 
 每個 skill 都拿**真實研究材料**跑過、把暴露的坑寫回規則——多數用在作者自己那本碩士論文上，是一條工作流全鏈的真實示範。
 
-驗證狀態採三層：`Draft`、`Beta`、`Stable`。1.0 工作流的真實案例與 evidence ledger 全部保留；2.0 因技術 ID、觸發描述與自動接力協定均有變更，目前 15 個 skill 暫列 **Beta**。結構化案例與手動模型 runner 已就位，通過硬門／誠信 3/3 與其他 MUST ≥90% 後才恢復 Stable。詳見 [`VERIFICATION.md`](VERIFICATION.md)。
+驗證狀態採三層：`Draft`、`Beta`、`Stable`。1.0 工作流的真實案例與 evidence ledger 全部保留；2.0 因技術 ID、觸發描述、自動接力協定與四項新能力均有變更，目前 17 個 skill 暫列 **Beta**。結構化案例與手動模型 runner 已就位，通過硬門／誠信 3/3 與其他 MUST ≥90% 後才恢復 Stable。詳見 [`VERIFICATION.md`](VERIFICATION.md)。
 
 | # | 案例 | 一句話戰果 |
 |---|---|---|
@@ -211,6 +215,8 @@ cp -r BOYA-skills/skills/* .claude/skills/
 | 016 | [literature-search 中文題全鏈探勘](examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md) | 中文精準題名反查命中真實 DOI，補齊「中文題探勘→候選分層→venue 待查」全鏈 |
 | 017 | [theoretical-framework 台灣碳費政策分析框架](examples/2026-06-30-framework-carbon-fee-policy.md) | 補足政策分析型分流：政策問題、分析維度、評估準則、政策代價與 GATE 全跑通 |
 | 018 | [journal-fit 對標 JALT 英文高教評量稿](examples/2026-06-30-venuefit-jalt-genai-assessment.md) | 核 JALT submissions page，坐實文章頁不等於作者須知、AI 揭露與 APA 7 必須回真實來源 |
+| 019 | [claim-audit 查台灣碳費主張＋批准後局部修訂](examples/2026-07-14-claim-audit-carbon-fee.md) | 一筆費率 supported、一筆方法宣稱 unsupported 直接 block；只改批准的 1/3 區塊，原稿不覆蓋 |
+| 020 | [research-record 續接碳費政策案例＋boya 新手走查](examples/2026-07-14-research-record-boya-onboarding.md) | 材料只存指標、決策分 pending/confirmed、未知仍 open；新手資訊已齊時不重問 |
 
 ## 🧱 設計原則
 
@@ -240,6 +246,7 @@ Bug、公開問題與功能建議請使用 [GitHub Issues](https://github.com/Dy
 | `0.X.0` | 新 skill 發布或工作流結構調整，中號 +1 |
 | `1.0.0` | 全套 skill 穩定版 |
 | `2.0.0` | 直白技術 ID、博雅單入口接力、結構化模型回歸與確定性查詢工具 |
+| `2.1.0` | 主張回源查核、選用研究檔案、批准後局部修訂與逐題新手路由；全套增至 17 個 skill |
 
 每個版本打 git tag，CHANGELOG 記在 [`MEMORY.md`](MEMORY.md#changelog)。
 
@@ -251,6 +258,7 @@ Bug、公開問題與功能建議請使用 [GitHub Issues](https://github.com/Dy
 
 - [**academic-research-skills**](https://github.com/Imbad0202/academic-research-skills)（ARS）—— 誠信閘門與引用核驗的理念方向
 - [**Supervisor-Skills**](https://github.com/HKUSTDial/Supervisor-Skills)（HKUST）—— 把導師判斷編碼成 skill、投稿前自審（模擬審查）的立意
+- [**RW Research Skill**](https://github.com/rolandwonglonam/rw-research-skill)（Roland Wayne）—— 研究狀態檔案、主張回源查核、hash 局部修訂與逐題新手路由的理念啟發；Boya 依自身人類在環邊界與 MIT 規範原創重寫，未複製其 Apache-2.0 文字或程式
 - **The AI Scientist**（Lu et al., 2024, [arXiv:2408.06292](https://arxiv.org/abs/2408.06292), Sakana AI）—— 全自動化研究的失敗模式
 - **Zhao et al.（2026）** —— 對幻覺引用的大規模實證
 - [**彭思達公開研究筆記**](https://pengsida.notion.site/c1a22465a0fa4b15a12985223916048e) —— 論文段落寫作方法（主題句前置、反向大綱）的理念啟發；僅借鑑方法理念，規則與行文原創重寫

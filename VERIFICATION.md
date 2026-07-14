@@ -11,11 +11,13 @@
 | Beta | 可用但仍在磨 | 已有實測或局部案例，但邊界條件、地區語境或資料類型仍需要更多回歸 |
 | Draft | 草稿 | 只有設計或少量試跑，尚未形成可依賴的實測證據鏈 |
 
-Boya 1.0 的 15 個工作流均有真實材料與 evidence ledger，該歷史證據繼續有效。Boya 2.0 更換 14 個技術 ID、精簡觸發描述、重寫單入口接力協定並加入工具腳本，因此目前 15 個 skill 暫列 **Beta**。結構化案例已建立；維護者顯式執行模型矩陣後，硬門與誠信規則須 3/3 通過、其他 MUST 須達 90%，才恢復 Stable。
+Boya 1.0 的 15 個工作流均有真實材料與 evidence ledger，該歷史證據繼續有效。Boya 2.0 更換 14 個技術 ID、精簡觸發描述並重寫單入口接力協定；Boya 2.1 再新增 `claim-audit`、`research-record`、批准後局部修訂與逐題新手定位，因此目前 17 個 skill 暫列 **Beta**。結構化案例已建立；維護者顯式執行模型矩陣後，硬門與誠信規則須 3/3 通過、其他 MUST 須達 90%，才恢復 Stable。
 
 - **journal-fit**：1.0 已用中英文兩類作者須知實跑；2.0 新增 source_id 硬規，待模型矩陣確認後恢復 Stable。
 - **theoretical-framework**：1.0 已有國際關係、混合方法、人文思辨與政策分析案例；2.0 僅改名與精簡觸發，待回歸。
 - **literature-search**：1.0 已跑通中文題全鏈與 venue 證據；2.0 新增確定性查詢腳本，待回歸。
+- **claim-audit**：已以環境部／氣候變遷署碳費頁面跑通 supported／unsupported／block 與局部修訂接力；待跨學科、長稿與模型矩陣回歸。
+- **research-record**：已跑通材料、未知、pending／confirmed 決策與 checkpoint 全鏈；待跨對話真實恢復與模型矩陣回歸。
 
 ## Boya 2.0 驗證入口
 
@@ -107,6 +109,44 @@ Boya 維持人文社科研究者可讀、可手動介入的技能庫，不把每
 | lit-discovery | 1.0.0 Stable | 2026-06-30 | 中文題「生成式 AI 與台灣學習評量／高等教育治理」，OpenAlex／Crossref 精準題名反查＋英文對照 | 中文寬查無命中不等於無文獻；書目已核不等於 venue 已核；TSSCI/CSSCI 來源層級需明寫 | examples/2026-06-30-litdiscovery-genai-assessment-taiwan.md |
 | framework-build | 1.0.0 Stable | 2026-06-30 | 台灣碳費政策，環境部／氣候變遷署公開材料 | 政策分析型＝分析框架；多準則不可假量化；政策事實與方法文獻分開 | examples/2026-06-30-framework-carbon-fee-policy.md |
 | venue-fit | 1.0.0 Stable | 2026-06-30 | Ogunleye et al. 2024 × Journal of Applied Learning & Teaching submissions page | 已發表文章頁不等於作者須知；英文刊格式/AI 要求須回頁面；查不到字數仍待補 | examples/2026-06-30-venuefit-jalt-genai-assessment.md |
+| claim-audit | 2.1.0 Beta | 2026-07-14 | 環境部碳費費率公告／氣候變遷署碳費專區 | 官方政策頁可撐制度事實，不能冒充方法文獻；DOI／URL 存在不等於支持主張 | examples/2026-07-14-claim-audit-carbon-fee.md |
+| academic-revision patch | 2.1.0 Beta | 2026-07-14 | 同一碳費政策短稿，3 個 Markdown 區塊 | 口頭要求「其他不動」不足留證；需全文／區塊 hash、批准清單與 preserved ratio | examples/2026-07-14-claim-audit-carbon-fee.md |
+| research-record | 2.1.0 Beta | 2026-07-14 | 碳費政策 2 個官方指標＋框架產物＋人工拍板記錄 | checkpoint 不等於可續接檔案；推薦不等於使用者 confirmed；未知不因接力消失 | examples/2026-07-14-research-record-boya-onboarding.md |
+| boya onboarding | 2.1.0 Beta | 2026-07-14 | 同一碳費政策材料與明確框架目標 | 逐題引導不是固定問卷；材料與目標已知時不重問、不讀目錄 | examples/2026-07-14-research-record-boya-onboarding.md |
+
+## Evidence Ledger 紀錄（2026-07-14 Boya 2.1 四項能力）
+
+### 2026-07-14 · claim-audit · 政策事實與方法主張不可混用來源
+
+- claim：官方政策頁可支持費率、對象與制度機制，不能直接支持「多準則政策分析是客觀最佳方法」。
+- source：examples/2026-07-14-claim-audit-carbon-fee.md；環境部費率公告；氣候變遷署碳費專區。
+- check：2026-07-14 回取兩個官方頁，定位 300／50／100 元費率，再搜方法主張；用標準庫建 2 筆 claim、來源定位與 verdict。
+- result：費率 supported；客觀最佳方法 unsupported；gate 回 block。
+- next：已寫回 `claim-audit` 範圍對齊、verdict 參考與 eval；待長稿與不同學科測試。
+
+### 2026-07-14 · academic-revision · 批准後只改一個區塊
+
+- claim：sidecar manifest 與區塊 hash 可把「只改這段」變成可驗證的範圍控制。
+- source：examples/2026-07-14-claim-audit-carbon-fee.md；同一政策短稿。
+- check：將短稿切為 3 區塊，proposal 只指 B0003，記錄批准後 apply，核對原稿、新稿 hash 與報告。
+- result：只改 1/3，保留 2/3；原稿未覆蓋，費率段原樣保留。
+- next：已寫回 `academic-revision` 第 3.5 步與 stale／approval eval。
+
+### 2026-07-14 · research-record · pending 不可越關
+
+- claim：研究檔案必須把產物、決策與未知項分開，並用 confirmed decision 反查 `ready_to_advance`。
+- source：examples/2026-07-14-research-record-boya-onboarding.md；碳費政策框架真實案例。
+- check：實跑 init、3 artifact、1 unknown、propose／confirm decision、sync checkpoint、validate／summary；反向測 pending 越關與重複 ID。
+- result：全鏈通過；無 `--user-confirmed` 與 pending 越關均 exit 2，原 JSON 未被破壞。
+- next：已寫回 schema、`boya` 選用同步與 eval；待真實跨對話恢復。
+
+### 2026-07-14 · boya · 逐題新手入口不是固定問卷
+
+- claim：新手提供的材料與目標已足夠定位時，不應重問或展示完整 skill 清單。
+- source：examples/2026-07-14-research-record-boya-onboarding.md；同一碳費政策材料。
+- check：以「已有兩個官方來源，本輪要建分析框架」走查定位規則，另建「不知道從哪開始」的結構化案例。
+- result：規則可直接定位 theoretical-framework；純新手第一輪只問手上有什麼。
+- next：已寫回 `boya` 新手入口與 eval；未跑付費模型矩陣，保持 Beta。
 
 ## Evidence Ledger 紀錄（2026-06-30 1.0.0 全套 Stable）
 

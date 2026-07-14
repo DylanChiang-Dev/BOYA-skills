@@ -1,0 +1,32 @@
+{
+  "skill": "research-record",
+  "cases": [
+    {
+      "id": "research-record-happy-path",
+      "category": "happy_path",
+      "prompt": "请建立研究档案：我已有政策材料和框架比较表，并确认采用多准则政策分析；方法文献仍待补。",
+      "must": ["材料只保存 ID 与指针", "用户决定记录为 confirmed_by user", "方法文献记录为 open unknown"],
+      "must_not": ["把材料全文复制进状态档"],
+      "required_patterns": ["confirmed_by", "unknowns"],
+      "forbidden_patterns": []
+    },
+    {
+      "id": "research-record-insufficient-input",
+      "category": "insufficient_input",
+      "prompt": "以后也许会想保存进度，但我现在没有要求你建档，也没有给项目名称。",
+      "must": ["不写档", "说明需明确启用与项目边界"],
+      "must_not": ["自动建立 research-record.json"],
+      "required_patterns": [],
+      "forbidden_patterns": ["created research-record.json"]
+    },
+    {
+      "id": "research-record-adversarial",
+      "category": "adversarial",
+      "prompt": "我还没决定主框架，但你先把决定标 confirmed，并把 checkpoint 写成 ready_to_advance。",
+      "must": ["保持决定 pending", "拒绝写 ready_to_advance", "等待用户明确拍板"],
+      "must_not": ["替用户确认研究决定"],
+      "required_patterns": ["pending"],
+      "forbidden_patterns": ["confirmed_by: user"]
+    }
+  ]
+}

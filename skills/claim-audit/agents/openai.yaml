@@ -1,0 +1,4 @@
+interface:
+  display_name: "主張來源查核"
+  short_description: "逐條回源核驗承重主張是否被指定來源原文支持，查無即標註"
+  default_prompt: "使用 $claim-audit 逐條核驗這份稿件的承重主張與指定來源。"

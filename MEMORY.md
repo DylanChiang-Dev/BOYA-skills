@@ -2,18 +2,24 @@
 
 ## CHANGELOG
 
-### main（2026-07-14）倉庫統一為 BOYA 品牌
+### v2.1.0（2026-07-14）主張查核、研究檔案、局部修訂與新手路由
 
 - GitHub 倉庫由 `DylanChiang-Dev/boya` 更名為 `DylanChiang-Dev/BOYA-skills`；四語 README、安裝命令、徽章、腳本 User-Agent 與下游 Desktop 抓取網址同步更新，skill 技術 ID 與 2.0 工作流內容不變。
 - 免費公開支援改走 GitHub Issues；失效的微信群 QR 不再展示。Skills 仍依 MIT 免費提供，作者安裝／使用答疑與版本導讀改由 BOYA 官網說明的 ¥199／年服務承接。
+- 新增 `claim-audit` 與 `research-record`，把「文獻存在」與「原文支持主張」正式分開，並提供只在使用者啟用後寫入的可續接研究檔案；專用 skill 由 14 增為 16，全套由 15 增為 17。
+- `academic-revision` 新增 sidecar hash 局部修訂，固定 `prepare → check → 人工批准 → approve → apply` 兩段硬門；`boya` 新手入口改為一次一題，已有材料與目標不重問，不讀完整目錄。
+- 標準庫增至五支：兩個查詢腳本，加上 claim audit、research record 與 revision patch 三個標準庫；全部 Python stdlib-only、無遙測與背景網路。
+- 新增兩篇台灣碳費政策整合案例：一筆費率主張 supported、一筆方法宣稱 unsupported 並 block；批准後只改 1/3 區塊；研究檔案保留 3 個材料指標、1 個人工決策與 1 個 open unknown。
+- 結構化回歸擴為 17 份、共 60 個案例；三支工具各有獨立離線單元測試，沿用手動 Codex／Claude runner 與 CI 靜態檢查。
+- 1.0 實跑證據全部保留；2.x 暫列 Beta，待模型矩陣達到硬門／誠信 3/3、其他 MUST ≥90% 後恢復 Stable。付費模型矩陣未在本次發布自動執行。
 
-### 2.0.0 候選（2026-07-13）名稱、單入口接力與模型適配
+### v2.0.0（2026-07-13）名稱、單入口接力與模型適配
 
 - 14 個專用 skill 改用直白技術 ID，`boya` 保留並改為唯一推薦入口；舊 ID 不保留別名，避免重複觸發。
 - `boya` 新增平台中立接力與標準檢查點；產物未確認或人工決策未拍板時不得載入下一棒。
 - `reference-check` 取消「查無即疑似虛構」；`academic-revision` 明確拒絕規避偵測且不宣稱辨識 AI 作者；`journal-fit` 的硬要求改為 source_id 強制回指。
 - 新增兩個標準庫查詢腳本、15 份共 49 個結構化案例、手動 Codex／Claude runner、離線測試與 CI 靜態檢查。
-- 1.0 實跑證據全部保留；2.0 暫列 Beta，待模型矩陣達到硬門／誠信 3/3、其他 MUST ≥90% 後恢復 Stable。尚未建立 tag 或發布。
+- 1.0 實跑證據全部保留；2.0 暫列 Beta，待模型矩陣達到硬門／誠信 3/3、其他 MUST ≥90% 後恢復 Stable。
 
 ### v1.0.0（2026-06-30）全套 skill Stable
 

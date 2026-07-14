@@ -1,6 +1,6 @@
 ---
 name: academic-revision
-description: 學術潤稿與作者聲音校準。當使用者說「幫我潤稿」「用我的文風改」「收緊這段」「檢查套話」時使用。只修改既有文字，不整篇代寫、不判定文本是否由 AI 生成，也不協助規避 AIGC 偵測。
+description: 學術潤稿、作者聲音校準與批准後的局部修訂。當使用者說「幫我潤稿」「用我的文風改」「只改這幾段」「收緊這段」「檢查套話」時使用。只修改既有文字，不整篇代寫、不判定文本是否由 AI 生成，也不協助規避 AIGC 偵測。
 ---
 
 # 學術潤稿
@@ -19,6 +19,7 @@ description: 學術潤稿與作者聲音校準。當使用者說「幫我潤稿�
 4. **診斷風格症狀，不判定來源。** 套話、空洞排比與機械過渡也可能出自人類；只能指出文本問題及修改理由，不能宣稱「檢測出 AI」。
 5. **改稿要有停止條件。** 潤稿會上癮，越改越「順」、也越改越不像你。設好停損點，別把自己改沒了。
 6. **不協助規避偵測。** 拒絕「降低 AI 率」「騙過 Turnitin／AIGC 偵測」等目標；可改為正當的作者聲音校準，並指向 `ai-use-disclosure` 如實揭露。
+7. **只套用使用者批准的區塊。** 檔案級修訂先產提案與預覽，硬停等使用者指定 block ID；沒有批准或原稿 hash 已變就不得套用。
 
 ## 工作流
 
@@ -42,6 +43,27 @@ description: 學術潤稿與作者聲音校準。當使用者說「幫我潤稿�
 - **補推理橋**：「這裡 claim 到 evidence 跳太快，幫我把 warrant 點出來。」
 
 紅線：**整段、整節、整章「幫我寫」不行。** 分界線很簡單——你是在改「你已經寫出來的東西」，還是在讓 AI「生出你還沒寫的東西」？前者可以，後者越界。
+
+### 第 3.5 步：檔案級局部修訂（選用）
+
+當使用者要求「只改這幾段，其他不動」，使用標準庫固定原稿與區塊：
+
+```bash
+python3 scripts/revision_patch.py prepare draft.md --manifest draft.manifest.json
+python3 scripts/revision_patch.py check --manifest draft.manifest.json --proposal revision.proposal.json
+```
+
+先輸出每個擬改 block ID、原文預覽、新文字、理由與修改比例，然後**硬停等使用者批准**。使用者回覆明確 block ID 後，才執行：
+
+```bash
+python3 scripts/revision_patch.py approve --manifest draft.manifest.json --proposal revision.proposal.json --block B0003 --note "使用者批准 B0003" --output revision.patch.json --user-confirmed
+python3 scripts/revision_patch.py apply --manifest draft.manifest.json --patch revision.patch.json --output draft.revised.md --report revision.report.json
+```
+
+- v1 只替換既有區塊，不新增、刪除或重排。結構修改回 `paper-outline` 重定範圍。
+- 未涉及文字與分隔字元原樣保留；新稿另存，絕不覆蓋原稿。
+- 超過 50% 區塊時不再假裝是「局部」；必須使用者另行明確批准大範圍修訂。
+- JSON 格式與區塊邊界見 [references/patch-format.md](references/patch-format.md)。
 
 ### 第 4 步：中文學術風格症狀清單
 
@@ -74,6 +96,8 @@ description: 學術潤稿與作者聲音校準。當使用者說「幫我潤稿�
 4. **AI 腔的「專業偽裝」**（實測發現）：AI 腔最危險的地方，不是讀起來差，是讀起來**太完整、太整齊、太「professional」**——比你自己磕磕絆絆寫的好看，於是你捨不得刪。要警覺：**流暢整齊 ≠ 好**，那份四平八穩、每段都「總之」、滿是「顯著提升/巨大潛力」的稿，很可能正是 AI 腔最重的稿。（實測：一本談生成式 AI 的碩論，緒論本身就讀起來像 AI 生成——諷刺，但典型。）
 5. **整篇已是 AI 腔時，段落級潤救不了**（實測發現）：如果整份稿子從頭到尾都是 AI 腔（不是局部幾句），第 3 步的段落級收緊/換語氣是杯水車薪——這時需要的是**先校準出你的聲音，再用你的聲音把關鍵段落重寫**，而不是在 AI 腔上修修補補。局部潤稿治局部，整篇病要換寫法。
 6. **規避偵測偽裝成潤稿**：若成功標準是偵測分數下降或「看不出 AI」，拒絕該目標；只接受以清晰、準確和作者聲音為標準的修改。
+7. **口頭說「只改這段」但其他也漂移**：純提示詞無法證明未改區域原樣保留。檔案級任務走第 3.5 步，用全文／區塊 hash、批准清單與 preserved ratio 留證。
+8. **底稿變了還套舊 patch**：舊提案的行號可能已指到別段。任一 hash 不符就整批停止，不嘗試猜新位置。
 
 ## 邊界情況
 
