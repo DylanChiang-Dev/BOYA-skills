@@ -2,6 +2,11 @@
 
 ## CHANGELOG
 
+### main（2026-07-14）倉庫統一為 BOYA 品牌
+
+- GitHub 倉庫由 `DylanChiang-Dev/boya` 更名為 `DylanChiang-Dev/BOYA-skills`；四語 README、安裝命令、徽章、腳本 User-Agent 與下游 Desktop 抓取網址同步更新，skill 技術 ID 與 2.0 工作流內容不變。
+- 免費公開支援改走 GitHub Issues；失效的微信群 QR 不再展示。Skills 仍依 MIT 免費提供，作者安裝／使用答疑與版本導讀改由 BOYA 官網說明的 ¥199／年服務承接。
+
 ### 2.0.0 候選（2026-07-13）名稱、單入口接力與模型適配
 
 - 14 個專用 skill 改用直白技術 ID，`boya` 保留並改為唯一推薦入口；舊 ID 不保留別名，避免重複觸發。

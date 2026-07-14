@@ -16,8 +16,8 @@ but it will not fabricate references, ghostwrite conclusions, or help you hide A
 
 <br/>
 
-[![Stars](https://img.shields.io/github/stars/DylanChiang-Dev/boya?style=for-the-badge&logo=github&color=ffca28)](https://github.com/DylanChiang-Dev/boya/stargazers)
-[![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/boya?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/boya/network/members)
+[![Stars](https://img.shields.io/github/stars/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=ffca28)](https://github.com/DylanChiang-Dev/BOYA-skills/stargazers)
+[![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/BOYA-skills/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4caf50?style=for-the-badge)](LICENSE)
 [![Skills](https://img.shields.io/badge/skills-15-7e57c2?style=for-the-badge)](#the-15-skills)
 [![version](https://img.shields.io/badge/version-2.0.0-7e57c2?style=for-the-badge)](MEMORY.md)
@@ -118,7 +118,7 @@ flowchart TD
 Open Open Science Desktop, Codex, or Claude Code and paste:
 
 ```text
-Install all 15 Boya skills from https://github.com/DylanChiang-Dev/boya, not only reference-check. In Open Science Desktop, install them into the current workspace's .opencode/skills/ directory; otherwise, first detect my current agent environment and available skills directories. Tell me which paths you will write to, and wait for my confirmation before making changes.
+Install all 15 Boya skills from https://github.com/DylanChiang-Dev/BOYA-skills, not only reference-check. In Open Science Desktop, install them into the current workspace's .opencode/skills/ directory; otherwise, first detect my current agent environment and available skills directories. Tell me which paths you will write to, and wait for my confirmation before making changes.
 ```
 
 Common target paths:
@@ -136,10 +136,10 @@ Each skill directory only needs a `SKILL.md` file.
 **Open Science Desktop workspace install (recommended)**
 
 ```bash
-git clone https://github.com/DylanChiang-Dev/boya.git
+git clone https://github.com/DylanChiang-Dev/BOYA-skills.git
 
 mkdir -p .opencode/skills
-cp -r boya/skills/* .opencode/skills/
+cp -r BOYA-skills/skills/* .opencode/skills/
 ```
 
 After installation, all 15 Boya skills should appear on the Skills page. Start with `boya`; do not replace Boya's human decision gates with Open Science Desktop's fully autonomous `ai4s-agent`.
@@ -147,24 +147,24 @@ After installation, all 15 Boya skills should appear on the Skills page. Start w
 **Codex global install (available to all projects)**
 
 ```bash
-git clone https://github.com/DylanChiang-Dev/boya.git
+git clone https://github.com/DylanChiang-Dev/BOYA-skills.git
 
 mkdir -p ~/.agents/skills
-cp -r boya/skills/* ~/.agents/skills/
+cp -r BOYA-skills/skills/* ~/.agents/skills/
 ```
 
 If your Codex setup explicitly loads skills from `$CODEX_HOME/skills/`, use:
 
 ```bash
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-cp -r boya/skills/* "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -r BOYA-skills/skills/* "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
 **Codex project-local install (current project only)**
 
 ```bash
 mkdir -p .agents/skills
-cp -r boya/skills/* .agents/skills/
+cp -r BOYA-skills/skills/* .agents/skills/
 ```
 
 After installation, call a skill explicitly, such as `$reference-check`, or use natural language such as: "Check whether these references are real."
@@ -173,14 +173,14 @@ After installation, call a skill explicitly, such as `$reference-check`, or use 
 
 ```bash
 mkdir -p ~/.claude/skills
-cp -r boya/skills/* ~/.claude/skills/
+cp -r BOYA-skills/skills/* ~/.claude/skills/
 ```
 
 **Claude Code project-local install (current project only)**
 
 ```bash
 mkdir -p .claude/skills
-cp -r boya/skills/* .claude/skills/
+cp -r BOYA-skills/skills/* .claude/skills/
 ```
 
 After installation, use natural language in Claude Code, for example: "Check whether these references are real."
@@ -260,24 +260,13 @@ Validation uses `Draft`, `Beta`, and `Stable`. All 1.0 real-world cases and evid
 
 ## 💬 Join the Discussion
 
-Questions, usage feedback, or want to share your forked version? Jump into the chat:
-
-<table>
-<tr>
-<td align="center"><b>WeChat Group</b><br/>Boya Skills<br/><sub>(QR codes expire periodically — if expired, open an issue and the author will update)</sub></td>
-<td align="center"><b>Telegram Group</b></td>
-</tr>
-<tr>
-<td align="center"><img src="assets/wechat-group.jpg" width="220"/></td>
-<td align="center"><img src="assets/telegram-group.jpg" width="220"/></td>
-</tr>
-</table>
+Use [GitHub Issues](https://github.com/DylanChiang-Dev/BOYA-skills/issues) for bugs, public questions, and feature requests. Telegram remains a free community space. For direct installation and usage help from the author plus release briefings, see the [BOYA author support group (CNY 199/year)](https://boya-website.pages.dev/zh-hant/community/). The Skills remain free under MIT.
 
 ## ⭐ Star History
 
 If this repo helps you, leave a star — so more humanities students stuck in their papers, with no one to talk to, can find it.
 
-[![Star History Chart](https://api.star-history.com/svg?repos=DylanChiang-Dev/boya&type=Date)](https://star-history.com/#DylanChiang-Dev/boya&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=DylanChiang-Dev/BOYA-skills&type=Date)](https://star-history.com/#DylanChiang-Dev/BOYA-skills&Date)
 
 ## 🏷️ Versioning
 

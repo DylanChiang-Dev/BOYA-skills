@@ -16,8 +16,8 @@ Boya 幫你磨題、查引用、讀文獻、設計方法、搭大綱、修初稿
 
 <br/>
 
-[![Stars](https://img.shields.io/github/stars/DylanChiang-Dev/boya?style=for-the-badge&logo=github&color=ffca28)](https://github.com/DylanChiang-Dev/boya/stargazers)
-[![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/boya?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/boya/network/members)
+[![Stars](https://img.shields.io/github/stars/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=ffca28)](https://github.com/DylanChiang-Dev/BOYA-skills/stargazers)
+[![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/BOYA-skills/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4caf50?style=for-the-badge)](LICENSE)
 [![Skills](https://img.shields.io/badge/skills-15-7e57c2?style=for-the-badge)](#十五個-skill)
 [![version](https://img.shields.io/badge/version-2.0.0-7e57c2?style=for-the-badge)](MEMORY.md)
@@ -118,7 +118,7 @@ flowchart TD
 打開 Open Science Desktop、Codex 或 Claude Code，把這句話貼進去：
 
 ```text
-幫我從 https://github.com/DylanChiang-Dev/boya 安裝全部 15 個 Boya skills，不要只安裝 reference-check。若在 Open Science Desktop，請安裝到當前工作區的 .opencode/skills/；否則先判斷目前的 agent 環境與可用的 skills 目錄。請說明會寫入哪些路徑，等我確認後再執行。
+幫我從 https://github.com/DylanChiang-Dev/BOYA-skills 安裝全部 15 個 Boya skills，不要只安裝 reference-check。若在 Open Science Desktop，請安裝到當前工作區的 .opencode/skills/；否則先判斷目前的 agent 環境與可用的 skills 目錄。請說明會寫入哪些路徑，等我確認後再執行。
 ```
 
 常見目標路徑：
@@ -136,10 +136,10 @@ flowchart TD
 **Open Science Desktop 工作區安裝（推薦）**
 
 ```bash
-git clone https://github.com/DylanChiang-Dev/boya.git
+git clone https://github.com/DylanChiang-Dev/BOYA-skills.git
 
 mkdir -p .opencode/skills
-cp -r boya/skills/* .opencode/skills/
+cp -r BOYA-skills/skills/* .opencode/skills/
 ```
 
 安裝後應在 Skills 頁看到全部 15 個 Boya skills。從 `boya` 開始，不要用 Open Science Desktop 內建的全自動 `ai4s-agent` 取代 Boya 的人工決策硬門。
@@ -147,24 +147,24 @@ cp -r boya/skills/* .opencode/skills/
 **Codex 全域安裝（所有專案可用）**
 
 ```bash
-git clone https://github.com/DylanChiang-Dev/boya.git
+git clone https://github.com/DylanChiang-Dev/BOYA-skills.git
 
 mkdir -p ~/.agents/skills
-cp -r boya/skills/* ~/.agents/skills/
+cp -r BOYA-skills/skills/* ~/.agents/skills/
 ```
 
 若你的 Codex 明確使用 `$CODEX_HOME/skills/` 載入技能，改用：
 
 ```bash
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-cp -r boya/skills/* "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -r BOYA-skills/skills/* "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
 **Codex 專案安裝（只給當前專案用）**
 
 ```bash
 mkdir -p .agents/skills
-cp -r boya/skills/* .agents/skills/
+cp -r BOYA-skills/skills/* .agents/skills/
 ```
 
 裝好後在 Codex 裡可用 `$reference-check` 這類明確呼叫，也可以直接用自然語言觸發，例如：「幫我查核這份參考文獻的真偽」。
@@ -173,14 +173,14 @@ cp -r boya/skills/* .agents/skills/
 
 ```bash
 mkdir -p ~/.claude/skills
-cp -r boya/skills/* ~/.claude/skills/
+cp -r BOYA-skills/skills/* ~/.claude/skills/
 ```
 
 **Claude Code 專案安裝（只給當前專案用）**
 
 ```bash
 mkdir -p .claude/skills
-cp -r boya/skills/* .claude/skills/
+cp -r BOYA-skills/skills/* .claude/skills/
 ```
 
 裝好後在 Claude Code 裡直接用自然語言觸發，例如：「幫我查核這份參考文獻的真偽」。
@@ -224,24 +224,13 @@ cp -r boya/skills/* .claude/skills/
 
 ## 💬 加入討論
 
-有問題、用法回饋、想分享自己改的版本？歡迎進群聊：
-
-<table>
-<tr>
-<td align="center"><b>微信群</b><br/>博雅 skills<br/><sub>（二維碼有時效，過期請開 issue 回報，作者會更新）</sub></td>
-<td align="center"><b>Telegram 群</b></td>
-</tr>
-<tr>
-<td align="center"><img src="assets/wechat-group.jpg" width="220"/></td>
-<td align="center"><img src="assets/telegram-group.jpg" width="220"/></td>
-</tr>
-</table>
+Bug、公開問題與功能建議請使用 [GitHub Issues](https://github.com/DylanChiang-Dev/BOYA-skills/issues)。Telegram 群維持免費交流；需要作者直接提供安裝、使用答疑與版本更新導讀，可加入 [BOYA 作者答疑群（¥199／年）](https://boya-website.pages.dev/zh-hant/community/)。Skills 本身始終依 MIT 免費提供。
 
 ## ⭐ Star 趨勢
 
 如果這個倉庫幫到你，按顆星——讓更多卡在論文裡、身邊沒有人可商量的文組生看到它。
 
-[![Star History Chart](https://api.star-history.com/svg?repos=DylanChiang-Dev/boya&type=Date)](https://star-history.com/#DylanChiang-Dev/boya&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=DylanChiang-Dev/BOYA-skills&type=Date)](https://star-history.com/#DylanChiang-Dev/BOYA-skills&Date)
 
 ## 🏷️ 版本策略
 

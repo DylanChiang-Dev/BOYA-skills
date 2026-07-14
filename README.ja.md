@@ -16,8 +16,8 @@ Boya はテーマの絞り込み、引用確認、文献読解、方法設計、
 
 <br/>
 
-[![Stars](https://img.shields.io/github/stars/DylanChiang-Dev/boya?style=for-the-badge&logo=github&color=ffca28)](https://github.com/DylanChiang-Dev/boya/stargazers)
-[![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/boya?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/boya/network/members)
+[![Stars](https://img.shields.io/github/stars/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=ffca28)](https://github.com/DylanChiang-Dev/BOYA-skills/stargazers)
+[![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/BOYA-skills/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4caf50?style=for-the-badge)](LICENSE)
 [![Skills](https://img.shields.io/badge/skills-15-7e57c2?style=for-the-badge)](#15-個の-skill)
 [![version](https://img.shields.io/badge/version-2.0.0-7e57c2?style=for-the-badge)](MEMORY.md)
@@ -118,7 +118,7 @@ flowchart TD
 Open Science Desktop、Codex、または Claude Code に次のように依頼します：
 
 ```text
-https://github.com/DylanChiang-Dev/boya から Boya の 15 個すべての skill をインストールしてください。reference-check だけをインストールしないでください。Open Science Desktop では、現在のワークスペースの .opencode/skills/ にインストールしてください。それ以外の環境では、まず現在の agent 環境と利用可能な skills ディレクトリを判断してください。書き込むパスを説明し、確認を待ってから実行してください。
+https://github.com/DylanChiang-Dev/BOYA-skills から Boya の 15 個すべての skill をインストールしてください。reference-check だけをインストールしないでください。Open Science Desktop では、現在のワークスペースの .opencode/skills/ にインストールしてください。それ以外の環境では、まず現在の agent 環境と利用可能な skills ディレクトリを判断してください。書き込むパスを説明し、確認を待ってから実行してください。
 ```
 
 よく使う保存先：
@@ -136,10 +136,10 @@ https://github.com/DylanChiang-Dev/boya から Boya の 15 個すべての skill
 **Open Science Desktop ワークスペースへのインストール（推奨）**
 
 ```bash
-git clone https://github.com/DylanChiang-Dev/boya.git
+git clone https://github.com/DylanChiang-Dev/BOYA-skills.git
 
 mkdir -p .opencode/skills
-cp -r boya/skills/* .opencode/skills/
+cp -r BOYA-skills/skills/* .opencode/skills/
 ```
 
 インストール後、Skills ページに Boya の 15 個すべての skill が表示されることを確認してください。`boya` から始め、Boya の人間による判断ゲートを Open Science Desktop 組み込みの全自動 `ai4s-agent` で置き換えないでください。
@@ -147,24 +147,24 @@ cp -r boya/skills/* .opencode/skills/
 **Codex 全体インストール（全プロジェクト共用）**
 
 ```bash
-git clone https://github.com/DylanChiang-Dev/boya.git
+git clone https://github.com/DylanChiang-Dev/BOYA-skills.git
 
 mkdir -p ~/.agents/skills
-cp -r boya/skills/* ~/.agents/skills/
+cp -r BOYA-skills/skills/* ~/.agents/skills/
 ```
 
 Codex が `$CODEX_HOME/skills/` から skill を読み込む設定の場合：
 
 ```bash
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-cp -r boya/skills/* "${CODEX_HOME:-$HOME/.codex}/skills/"
+cp -r BOYA-skills/skills/* "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
 **Codex プロジェクト内インストール（現在のプロジェクトのみ）**
 
 ```bash
 mkdir -p .agents/skills
-cp -r boya/skills/* .agents/skills/
+cp -r BOYA-skills/skills/* .agents/skills/
 ```
 
 インストール後は、`$reference-check` のように明示的に呼び出すか、「この参考文献が実在するか確認して」のように自然言語で依頼できます。
@@ -173,14 +173,14 @@ cp -r boya/skills/* .agents/skills/
 
 ```bash
 mkdir -p ~/.claude/skills
-cp -r boya/skills/* ~/.claude/skills/
+cp -r BOYA-skills/skills/* ~/.claude/skills/
 ```
 
 **Claude Code プロジェクト内インストール（現在のプロジェクトのみ）**
 
 ```bash
 mkdir -p .claude/skills
-cp -r boya/skills/* .claude/skills/
+cp -r BOYA-skills/skills/* .claude/skills/
 ```
 
 インストール後は Claude Code で自然言語で依頼できます。例：「この参考文献が実在するか確認して」。
@@ -259,24 +259,13 @@ cp -r boya/skills/* .claude/skills/
 
 ## 💬 ディスカッションに参加
 
-質問、使用フィードバック、自分で改良したバージョンの共有など、お気軽にどうぞ：
-
-<table>
-<tr>
-<td align="center"><b>WeChat グループ</b><br/>博雅 skills<br/><sub>（QR コードには有効期限があります。期限切れの場合は issue で報告してください。著者が更新します）</sub></td>
-<td align="center"><b>Telegram グループ</b></td>
-</tr>
-<tr>
-<td align="center"><img src="assets/wechat-group.jpg" width="220"/></td>
-<td align="center"><img src="assets/telegram-group.jpg" width="220"/></td>
-</tr>
-</table>
+Bug、公開質問、機能提案は [GitHub Issues](https://github.com/DylanChiang-Dev/BOYA-skills/issues) を利用してください。Telegram は無料コミュニティとして継続します。著者によるインストール・使用方法の直接サポートと更新解説は、[BOYA 著者サポートグループ（年間 CNY 199）](https://boya-website.pages.dev/zh-hant/community/) を参照してください。Skills 自体は MIT の下で常に無料です。
 
 ## ⭐ Star の推移
 
 このリポジトリが役に立ったら、Star を押してください——論文に行き詰まり、相談できる人が身近にいない文系の学生にも見えるようにするために。
 
-[![Star History Chart](https://api.star-history.com/svg?repos=DylanChiang-Dev/boya&type=Date)](https://star-history.com/#DylanChiang-Dev/boya&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=DylanChiang-Dev/BOYA-skills&type=Date)](https://star-history.com/#DylanChiang-Dev/BOYA-skills&Date)
 
 ## 🏷️ バージョン戦略
 

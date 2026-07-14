@@ -66,7 +66,7 @@ def request_json(
     cache = cache_dir / f"{hashlib.sha256(url.encode()).hexdigest()}.json"
     if cache.exists():
         return {"status": "cached", "data": json.loads(cache.read_text(encoding="utf-8"))}
-    headers = {"User-Agent": "Boya/2.0 (+https://github.com/DylanChiang-Dev/boya)"}
+    headers = {"User-Agent": "Boya/2.0 (+https://github.com/DylanChiang-Dev/BOYA-skills)"}
     for attempt in range(retries + 1):
         try:
             with urllib.request.urlopen(

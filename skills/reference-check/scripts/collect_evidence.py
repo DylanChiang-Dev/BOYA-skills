@@ -73,7 +73,7 @@ def request_json(
     cached = cache_path(cache_dir, url)
     if cached.exists():
         return {"status": "cached", "url": url, "data": json.loads(cached.read_text(encoding="utf-8"))}
-    headers = {"User-Agent": "Boya/2.0 (+https://github.com/DylanChiang-Dev/boya)"}
+    headers = {"User-Agent": "Boya/2.0 (+https://github.com/DylanChiang-Dev/BOYA-skills)"}
     for attempt in range(retries + 1):
         try:
             req = urllib.request.Request(url, headers=headers)
