@@ -1,5 +1,7 @@
 語言：[繁體中文](README.md) | [简体中文](README.zh-CN.md) | [English](README.en.md) | [日本語](README.ja.md)
 
+> **遷移通知**：官方 Skills 已合併至 [BOYA](https://github.com/DylanChiang-Dev/BOYA)。本倉庫保留完整歷史與 MIT 授權，新的 Desktop 與 Skills 發布以 BOYA 為準。詳見 [MIGRATION.md](MIGRATION.md)。
+
 <div align="center">
 
 # 博雅 Boya
