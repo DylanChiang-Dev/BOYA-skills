@@ -19,7 +19,7 @@ but it will not fabricate references, ghostwrite conclusions, or help you hide A
 [![Stars](https://img.shields.io/github/stars/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=ffca28)](https://github.com/DylanChiang-Dev/BOYA-skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/BOYA-skills/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4caf50?style=for-the-badge)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-15-7e57c2?style=for-the-badge)](#the-15-skills)
+[![Skills](https://img.shields.io/badge/skills-17-7e57c2?style=for-the-badge)](#the-17-skills)
 [![version](https://img.shields.io/badge/version-2.0.0-7e57c2?style=for-the-badge)](MEMORY.md)
 [![English](https://img.shields.io/badge/English-Ready-e4002b?style=for-the-badge)](#)
 
@@ -75,7 +75,7 @@ flowchart TD
     RM -.what must only I decide?.-> S10
 ```
 
-## 📦 The 15 Skills
+## 📦 The 17 Skills
 
 > **One entry point plus fourteen focused skills equals fifteen.** Users only need to invoke `boya` first; it relays automatically, while experienced users may still call any focused skill directly. The 1.0 evidence remains intact; the 2.0 names, relay protocol, and model regressions are Beta until the explicit model matrix passes.
 
@@ -118,7 +118,7 @@ flowchart TD
 Open Open Science Desktop, Codex, or Claude Code and paste:
 
 ```text
-Install all 15 Boya skills from https://github.com/DylanChiang-Dev/BOYA-skills, not only reference-check. In Open Science Desktop, install them into the current workspace's .opencode/skills/ directory; otherwise, first detect my current agent environment and available skills directories. Tell me which paths you will write to, and wait for my confirmation before making changes.
+Install all 17 Boya skills from https://github.com/DylanChiang-Dev/BOYA-skills, not only reference-check. In Open Science Desktop, install them into the current workspace's .opencode/skills/ directory; otherwise, first detect my current agent environment and available skills directories. Tell me which paths you will write to, and wait for my confirmation before making changes.
 ```
 
 Common target paths:
@@ -142,7 +142,7 @@ mkdir -p .opencode/skills
 cp -r BOYA-skills/skills/* .opencode/skills/
 ```
 
-After installation, all 15 Boya skills should appear on the Skills page. Start with `boya`; do not replace Boya's human decision gates with Open Science Desktop's fully autonomous `ai4s-agent`.
+After installation, all 17 Boya skills should appear on the Skills page. Start with `boya`; do not replace Boya's human decision gates with Open Science Desktop's fully autonomous `ai4s-agent`.
 
 **Codex global install (available to all projects)**
 
@@ -225,7 +225,7 @@ This repository helps you state AI use honestly. It does not help with hiding AI
 
 Every skill has been run on **real research materials**, and the problems exposed have been written back into the rules — most cases come from the author's own master's thesis, serving as a real end-to-end workflow demonstration.
 
-Validation uses `Draft`, `Beta`, and `Stable`. All 1.0 real-world cases and evidence ledgers remain; because 2.0 changes technical IDs, trigger descriptions, and automatic relaying, all 15 skills are temporarily **Beta**. Stable requires 3/3 passes on gates and integrity rules and at least 90% on other MUST behaviors.
+Validation uses `Draft`, `Beta`, and `Stable`. All 1.0 real-world cases and evidence ledgers remain; because 2.0 changes technical IDs, trigger descriptions, and automatic relaying, all 17 skills are temporarily **Beta**. Stable requires 3/3 passes on gates and integrity rules and at least 90% on other MUST behaviors.
 
 | # | Case | One-Line Result |
 |---|---|---|

@@ -1,11 +1,14 @@
-# BOYA Skills Migration
+# BOYA Skills Repository Boundary
 
-The official BOYA Skills are now maintained in the `skills/` directory of
-the merged [BOYA repository](https://github.com/DylanChiang-Dev/BOYA).
+This repository is the canonical public source for the 17 official BOYA
+Skills, their public verification material, examples, templates, and offline
+checks. The Skills remain directly downloadable without a BOYA account.
 
-This repository is retained as the historical source and remains MIT-licensed.
-New Desktop releases and official Skills metadata are published from BOYA.
-The Skills remain directly downloadable without a BOYA account.
+The BOYA Desktop application, Pi runtime, account integration, and product
+assets are maintained privately in [BOYA Desktop](https://github.com/DylanChiang-Dev/BOYA-desktop).
+Authenticated pages, community, membership, administration, and account
+services are maintained privately in [BOYA Web](https://github.com/DylanChiang-Dev/BOYA-web).
 
-For the authenticated product page, community, membership, and account
-services, use the private [BOYA Web repository](https://github.com/DylanChiang-Dev/BOYA-web).
+The `skills/` directory and explicitly marked public support code remain under
+the MIT license. This repository does not grant permission to use BOYA or
+博雅 names, logos, product identity, or private services.

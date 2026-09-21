@@ -19,7 +19,7 @@ Boya はテーマの絞り込み、引用確認、文献読解、方法設計、
 [![Stars](https://img.shields.io/github/stars/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=ffca28)](https://github.com/DylanChiang-Dev/BOYA-skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/BOYA-skills/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4caf50?style=for-the-badge)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-15-7e57c2?style=for-the-badge)](#15-個の-skill)
+[![Skills](https://img.shields.io/badge/skills-17-7e57c2?style=for-the-badge)](#17-個の-skill)
 [![version](https://img.shields.io/badge/version-2.0.0-7e57c2?style=for-the-badge)](MEMORY.md)
 [![日本語](https://img.shields.io/badge/日本語-Ready-e4002b?style=for-the-badge)](#)
 
@@ -54,7 +54,7 @@ Boya の最上位の設計原則は**ヒューマン・イン・ザ・ループ�
 
 ## 🗺️ ワークフローマップ
 
-一つのアイデアから投稿可能な論文まで、15 個の skill がそれぞれ一段階を担当し、`boya` が最上層でナビゲートします：
+一つのアイデアから投稿可能な論文まで、17 個の skill がそれぞれ一段階を担当し、`boya` が最上層でナビゲートします：
 
 ```mermaid
 flowchart TD
@@ -75,9 +75,9 @@ flowchart TD
     RM -.何を自分で決めるか.-> S10
 ```
 
-## 📦 15 個の skill
+## 📦 17 個の skill
 
-> **1 個の入口＋14 個の専用 skill＝15 個**。利用者は最初に `boya` を呼ぶだけで、自動的に次へ引き継がれます。熟練者は各 skill を直接呼ぶこともできます。1.0 の実証記録は維持し、2.0 の名称・引継ぎ・モデル回帰は現在 Beta です。
+> **1 個の入口＋14 個の専用 skill＝17 個**。利用者は最初に `boya` を呼ぶだけで、自動的に次へ引き継がれます。熟練者は各 skill を直接呼ぶこともできます。1.0 の実証記録は維持し、2.0 の名称・引継ぎ・モデル回帰は現在 Beta です。
 
 ### コア · 一段階に一つ
 
@@ -118,7 +118,7 @@ flowchart TD
 Open Science Desktop、Codex、または Claude Code に次のように依頼します：
 
 ```text
-https://github.com/DylanChiang-Dev/BOYA-skills から Boya の 15 個すべての skill をインストールしてください。reference-check だけをインストールしないでください。Open Science Desktop では、現在のワークスペースの .opencode/skills/ にインストールしてください。それ以外の環境では、まず現在の agent 環境と利用可能な skills ディレクトリを判断してください。書き込むパスを説明し、確認を待ってから実行してください。
+https://github.com/DylanChiang-Dev/BOYA-skills から Boya の 17 個すべての skill をインストールしてください。reference-check だけをインストールしないでください。Open Science Desktop では、現在のワークスペースの .opencode/skills/ にインストールしてください。それ以外の環境では、まず現在の agent 環境と利用可能な skills ディレクトリを判断してください。書き込むパスを説明し、確認を待ってから実行してください。
 ```
 
 よく使う保存先：
@@ -127,7 +127,7 @@ https://github.com/DylanChiang-Dev/BOYA-skills から Boya の 15 個すべて�
 - Codex：全体 `~/.agents/skills/`；プロジェクト内 `.agents/skills/`；Codex の組み込み `$skill-installer` を使う場合は `$CODEX_HOME/skills/`（よくある既定値は `~/.codex/skills/`）に書き込むこともあります
 - Claude Code：全体 `~/.claude/skills/`；プロジェクト内 `.claude/skills/`
 
-`reference-check` など単一の skill 名を指定するのは、15 個すべてではなく 1 個だけ入れたい場合に限ります。
+`reference-check` など単一の skill 名を指定するのは、17 個すべてではなく 1 個だけ入れたい場合に限ります。
 
 ### 方法 2：全 skill を手動でコピーする
 
@@ -142,7 +142,7 @@ mkdir -p .opencode/skills
 cp -r BOYA-skills/skills/* .opencode/skills/
 ```
 
-インストール後、Skills ページに Boya の 15 個すべての skill が表示されることを確認してください。`boya` から始め、Boya の人間による判断ゲートを Open Science Desktop 組み込みの全自動 `ai4s-agent` で置き換えないでください。
+インストール後、Skills ページに Boya の 17 個すべての skill が表示されることを確認してください。`boya` から始め、Boya の人間による判断ゲートを Open Science Desktop 組み込みの全自動 `ai4s-agent` で置き換えないでください。
 
 **Codex 全体インストール（全プロジェクト共用）**
 
@@ -224,7 +224,7 @@ cp -r BOYA-skills/skills/* .claude/skills/
 
 すべての skill は**実際の研究材料**で検証済みで、見つかった問題はルールに書き戻されています——多くのケースは著者自身の修士論文を使っており、ワークフロー全体を通した実際のデモンストレーションです。
 
-検証状態は `Draft`、`Beta`、`Stable` の三段階です。1.0 の実事例と evidence ledger はすべて維持していますが、2.0 は技術 ID、トリガー説明、自動引継ぎを変更したため、15 個すべてを一時的に **Beta** とします。関門・誠実性が 3/3、その他の MUST が 90% 以上で Stable に戻します。
+検証状態は `Draft`、`Beta`、`Stable` の三段階です。1.0 の実事例と evidence ledger はすべて維持していますが、2.0 は技術 ID、トリガー説明、自動引継ぎを変更したため、17 個すべてを一時的に **Beta** とします。関門・誠実性が 3/3、その他の MUST が 90% 以上で Stable に戻します。
 
 | # | 事例 | 一言の成果 |
 |---|---|---|

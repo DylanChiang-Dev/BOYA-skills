@@ -19,7 +19,7 @@ Boya 帮你磨题、查引用、读文献、设计方法、搭大纲、修初稿
 [![Stars](https://img.shields.io/github/stars/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=ffca28)](https://github.com/DylanChiang-Dev/BOYA-skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/DylanChiang-Dev/BOYA-skills?style=for-the-badge&logo=github&color=42a5f5)](https://github.com/DylanChiang-Dev/BOYA-skills/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4caf50?style=for-the-badge)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-15-7e57c2?style=for-the-badge)](#十五个-skill)
+[![Skills](https://img.shields.io/badge/skills-17-7e57c2?style=for-the-badge)](#十七个-skill)
 [![version](https://img.shields.io/badge/version-2.0.0-7e57c2?style=for-the-badge)](MEMORY.md)
 [![简体中文](https://img.shields.io/badge/简体中文-Ready-e4002b?style=for-the-badge)](#)
 
@@ -54,7 +54,7 @@ Boya 的最高设计原则是**人类在环（human-in-the-loop）**：流程可
 
 ## 🗺️ 工作流地图
 
-从一个念头到一篇可以投出去的论文，十五个 skill 各守一段，`boya` 在最上层导航：
+从一个念头到一篇可以投出去的论文，十七个 skill 各守一段，`boya` 在最上层导航：
 
 ```mermaid
 flowchart TD
@@ -75,9 +75,9 @@ flowchart TD
     RM -.哪些只有你能决定.-> S10
 ```
 
-## 📦 十五个 skill
+## 📦 十七个 skill
 
-> **一个入口＋十四个专用 skill＝十五个**。用户只需先调用 `boya`，它会自动接力；熟练用户仍可直接调用任一专用 skill。1.0 的真实案例证据保留，2.0 的新命名、接力协议和模型回归暂列 Beta。
+> **一个入口＋十六个专用 skill＝十七个**。用户只需先调用 `boya`，它会自动接力；熟练用户仍可直接调用任一专用 skill。1.0 的真实案例证据保留，2.0 的新命名、接力协议和模型回归暂列 Beta。
 
 ### 核心 · 一阶段一个
 
@@ -118,7 +118,7 @@ flowchart TD
 打开 Open Science Desktop、Codex 或 Claude Code，把这句话贴进去：
 
 ```text
-帮我从 https://github.com/DylanChiang-Dev/BOYA-skills 安装全部 15 个 Boya skills，不要只安装 reference-check。如果在 Open Science Desktop，请安装到当前工作区的 .opencode/skills/；否则先判断当前的 agent 环境与可用的 skills 目录。请说明会写入哪些路径，等我确认后再执行。
+帮我从 https://github.com/DylanChiang-Dev/BOYA-skills 安装全部 17 个 Boya skills，不要只安装 reference-check。如果在 Open Science Desktop，请安装到当前工作区的 .opencode/skills/；否则先判断当前的 agent 环境与可用的 skills 目录。请说明会写入哪些路径，等我确认后再执行。
 ```
 
 常见目标路径：
@@ -142,7 +142,7 @@ mkdir -p .opencode/skills
 cp -r BOYA-skills/skills/* .opencode/skills/
 ```
 
-安装后应在 Skills 页看到全部 15 个 Boya skills。从 `boya` 开始，不要用 Open Science Desktop 内置的全自动 `ai4s-agent` 取代 Boya 的人工决策硬门。
+安装后应在 Skills 页看到全部 17 个 Boya skills。从 `boya` 开始，不要用 Open Science Desktop 内置的全自动 `ai4s-agent` 取代 Boya 的人工决策硬门。
 
 **Codex 全局安装（所有项目可用）**
 
@@ -260,7 +260,7 @@ cp -r BOYA-skills/skills/* .claude/skills/
 
 每个 skill 都拿**真实研究材料**跑过、把暴露的坑写回规则——多数用在作者自己那本硕士论文上，是一条工作流全链的真实示范。
 
-验证状态采 `Draft`、`Beta`、`Stable` 三层。1.0 工作流的真实案例与 evidence ledger 全部保留；2.0 因技术 ID、触发描述与自动接力协议均有变更，目前 15 个 skill 暂列 **Beta**。通过硬门／诚信 3/3 与其他 MUST ≥90% 后才恢复 Stable。
+验证状态采 `Draft`、`Beta`、`Stable` 三层。1.0 工作流的真实案例与 evidence ledger 全部保留；2.0 因技术 ID、触发描述与自动接力协议均有变更，目前 17 个 skill 暂列 **Beta**。通过硬门／诚信 3/3 与其他 MUST ≥90% 后才恢复 Stable。
 
 | # | 案例 | 一句话战果 |
 |---|---|---|

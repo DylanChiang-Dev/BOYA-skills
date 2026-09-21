@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "name": "boya",
+  "version": "2.1.0",
+  "skillCount": 17,
+  "skills": [
+    {
+      "id": "boya",
+      "role": "entry",
+      "stage": 0,
+      "displayName": "博雅研究助手",
+      "shortDescription": "從研究問題到投稿，依產出物自動接力並守住人工決策關卡",
+      "defaultPrompt": "使用 $boya 判斷我目前的研究階段，直接帶我完成下一步，遇到只能由我決定的關卡時停下來。"
+    },
+    {
+      "id": "research-record",
+      "role": "optional",
+      "stage": 0,
+      "displayName": "研究專案檔案",
+      "shortDescription": "保存研究材料、人工決策、未知項、博雅接力檢查點與變更紀錄",
+      "defaultPrompt": "使用 $research-record 為這個研究專案建立可續接、可稽核的狀態檔案。"
+    },
+    {
+      "id": "research-question",
+      "role": "workflow",
+      "stage": 1,
+      "displayName": "研究問題打磨",
+      "shortDescription": "把模糊興趣收斂成可行、重要且能取得資料的研究問題，守住研究者決策權",
+      "defaultPrompt": "使用 $research-question 透過追問幫我收斂研究問題，最後選擇留給我。"
+    },
+    {
+      "id": "literature-search",
+      "role": "workflow",
+      "stage": 2,
+      "displayName": "文獻檢索",
+      "shortDescription": "把研究問題轉成檢索策略並取得有來源的待核候選文獻，保留完整查詢留痕",
+      "defaultPrompt": "使用 $literature-search 為我的研究問題建立檢索策略並找出待核候選文獻。"
+    },
+    {
+      "id": "reference-check",
+      "role": "workflow",
+      "stage": 3,
+      "displayName": "參考文獻查核",
+      "shortDescription": "逐筆核對文獻存在性與書目欄位，完整保留查詢證據，避免查無誤判",
+      "defaultPrompt": "使用 $reference-check 逐筆核查這份參考文獻，查無時不要判定虛構。"
+    },
+    {
+      "id": "literature-analysis",
+      "role": "workflow",
+      "stage": 4,
+      "displayName": "文獻精讀與綜述",
+      "shortDescription": "從原文產出精讀筆記、比較矩陣與可回查的綜述線索，並標明材料層級",
+      "defaultPrompt": "使用 $literature-analysis 整理這批文獻的主張、證據、方法、共識與分歧。"
+    },
+    {
+      "id": "theoretical-framework",
+      "role": "workflow",
+      "stage": 5,
+      "displayName": "理論框架設計",
+      "shortDescription": "比較候選理論的解釋力、代價與證據，讓研究者定錨並守住人工硬門",
+      "defaultPrompt": "使用 $theoretical-framework 比較這個研究問題可用的理論框架，在主框架選擇處停下來。"
+    },
+    {
+      "id": "research-design",
+      "role": "workflow",
+      "stage": 6,
+      "displayName": "研究設計",
+      "shortDescription": "依研究問題規劃方法、資料、工具、分析與研究倫理，交回方法選擇",
+      "defaultPrompt": "使用 $research-design 為我的研究問題提出研究設計方案，方法選擇由我決定。"
+    },
+    {
+      "id": "paper-outline",
+      "role": "workflow",
+      "stage": 7,
+      "displayName": "論文大綱",
+      "shortDescription": "建立符合文稿類型的章節大綱與段落論證鏈，適用多種論文類型",
+      "defaultPrompt": "使用 $paper-outline 把我的研究問題、文獻與方法整理成論文大綱和論證鏈。"
+    },
+    {
+      "id": "academic-revision",
+      "role": "workflow",
+      "stage": 8,
+      "displayName": "學術潤稿",
+      "shortDescription": "在保留作者聲音的前提下收緊既有文字並診斷套話，不宣稱判定 AI 來源",
+      "defaultPrompt": "使用 $academic-revision 依我的文風潤飾這段既有文字，不代寫新內容。"
+    },
+    {
+      "id": "manuscript-review",
+      "role": "workflow",
+      "stage": 9,
+      "displayName": "論文自審",
+      "shortDescription": "從方法、論證、證據與誠信面向嚴格檢查論文草稿，分級提出可操作意見",
+      "defaultPrompt": "使用 $manuscript-review 嚴格審查這份草稿，將意見分為必改、可辯與誤讀。"
+    },
+    {
+      "id": "claim-audit",
+      "role": "workflow",
+      "stage": 10,
+      "displayName": "主張來源查核",
+      "shortDescription": "逐條回源核驗承重主張是否被指定來源原文支持，查無即標註",
+      "defaultPrompt": "使用 $claim-audit 逐條核驗這份稿件的承重主張與指定來源。"
+    },
+    {
+      "id": "citation-format",
+      "role": "workflow",
+      "stage": 11,
+      "displayName": "引用格式整理",
+      "shortDescription": "統一參考文獻與隨文引註格式並檢查雙向對應，缺漏欄位一律保留待補",
+      "defaultPrompt": "使用 $citation-format 將這份參考文獻整理成指定格式，缺漏欄位不要編造。"
+    },
+    {
+      "id": "bilingual-abstract",
+      "role": "workflow",
+      "stage": 12,
+      "displayName": "中英雙語摘要",
+      "shortDescription": "從定稿忠實濃縮中英文摘要與對應關鍵詞，逐項核對數字與專有名詞",
+      "defaultPrompt": "使用 $bilingual-abstract 從這份定稿產出中英文摘要與關鍵詞，不新增原稿沒有的內容。"
+    },
+    {
+      "id": "ai-use-disclosure",
+      "role": "workflow",
+      "stage": 13,
+      "displayName": "AI 使用揭露",
+      "shortDescription": "依真實使用與機構原文起草具體透明的 AI 使用聲明",
+      "defaultPrompt": "使用 $ai-use-disclosure 盤點我的 AI 使用並依目標機構原文起草揭露聲明。"
+    },
+    {
+      "id": "thesis-defense-prep",
+      "role": "workflow",
+      "stage": 14,
+      "displayName": "口試／答辯準備",
+      "shortDescription": "把論文整理成簡報並依真實弱點進行答辯問答演練，不代替作者作答",
+      "defaultPrompt": "使用 $thesis-defense-prep 為這份論文準備簡報骨架、難題與答詢策略。"
+    },
+    {
+      "id": "journal-fit",
+      "role": "workflow",
+      "stage": 14,
+      "displayName": "期刊投稿對標",
+      "shortDescription": "依有來源的作者須知核對定稿並列出投稿前差距，每條硬規都回指來源",
+      "defaultPrompt": "使用 $journal-fit 依目標刊真實作者須知對標我的定稿，每條硬要求都附來源。"
+    }
+  ]
+}
