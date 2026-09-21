@@ -66,18 +66,20 @@ flowchart TD
     S4 --> S5[骨格を作る<br/>paper-outline]
     S5 --> S6[初稿を書く<br/>academic-revision]
     S6 --> S7[自己レビュー<br/>manuscript-review]
-    S7 --> S8[定稿・口頭試問<br/>thesis-defense-prep · citation-format · bilingual-abstract]
+    S7 --> SC[重要主張の原典照合<br/>claim-audit]
+    SC --> S8[定稿・口頭試問<br/>thesis-defense-prep · citation-format · bilingual-abstract]
     S8 --> S9[投稿対標<br/>journal-fit]
     S9 --> S10[AI 利用説明<br/>ai-use-disclosure]
     S10 --> End([📄 投稿可能な論文])
     RM{{boya<br/>全体ナビゲーター}} -.今どこにいるか.-> S1
     RM -.次にどの skill か.-> S5
     RM -.何を自分で決めるか.-> S10
+    RR{{research-record<br/>任意の研究記録}} -.有効化後にチェックポイントを同期.-> RM
 ```
 
 ## 📦 17 個の skill
 
-> **1 個の入口＋14 個の専用 skill＝17 個**。利用者は最初に `boya` を呼ぶだけで、自動的に次へ引き継がれます。熟練者は各 skill を直接呼ぶこともできます。1.0 の実証記録は維持し、2.0 の名称・引継ぎ・モデル回帰は現在 Beta です。
+> **1 個の入口＋16 個の専用 skill＝17 個**。利用者は最初に `boya` を呼ぶだけで、自動的に次へ引き継がれます。熟練者は各 skill を直接呼ぶこともできます。1.0 の実証記録は維持し、2.0 の名称・引継ぎ・モデル回帰は現在 Beta です。
 
 ### コア · 一段階に一つ
 
@@ -92,6 +94,7 @@ flowchart TD
 | [`paper-outline`](skills/paper-outline) | 論文骨格：構造パターン選択（IMRaD／レビュー／思弁／政策分析）、アウトライン生成、段落レベルの claim–evidence–warrant チェーン（推論の橋を補う） | アウトライン |
 | [`academic-revision`](skills/academic-revision) | 学術推敲：過去文から著者の声を校正し、既存段落の定型表現や空疎な構造を診断；AI 由来を判定せず、検出回避にも協力しない | 初稿 |
 | [`manuscript-review`](skills/manuscript-review) | 自己レビュー（**模擬審査**）：審査員パネル（方法論／分野／悪魔の代弁者／編集長）が順番にレビュー＋誠実性自己チェック＋意見のトリアージ（必修正／議論可能／誤読） | 自己レビュー |
+| [`claim-audit`](skills/claim-audit) | 主張と原典の照合：数値、因果、比較、傾向、中心的論拠を原文の位置とともに確認し、supported／review／block を記録する；DOI の存在だけを内容の裏付けとはみなさない | 主張監査 |
 | [`thesis-defense-prep`](skills/thesis-defense-prep) | 口頭試問準備：論文 → 発表骨格、階層的に難問を出す（確認／方法／理論／貢献／罠）、回答戦略（英語を含む） | 口頭試問 |
 | [`journal-fit`](skills/journal-fit) | 投稿対標：完成稿を対象 venue の実際の投稿規程と照合し、must-fix／should-fix／確認待ちの差分を整理；投稿規程の捏造はせず、投稿先の決定も代行しない | 投稿 |
 | [`ai-use-disclosure`](skills/ai-use-disclosure) | AI 利用説明：利用の棚卸し → 盗用／代筆／補助の三分法 → 対象機関の形式で正直かつ具体的な声明を生成 → トレーサビリティ証拠 | AI 利用説明 |
@@ -108,6 +111,7 @@ flowchart TD
 | skill | 内容 | 段階 |
 |---|---|---|
 | [`boya`](skills/boya) | **推奨される唯一の入口**：初回呼出し後に段階を特定し、次の skill を実行してチェックポイントを保持；研究課題、枠組み、方法、採否は必ず研究者の判断を待つ | ナビゲーション |
+| [`research-record`](skills/research-record) | 任意の研究プロジェクト記録：利用者が明示的に有効化した後、資料への参照、人的判断、未確定事項、BOYA チェックポイントを保存する；全文を複製せず、判断を代行しない | 全段階・任意 |
 
 ## 🚀 インストール
 

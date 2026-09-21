@@ -54,7 +54,7 @@ Boya's top design principle is **human-in-the-loop**: the workflow can auto-rela
 
 ## 🗺️ Workflow Map
 
-From a rough idea to a paper ready for submission, fifteen skills each cover one stage. `boya` sits at the top as the navigator:
+From a rough idea to a paper ready for submission, seventeen skills each cover one stage. `boya` sits at the top as the navigator:
 
 ```mermaid
 flowchart TD
@@ -66,18 +66,20 @@ flowchart TD
     S4 --> S5[Build outline<br/>paper-outline]
     S5 --> S6[Draft & tune style<br/>academic-revision]
     S6 --> S7[Self-review<br/>manuscript-review]
-    S7 --> S8[Finalize & defend<br/>thesis-defense-prep · citation-format · bilingual-abstract]
+    S7 --> SC[Audit key claims<br/>claim-audit]
+    SC --> S8[Finalize & defend<br/>thesis-defense-prep · citation-format · bilingual-abstract]
     S8 --> S9[Venue fit<br/>journal-fit]
     S9 --> S10[AI disclosure<br/>ai-use-disclosure]
     S10 --> End([📄 A paper ready to submit])
     RM{{boya<br/>workflow navigator}} -.where am I?.-> S1
     RM -.which skill next?.-> S5
     RM -.what must only I decide?.-> S10
+    RR{{research-record<br/>optional project record}} -.sync checkpoints after opt-in.-> RM
 ```
 
 ## 📦 The 17 Skills
 
-> **One entry point plus fourteen focused skills equals fifteen.** Users only need to invoke `boya` first; it relays automatically, while experienced users may still call any focused skill directly. The 1.0 evidence remains intact; the 2.0 names, relay protocol, and model regressions are Beta until the explicit model matrix passes.
+> **One entry point plus sixteen focused skills equals seventeen.** Users only need to invoke `boya` first; it relays automatically, while experienced users may still call any focused skill directly. The 1.0 evidence remains intact; the 2.0 names, relay protocol, and model regressions are Beta until the explicit model matrix passes.
 
 ### Core · One Per Stage
 
@@ -92,6 +94,7 @@ flowchart TD
 | [`paper-outline`](skills/paper-outline) | Paper skeleton: choose structure pattern (IMRaD / review / speculative / policy), generate outline, paragraph-level claim–evidence–warrant chains (bridges reasoning gaps) | Outline |
 | [`academic-revision`](skills/academic-revision) | Academic revision: calibrates to the author’s prior writing, revises existing paragraphs, and diagnoses formulaic style; it neither attributes AI authorship nor helps evade detection | Draft |
 | [`manuscript-review`](skills/manuscript-review) | Self-review (**simulated review**): a panel of reviewers (methodology / field / devil's advocate / editor-in-chief) takes turns + integrity self-check + issue triage (must-fix / debatable / misread) | Review |
+| [`claim-audit`](skills/claim-audit) | Claim-to-source audit: verifies numbers, causal claims, comparisons, trends, and core arguments against located source text; records supported / review / blocked verdicts without treating DOI existence as content support | Claim audit |
 | [`thesis-defense-prep`](skills/thesis-defense-prep) | Defense preparation: paper → presentation skeleton, layered hard questions (clarification / method / theory / contribution / traps), response strategies (including English) | Defense |
 | [`journal-fit`](skills/journal-fit) | Venue-fit check: compares your manuscript against a target venue's real author guidelines, lists must-fix / should-fix / needs-check gaps; never invents journal requirements or decides where you submit | Submission |
 | [`ai-use-disclosure`](skills/ai-use-disclosure) | AI-use disclosure: inventory usage → plagiarism / ghostwriting / assistance trichotomy → generate honest, specific statements in target institution format → traceability evidence | Disclosure |
@@ -108,6 +111,7 @@ flowchart TD
 | Skill | What It Does | Stage |
 |---|---|---|
 | [`boya`](skills/boya) | **The recommended single entry point**: after the first invocation it locates the stage, runs the next skill, and preserves a checkpoint; research questions, frameworks, methods, and inclusion decisions always stop for the researcher | Navigation |
+| [`research-record`](skills/research-record) | Optional research project record: after explicit opt-in, preserves artifact pointers, human decisions, unknowns, and BOYA checkpoints without copying full texts or confirming decisions for the researcher | Optional, all stages |
 
 ## 🚀 Installation
 

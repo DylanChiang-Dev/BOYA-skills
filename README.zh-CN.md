@@ -66,13 +66,15 @@ flowchart TD
     S4 --> S5[搭骨架<br/>paper-outline]
     S5 --> S6[写初稿<br/>academic-revision]
     S6 --> S7[自我审查<br/>manuscript-review]
-    S7 --> S8[定稿·答辩<br/>thesis-defense-prep · citation-format · bilingual-abstract]
+    S7 --> SC[承重主张回源<br/>claim-audit]
+    SC --> S8[定稿·答辩<br/>thesis-defense-prep · citation-format · bilingual-abstract]
     S8 --> S9[投稿对标<br/>journal-fit]
     S9 --> S10[伦理说明<br/>ai-use-disclosure]
     S10 --> End([📄 可投出去的论文])
     RM{{boya<br/>全程导航书脊}} -.随时定位你在哪.-> S1
     RM -.该唤哪个 skill.-> S5
     RM -.哪些只有你能决定.-> S10
+    RR{{research-record<br/>选用项目档案}} -.启用后同步检查点.-> RM
 ```
 
 ## 📦 十七个 skill
@@ -92,6 +94,7 @@ flowchart TD
 | [`paper-outline`](skills/paper-outline) | 论文骨架：选结构模式（IMRaD／综述／思辨／政策）、长出大纲、段落论证链 claim–evidence–warrant（专补推理桥） | 大纲 |
 | [`academic-revision`](skills/academic-revision) | 学术润稿：依旧文校准作者声音、修改既有段落、诊断套话与空洞结构；不判断 AI 来源、不协助规避检测 | 初稿 |
 | [`manuscript-review`](skills/manuscript-review) | 自我审查（**模拟审查**）：一桌审稿人（方法论／领域／魔鬼代言人／主编）轮审＋诚信自查＋意见分级（必改／可辩／误读） | 自审 |
+| [`claim-audit`](skills/claim-audit) | 主张来源核查：优先回源核对数字、因果、比较、趋势与核心论据；定位原文并留下 supported／review／block 判定，不把 DOI 存在当成内容支持 | 主张核查 |
 | [`thesis-defense-prep`](skills/thesis-defense-prep) | 答辩准备：论文 → 汇报骨架、分层出难题（澄清／方法／理论／贡献／陷阱）、答询策略（含英文） | 答辩 |
 | [`journal-fit`](skills/journal-fit) | 投稿对标：用定稿对上目标 venue 的真实作者须知，列出 must-fix／should-fix／待补核查；不编期刊规范、不代决定投哪里 | 投稿 |
 | [`ai-use-disclosure`](skills/ai-use-disclosure) | AI 使用说明：盘点使用 → 抄袭／代写／辅助三分法 → 按目标机构格式生成诚实具体声明 → 留痕自证 | 说明 |
@@ -108,6 +111,7 @@ flowchart TD
 | skill | 功能 | 阶段 |
 |---|---|---|
 | [`boya`](skills/boya) | **唯一推荐入口**：首次调用后自动定位、执行下一个 skill、保存检查点；研究问题、框架、方法与取舍一律硬停等你决定 | 导航 |
+| [`research-record`](skills/research-record) | 研究项目档案：用户明确启用后，保存材料指针、人工决定、未知项与 boya checkpoint；不复制全文、不自动替用户确认决定 | 全程选用 |
 
 ## 🚀 安装
 
