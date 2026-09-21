@@ -1,6 +1,6 @@
 語言：[繁體中文](README.md) | [简体中文](README.zh-CN.md) | [English](README.en.md) | [日本語](README.ja.md)
 
-> **公開邊界**：本倉庫是 BOYA 官方 Skills 的公開來源。Desktop 應用程式與產品資產維持在私有的 [BOYA Desktop](https://github.com/DylanChiang-Dev/BOYA-desktop) 倉庫；Skills 不需要 BOYA 帳號即可下載與安裝。
+> **公開邊界**：本倉庫是 BOYA 官方 Skills 的唯一公開來源。Desktop、Website、Web、API 與產品資產維持在私有的 [BOYA Product](https://github.com/DylanChiang-Dev/BOYA-product) monorepo；Skills 不需要 BOYA 帳號即可下載與安裝。
 
 <div align="center">
 
